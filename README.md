@@ -32,9 +32,6 @@ vcollector collects version list of SDKs for vmr.
   - [ ] Groovy
   - [ ] Android SDK Manager
 
-- from conda & official stises
-  - [ ] PHP
-
 - from conda & github
   - [ ] Erlang
   - [ ] Elixir
@@ -46,6 +43,7 @@ vcollector collects version list of SDKs for vmr.
   - [ ] V
   - [ ] Odin
   - [ ] Gleam
+  - [ ] PHP
 
 # Lsp
 
@@ -57,7 +55,7 @@ vcollector collects version list of SDKs for vmr.
 
 # Dev tools
 
-- pakage manager
+- pakage manager/installer
   - [ ] Maven
   - [ ] Gradle
   - [ ] Rustup
