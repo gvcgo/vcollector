@@ -1,5 +1,18 @@
 package version
 
+const (
+	Darwin  string = "darwin"
+	Linux   string = "linux"
+	Windows string = "windows"
+)
+
+const (
+	Conda      string = "conda"
+	CondaForge string = "conda-forge"
+	Coursier   string = "coursier"
+	Unarchiver string = "unarchiver"
+)
+
 type Item struct {
 	Url       string `json:"url"`       // download url
 	Arch      string `json:"arch"`      // amd64 | arm64
