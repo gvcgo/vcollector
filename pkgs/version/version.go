@@ -11,6 +11,7 @@ const (
 	CondaForge string = "conda-forge"
 	Coursier   string = "coursier"
 	Unarchiver string = "unarchiver"
+	Executable string = "executable"
 )
 
 type Item struct {
@@ -19,7 +20,7 @@ type Item struct {
 	Os        string `json:"os"`        // linux | darwin | windows
 	Sum       string `json:"sum"`       // Checksum
 	SumType   string `json:"sum_type"`  // sha1 | sha256 | sha512 | md5
-	Installer string `json:"installer"` // conda | conda-forge | coursier | unarchiver
+	Installer string `json:"installer"` // conda | conda-forge | coursier | unarchiver | executable
 	LTS       string `json:"lts"`       // Long Term Support
 	Extra     string `json:"extra"`     // Extra Info
 }
