@@ -4,16 +4,19 @@ vcollector collects version list of SDKs for vmr.
 
 # Programming languages
 
-- from conda
+- from conda-forge
   - [ ] Python
   - [ ] PyPy
-
-- from conda-forge
   - [ ] GCC
   - [ ] Clang
   - [ ] Ruby
   - [ ] Rust
   - [ ] Lua
+  - [ ] R
+  - [ ] LFortran
+  - [ ] Perl
+  - [ ] Julia
+  - [ ] Typst
 
 - from coursier
   - [ ] Scala
@@ -22,7 +25,6 @@ vcollector collects version list of SDKs for vmr.
   - [ ] JDK
   - [ ] Go
   - [ ] Node.js
-  - [ ] Julia
   - [ ] Flutter
   - [ ] Dlang
   - [ ] Zig
@@ -44,7 +46,6 @@ vcollector collects version list of SDKs for vmr.
   - [ ] V
   - [ ] Odin
   - [ ] Gleam
-  - [ ] Typst
 
 # Lsp
 
@@ -60,10 +61,10 @@ vcollector collects version list of SDKs for vmr.
   - [ ] Maven
   - [ ] Gradle
   - [ ] Rustup
-  - [ ] Cygwin-installer
-  - [ ] Msys2-installer
   - [ ] Miniconda
   - [ ] Coursier
+  - [ ] Cygwin-installer
+  - [ ] Msys2-installer
 
 - others
   - [ ] Git-for-Windows
