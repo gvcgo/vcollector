@@ -40,9 +40,10 @@ type Golang struct {
 func NewGolang() (g *Golang) {
 	g = &Golang{
 		DownloadUrl: "https://golang.google.cn/dl/",
-		SDKName:     "go",
-		Version:     make(version.VersionList),
-		host:        "https://go.dev",
+		// DownloadUrl:"https://go.dev/dl/",
+		SDKName: "go",
+		Version: make(version.VersionList),
+		host:    "https://go.dev",
 	}
 	return
 }
@@ -100,6 +101,7 @@ func (g *Golang) parseVersion(ss *goquery.Selection, vStr string) {
 			item.Arch = arch
 			item.Os = osType
 			item.Installer = version.Unarchiver
+			item.Extra = strings.TrimSpace(tds.Eq(4).Text())
 			item.Sum = strings.TrimSpace(tds.Eq(5).Text())
 			if len(item.Sum) == 64 {
 				item.SumType = "sha256"
