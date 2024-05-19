@@ -1,3 +1,6 @@
 package crawler
 
-type Crawler interface{}
+type Crawler interface {
+	Start()
+	GetSDKName() string
+}
