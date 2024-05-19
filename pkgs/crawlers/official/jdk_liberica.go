@@ -49,6 +49,10 @@ func (j *JDK) GetResult() {
 	req.GetJson(j.DownloadUrl, &j.result)
 }
 
+func (j *JDK) GetSDKName() string {
+	return j.SDKName
+}
+
 func (j *JDK) Start() {
 	j.GetResult()
 	fmt.Println(len(j.result))

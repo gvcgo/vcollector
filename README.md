@@ -67,6 +67,7 @@ vcollector collects version list of SDKs for vmr.
 - others
   - [ ] Git-for-Windows
   - [ ] Lazygit
+  - [ ] Lazydocker
   - [ ] Typst-preview
   - [ ] Protobuf(protoc)
   - [ ] Kubectl
