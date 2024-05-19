@@ -9,6 +9,11 @@ import (
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
 
+/*
+https://bell-sw.com/pages/downloads/
+https://api.bell-sw.com/v1/liberica/releases/?&
+*/
+
 var JDKOsMap = map[string]string{
 	"linux":   "linux",
 	"windows": "windows",
@@ -20,10 +25,6 @@ var JDKArchMap = map[string]string{
 	"arm": "arm64",
 }
 
-/*
-https://bell-sw.com/pages/downloads/
-https://api.bell-sw.com/v1/liberica/releases/?&
-*/
 type LibericaItem struct {
 	Bitness        int    `json:"bitness"`
 	UpdateVersion  int    `json:"updateVersion"`
@@ -35,12 +36,12 @@ type LibericaItem struct {
 	ExtraVersion   int    `json:"extraVersion"`
 	BuildVersion   int    `json:"buildVersion"`
 	Os             string `json:"os"`
-	// InterimVersion int    `json:"interimVersion"`
-	Version      string `json:"version"`
-	Sha1         string `json:"sha1"`
-	Size         int64  `json:"size"`
-	PatchVersion int    `json:"patchVersion"`
-	LTS          bool   `json:"LTS"`
+	InterimVersion int    `json:"interimVersion"`
+	Version        string `json:"version"`
+	Sha1           string `json:"sha1"`
+	Size           int64  `json:"size"`
+	PatchVersion   int    `json:"patchVersion"`
+	LTS            bool   `json:"LTS"`
 }
 
 type LibericaResult []LibericaItem
