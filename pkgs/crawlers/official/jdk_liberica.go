@@ -122,11 +122,11 @@ func (j *JDK) Start() {
 func TestJDK() {
 	jj := NewJDK()
 	jj.Start()
-	ff := "/Volumes/data/projects/go/src/gvcgo_org/vcollector/jdk.json"
+	ff := "/Volumes/data/projects/go/src/gvcgo_org/vcollector/test/jdk.json"
 	content, _ := json.MarshalIndent(jj.Verisons, "", "    ")
 	os.WriteFile(ff, content, os.ModePerm)
 
-	f := "/Volumes/data/projects/go/src/gvcgo_org/vcollector/jdk_raw.json"
+	f := "/Volumes/data/projects/go/src/gvcgo_org/vcollector/test/jdk_raw.json"
 	content, _ = json.MarshalIndent(jj.result, "", "    ")
 	os.WriteFile(f, content, os.ModePerm)
 }

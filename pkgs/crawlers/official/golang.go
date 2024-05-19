@@ -122,7 +122,7 @@ func TestGolang() {
 	gg := NewGolang()
 	gg.Start()
 
-	ff := "/Volumes/data/projects/go/src/gvcgo_org/vcollector/go.json"
+	ff := "/Volumes/data/projects/go/src/gvcgo_org/vcollector/test/go.json"
 	content, _ := json.MarshalIndent(gg.Version, "", "    ")
 	os.WriteFile(ff, content, os.ModePerm)
 }
