@@ -1,6 +1,9 @@
 package main
 
-import "github.com/gvcgo/vcollector/pkgs/crawlers/official"
+import (
+	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
+)
 
 func main() {
 	// official.TestJDK()
@@ -14,6 +17,7 @@ func main() {
 	// official.TestJulia()
 	// official.TestDlang()
 	// official.TestGroovy()
-	official.TestKubectl()
+	// official.TestKubectl()
 	// official.TestScala()
+	fixed.TestVSCode()
 }
