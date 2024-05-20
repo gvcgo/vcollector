@@ -37,27 +37,25 @@ var CondaPlatformList = []string{
 }
 
 func ParseArch(platform string) (archStr string) {
-	if strings.Contains(platform, "-64") {
-		return "amd64"
-	}
-	if strings.Contains(platform, "-arm64") {
-		return "arm64"
-	}
-	if strings.Contains(platform, "-aarch64") {
-		return "arm64"
+	switch platform {
+	case "linux-64", "win-64", "osx-64":
+		archStr = "amd64"
+	case "linux-aarch64", "win-arm64", "osx-arm64":
+		archStr = "arm64"
+	default:
 	}
 	return
 }
 
 func ParseOS(platform string) (osStr string) {
-	if strings.Contains(platform, "linux-") {
-		return "linux"
-	}
-	if strings.Contains(platform, "win-") {
-		return "windows"
-	}
-	if strings.Contains(platform, "osx-") {
-		return "darwin"
+	switch platform {
+	case "linux-64", "linux-aarch64":
+		osStr = "linux"
+	case "win-64", "win-arm64":
+		osStr = "windows"
+	case "osx-64", "osx-arm64":
+		osStr = "darwin"
+	default:
 	}
 	return
 }
@@ -90,11 +88,16 @@ func ParseSearchResult(content string) (vlist []string) {
 	if header == "" {
 		return
 	}
+	filter := map[string]struct{}{}
 	sList := strings.Split(content, header)
 	if len(sList) == 2 {
 		lines := strings.Split(sList[1], "\n")
 		for _, line := range lines {
-			vlist = append(vlist, FindVersion(strings.Split(line, " ")))
+			version := FindVersion(strings.Split(line, " "))
+			if _, ok := filter[version]; !ok {
+				filter[version] = struct{}{}
+				vlist = append(vlist, version)
+			}
 		}
 	}
 	return

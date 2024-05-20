@@ -100,6 +100,10 @@ func (j *Julia) Start() {
 	j.getResult()
 }
 
+func (j *Julia) GetVersions() version.VersionList {
+	return j.Version
+}
+
 func TestJulia() {
 	jj := NewJulia()
 	jj.Start()

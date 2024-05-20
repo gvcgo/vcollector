@@ -148,6 +148,10 @@ func (v *VSCode) Start() {
 	v.getResult()
 }
 
+func (v *VSCode) GetVersions() version.VersionList {
+	return v.Version
+}
+
 func TestVSCode() {
 	vv := NewVSCode()
 	vv.Start()

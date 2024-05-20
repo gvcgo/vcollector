@@ -119,6 +119,10 @@ func (j *JDK) Start() {
 	j.filter()
 }
 
+func (j *JDK) GetVersions() version.VersionList {
+	return j.Verisons
+}
+
 func TestJDK() {
 	jj := NewJDK()
 	jj.Start()

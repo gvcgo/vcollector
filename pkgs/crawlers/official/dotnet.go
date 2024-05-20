@@ -150,6 +150,10 @@ func (d *Dotnet) Start() {
 	d.getResult()
 }
 
+func (d *Dotnet) GetVersions() version.VersionList {
+	return d.Version
+}
+
 func TestDotnet() {
 	dd := NewDotnet()
 	dd.Start()

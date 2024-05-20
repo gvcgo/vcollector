@@ -58,3 +58,7 @@ func (r *Rustup) Start() {
 		},
 	}
 }
+
+func (r *Rustup) GetVersions() version.VersionList {
+	return r.Version
+}

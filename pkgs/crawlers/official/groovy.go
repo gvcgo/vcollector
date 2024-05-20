@@ -105,6 +105,10 @@ func (g *Groovy) Start() {
 	g.getResult()
 }
 
+func (g *Groovy) GetVersions() version.VersionList {
+	return g.Version
+}
+
 func TestGroovy() {
 	gg := NewGroovy()
 	gg.Start()

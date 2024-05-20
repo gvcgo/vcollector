@@ -101,6 +101,10 @@ func (m *Maven) Start() {
 	m.getResult()
 }
 
+func (m *Maven) GetVersions() version.VersionList {
+	return m.Version
+}
+
 func TestMaven() {
 	mm := NewMaven()
 	mm.Start()

@@ -122,6 +122,10 @@ func (m *Miniconda) Start() {
 	m.getResult()
 }
 
+func (m *Miniconda) GetVersions() version.VersionList {
+	return m.Version
+}
+
 func TestMiniconda() {
 	mm := NewMiniconda()
 	mm.Start()

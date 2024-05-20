@@ -82,6 +82,10 @@ func (s *SDKManager) Start() {
 	s.getResult()
 }
 
+func (s *SDKManager) GetVersions() version.VersionList {
+	return s.Version
+}
+
 func TestSDKManager() {
 	os.Setenv(req.ProxyEnvName, "http://127.0.0.1:2023")
 	ss := NewSDKManager()

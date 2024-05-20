@@ -136,6 +136,10 @@ func (n *Node) Start() {
 	n.getResult()
 }
 
+func (n *Node) GetVersions() version.VersionList {
+	return n.Version
+}
+
 func TestNode() {
 	nn := NewNode()
 	nn.Start()

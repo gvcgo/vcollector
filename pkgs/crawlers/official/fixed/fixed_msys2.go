@@ -28,3 +28,7 @@ func (m *Msys2) Start() {
 		},
 	}
 }
+
+func (m *Msys2) GetVersions() version.VersionList {
+	return m.Version
+}

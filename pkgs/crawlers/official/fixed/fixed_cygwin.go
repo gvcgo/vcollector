@@ -28,3 +28,7 @@ func (c *Cygwin) Start() {
 		},
 	}
 }
+
+func (c *Cygwin) GetVersions() version.VersionList {
+	return c.Version
+}

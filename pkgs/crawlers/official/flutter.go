@@ -97,6 +97,10 @@ func (f *Flutter) Start() {
 	f.getResult()
 }
 
+func (f *Flutter) GetVersions() version.VersionList {
+	return f.Version
+}
+
 func TestFlutter() {
 	f := NewFlutter()
 	f.Start()

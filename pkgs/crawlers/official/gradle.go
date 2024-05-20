@@ -71,6 +71,10 @@ func (g *Gradle) Start() {
 	g.getResult()
 }
 
+func (g *Gradle) GetVersions() version.VersionList {
+	return g.Version
+}
+
 func TestGradle() {
 	gg := NewGradle()
 	gg.Start()

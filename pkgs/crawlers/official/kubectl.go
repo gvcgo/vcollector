@@ -112,6 +112,10 @@ func (k *Kubectl) Start() {
 	k.getResult()
 }
 
+func (k *Kubectl) GetVersions() version.VersionList {
+	return k.Version
+}
+
 func TestKubectl() {
 	os.Setenv(req.ProxyEnvName, "http://127.0.0.1:2023")
 	kk := NewKubectl()

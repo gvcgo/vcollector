@@ -118,6 +118,10 @@ func (g *Golang) Start() {
 	g.getResult()
 }
 
+func (g *Golang) GetVersions() version.VersionList {
+	return g.Version
+}
+
 func TestGolang() {
 	gg := NewGolang()
 	gg.Start()

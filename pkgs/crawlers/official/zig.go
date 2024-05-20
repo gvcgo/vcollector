@@ -92,6 +92,10 @@ func (z *Zig) Start() {
 	z.getResult()
 }
 
+func (z *Zig) GetVersions() version.VersionList {
+	return z.Version
+}
+
 func TestZig() {
 	zz := NewZig()
 	zz.Start()

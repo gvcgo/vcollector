@@ -56,6 +56,10 @@ func (s *Scala) Start() {
 	s.getResult()
 }
 
+func (s *Scala) GetVersions() version.VersionList {
+	return s.Version
+}
+
 func TestScala() {
 	ss := NewScala()
 	ss.Start()

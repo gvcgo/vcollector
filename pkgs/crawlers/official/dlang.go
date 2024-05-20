@@ -98,6 +98,10 @@ func (d *Dlang) Start() {
 	d.getResult()
 }
 
+func (d *Dlang) GetVersions() version.VersionList {
+	return d.Version
+}
+
 func TestDlang() {
 	dd := NewDlang()
 	dd.Start()
