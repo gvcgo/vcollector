@@ -10,5 +10,6 @@ func main() {
 	// official.TestDotnet()
 	// official.TestZig()
 	// official.TestNode()
-	official.TestFlutter()
+	// official.TestFlutter()
+	official.TestJulia()
 }
