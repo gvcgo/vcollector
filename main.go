@@ -13,5 +13,7 @@ func main() {
 	// official.TestFlutter()
 	// official.TestJulia()
 	// official.TestDlang()
-	official.TestGroovy()
+	// official.TestGroovy()
+	official.TestKubectl()
+	// official.TestScala()
 }
