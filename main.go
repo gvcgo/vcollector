@@ -4,9 +4,10 @@ import "github.com/gvcgo/vcollector/pkgs/crawlers/official"
 
 func main() {
 	// official.TestJDK()
-	official.TestGolang()
+	// official.TestGolang()
 	// official.TestMaven()
 	// official.TestGradle()
-	official.TestDotnet()
+	// official.TestDotnet()
 	// official.TestZig()
+	official.TestNode()
 }
