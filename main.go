@@ -9,5 +9,6 @@ func main() {
 	// official.TestGradle()
 	// official.TestDotnet()
 	// official.TestZig()
-	official.TestNode()
+	// official.TestNode()
+	official.TestFlutter()
 }

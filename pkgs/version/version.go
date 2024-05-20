@@ -21,7 +21,7 @@ type Item struct {
 	Sum       string `json:"sum"`       // Checksum
 	SumType   string `json:"sum_type"`  // sha1 | sha256 | sha512 | md5
 	Size      int64  `json:"size"`      // Size in bytes
-	Installer string `json:"installer"` // conda | conda-forge | coursier | unarchiver | executable
+	Installer string `json:"installer"` // conda | conda-forge | coursier | unarchiver | executable | dpkg | dnf | yum
 	LTS       string `json:"lts"`       // Long Term Support
 	Extra     string `json:"extra"`     // Extra Info
 }
