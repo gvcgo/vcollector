@@ -1,17 +1,15 @@
 package gh
 
-type Assets struct {
+type Asset struct {
 	Name string `json:"name"`
 	Url  string `json:"browser_download_url"`
 }
 
 type ReleaseItem struct {
-	Assets     []*Assets `json:"assets"`
-	TagName    string    `json:"tag_name"`
-	PreRelease any       `json:"prerelease"`
+	Assets     []Asset `json:"assets"`
+	TagName    string  `json:"tag_name"`
+	PreRelease any     `json:"prerelease"`
 }
-
-type Filter func(dUrl string) bool
 
 func GetReleaseItems(repoName string) (itemList []ReleaseItem) {
 	uploader := NewUploader()
