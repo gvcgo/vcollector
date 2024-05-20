@@ -15,7 +15,6 @@ vcollector collects version list of SDKs for vmr.
   - [ ] R
   - [ ] LFortran
   - [ ] Perl
-  - [ ] Julia
   - [ ] Typst
 
 - from coursier
@@ -31,6 +30,7 @@ vcollector collects version list of SDKs for vmr.
   - [ ] .Net
   - [ ] Groovy
   - [ ] Android SDK Manager
+  - [ ] Julia
 
 - from conda & github
   - [ ] Erlang
