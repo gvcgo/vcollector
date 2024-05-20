@@ -11,5 +11,6 @@ func main() {
 	// official.TestZig()
 	// official.TestNode()
 	// official.TestFlutter()
-	official.TestJulia()
+	// official.TestJulia()
+	official.TestDlang()
 }
