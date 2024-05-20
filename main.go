@@ -1,8 +1,9 @@
 package main
 
 import (
+	"github.com/gvcgo/vcollector/internal/conda"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
+	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 )
 
 func main() {
@@ -21,5 +22,6 @@ func main() {
 	// official.TestScala()
 	// fixed.TestVSCode()
 	// fixed.TestSDKManager()
-	fixed.TestMiniconda()
+	// fixed.TestMiniconda()
+	conda.TestCondaSearch()
 }
