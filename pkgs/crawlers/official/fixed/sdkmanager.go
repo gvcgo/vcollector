@@ -70,7 +70,7 @@ func (s *SDKManager) getResult() {
 		if item.Sum != "" {
 			item.SumType = "sha256"
 		}
-
+		item.Installer = version.Unarchiver
 		if _, ok := s.Version[vName]; !ok {
 			s.Version[vName] = version.Version{}
 		}

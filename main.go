@@ -20,5 +20,6 @@ func main() {
 	// official.TestKubectl()
 	// official.TestScala()
 	// fixed.TestVSCode()
-	fixed.TestSDKManager()
+	// fixed.TestSDKManager()
+	fixed.TestMiniconda()
 }
