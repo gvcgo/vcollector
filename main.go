@@ -2,8 +2,9 @@ package main
 
 import (
 	_ "github.com/gvcgo/vcollector/internal/conda"
+	"github.com/gvcgo/vcollector/internal/gh"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/conda"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/lans"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/lsp"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 )
@@ -37,7 +38,7 @@ func main() {
 	// conda.TestPerl()
 	// conda.TestTypst()
 
-	// gh.TestGithub()
+	gh.TestGithub()
 
 	// lans.TestBun()
 	// lans.TestCodon()
@@ -45,5 +46,10 @@ func main() {
 	// lans.TestGleam()
 	// lans.TestKotlin()
 	// lans.TestOdin()
-	lans.TestVlang()
+	// lans.TestVlang()
+
+	// lsp.TestDlangLsp()
+	// lsp.TestTypstLsp()
+	// lsp.TestVAnalyzer()
+	lsp.TestZls()
 }
