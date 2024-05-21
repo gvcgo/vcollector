@@ -33,7 +33,7 @@ func (g *Gleam) GetSDKName() string {
 }
 
 func (g *Gleam) tagFilter(ri gh.ReleaseItem) bool {
-	return GhVersionRegexp.FindString(ri.TagName) != ""
+	return searcher.GhVersionRegexp.FindString(ri.TagName) != ""
 }
 
 func (g *Gleam) fileFilter(a gh.Asset) bool {

@@ -33,7 +33,7 @@ func (c *Codon) GetSDKName() string {
 }
 
 func (c *Codon) tagFilter(ri gh.ReleaseItem) bool {
-	return GhVersionRegexp.FindString(ri.TagName) != ""
+	return searcher.GhVersionRegexp.FindString(ri.TagName) != ""
 }
 
 func (c *Codon) fileFilter(a gh.Asset) bool {
@@ -64,7 +64,7 @@ func (c *Codon) archParser(fName string) (archStr string) {
 }
 
 func (c *Codon) vParser(tagName string) (vStr string) {
-	return strings.TrimPrefix(GhVersionRegexp.FindString(tagName), "v")
+	return strings.TrimPrefix(searcher.GhVersionRegexp.FindString(tagName), "v")
 }
 
 func (c *Codon) insParser(fName string) (insStr string) {

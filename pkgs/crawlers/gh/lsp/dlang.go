@@ -4,15 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"regexp"
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
-
-var GhVersionRegexp = regexp.MustCompile(`v\d+(.\d+){2}`)
 
 type DlangLsp struct {
 	SDKName  string
@@ -36,7 +33,7 @@ func (d *DlangLsp) GetSDKName() string {
 }
 
 func (d *DlangLsp) tagFilter(ri gh.ReleaseItem) bool {
-	return GhVersionRegexp.FindString(ri.TagName) != ""
+	return searcher.GhVersionRegexp.FindString(ri.TagName) != ""
 }
 
 func (d *DlangLsp) fileFilter(a gh.Asset) bool {

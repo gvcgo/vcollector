@@ -4,15 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"regexp"
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
-
-var GVersionRegexp = regexp.MustCompile(`\d+(.\d+){2}`)
 
 type Vlang struct {
 	SDKName  string
@@ -36,7 +33,7 @@ func (v *Vlang) GetSDKName() string {
 }
 
 func (v *Vlang) tagFilter(ri gh.ReleaseItem) bool {
-	if GVersionRegexp.FindString(ri.TagName) != "" {
+	if searcher.GVersionRegexp.FindString(ri.TagName) != "" {
 		return true
 	}
 	if strings.HasPrefix(ri.TagName, "weekly.") {

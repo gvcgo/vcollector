@@ -33,7 +33,7 @@ func (d *Deno) GetSDKName() string {
 }
 
 func (d *Deno) tagFilter(ri gh.ReleaseItem) bool {
-	return GhVersionRegexp.FindString(ri.TagName) != ""
+	return searcher.GhVersionRegexp.FindString(ri.TagName) != ""
 }
 
 func (d *Deno) fileFilter(a gh.Asset) bool {

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"regexp"
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
@@ -12,8 +11,6 @@ import (
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
-
-var GhVersionRegexp = regexp.MustCompile(`v\d+(.\d+){2}`)
 
 type Bun struct {
 	SDKName  string
@@ -37,7 +34,7 @@ func (b *Bun) GetSDKName() string {
 }
 
 func (b *Bun) tagFilter(ri gh.ReleaseItem) bool {
-	return GhVersionRegexp.FindString(ri.TagName) != ""
+	return searcher.GhVersionRegexp.FindString(ri.TagName) != ""
 }
 
 func (b *Bun) fileFilter(a gh.Asset) bool {
@@ -83,7 +80,7 @@ func (b *Bun) archParser(fName string) (archStr string) {
 }
 
 func (b *Bun) vParser(tagName string) (vStr string) {
-	return strings.TrimPrefix(GhVersionRegexp.FindString(tagName), "v")
+	return strings.TrimPrefix(searcher.GhVersionRegexp.FindString(tagName), "v")
 }
 
 func (b *Bun) insParser(fName string) (insStr string) {

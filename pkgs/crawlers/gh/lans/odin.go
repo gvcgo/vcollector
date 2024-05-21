@@ -33,7 +33,7 @@ func (o *Odin) GetSDKName() string {
 }
 
 func (o *Odin) tagFilter(ri gh.ReleaseItem) bool {
-	if GhVersionRegexp.FindString(ri.TagName) != "" {
+	if searcher.GhVersionRegexp.FindString(ri.TagName) != "" {
 		return true
 	}
 	if strings.HasPrefix(ri.TagName, "dev-") {

@@ -4,15 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"regexp"
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
-
-var GVersionRegexp = regexp.MustCompile(`\d+(.\d+){2}`)
 
 type VAnalyzer struct {
 	SDKName  string
@@ -36,7 +33,7 @@ func (v *VAnalyzer) GetSDKName() string {
 }
 
 func (v *VAnalyzer) tagFilter(ri gh.ReleaseItem) bool {
-	return GVersionRegexp.FindString(ri.TagName) != ""
+	return searcher.GVersionRegexp.FindString(ri.TagName) != ""
 }
 
 func (v *VAnalyzer) fileFilter(a gh.Asset) bool {

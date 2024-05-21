@@ -1,8 +1,15 @@
 package searcher
 
 import (
+	"regexp"
+
 	"github.com/gvcgo/vcollector/internal/gh"
 	"github.com/gvcgo/vcollector/pkgs/version"
+)
+
+var (
+	GhVersionRegexp = regexp.MustCompile(`v\d+(.\d+){2}`)
+	GVersionRegexp  = regexp.MustCompile(`\d+(.\d+){2}`)
 )
 
 type (

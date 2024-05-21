@@ -33,7 +33,7 @@ func (z *Zls) GetSDKName() string {
 }
 
 func (z *Zls) tagFilter(ri gh.ReleaseItem) bool {
-	return GVersionRegexp.FindString(ri.TagName) != ""
+	return searcher.GVersionRegexp.FindString(ri.TagName) != ""
 }
 
 func (z *Zls) fileFilter(a gh.Asset) bool {

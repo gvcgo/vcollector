@@ -33,7 +33,7 @@ func (t *TypstLsp) GetSDKName() string {
 }
 
 func (t *TypstLsp) tagFilter(ri gh.ReleaseItem) bool {
-	return GhVersionRegexp.FindString(ri.TagName) != ""
+	return searcher.GhVersionRegexp.FindString(ri.TagName) != ""
 }
 
 func (t *TypstLsp) fileFilter(a gh.Asset) bool {

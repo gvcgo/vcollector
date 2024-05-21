@@ -33,7 +33,7 @@ func (k *Kotlin) GetSDKName() string {
 }
 
 func (k *Kotlin) tagFilter(ri gh.ReleaseItem) bool {
-	return GhVersionRegexp.FindString(ri.TagName) != ""
+	return searcher.GhVersionRegexp.FindString(ri.TagName) != ""
 }
 
 func (k *Kotlin) fileFilter(a gh.Asset) bool {
