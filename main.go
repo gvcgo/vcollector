@@ -36,8 +36,14 @@ func main() {
 	// conda.TestLFortran()
 	// conda.TestPerl()
 	// conda.TestTypst()
+
 	// gh.TestGithub()
 
 	// lans.TestBun()
-	lans.TestCodon()
+	// lans.TestCodon()
+	// lans.TestDeno()
+	// lans.TestGleam()
+	// lans.TestKotlin()
+	// lans.TestOdin()
+	lans.TestVlang()
 }

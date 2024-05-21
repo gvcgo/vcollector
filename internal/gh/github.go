@@ -103,7 +103,7 @@ func GetReleaseItems(repoName string) ReleaseList {
 }
 
 func TestGithub() {
-	rl := GetReleaseItems("exaloop/codon")
+	rl := GetReleaseItems("vlang/v")
 	fmt.Println(len(rl))
 	for _, item := range rl {
 		fmt.Println(item.TagName)
