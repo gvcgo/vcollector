@@ -2,7 +2,8 @@ package main
 
 import (
 	_ "github.com/gvcgo/vcollector/internal/conda"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
+	"github.com/gvcgo/vcollector/internal/gh"
+	_ "github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 )
@@ -34,5 +35,6 @@ func main() {
 	// conda.TestR()
 	// conda.TestLFortran()
 	// conda.TestPerl()
-	conda.TestTypst()
+	// conda.TestTypst()
+	gh.TestGithub()
 }
