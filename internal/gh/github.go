@@ -103,7 +103,7 @@ func GetReleaseItems(repoName string) ReleaseList {
 }
 
 func TestGithub() {
-	rl := GetReleaseItems("oven-sh/bun")
+	rl := GetReleaseItems("exaloop/codon")
 	fmt.Println(len(rl))
 	for _, item := range rl {
 		fmt.Println(item.TagName)

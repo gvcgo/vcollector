@@ -13,7 +13,7 @@ import (
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
 
-var BunVersionRegexp = regexp.MustCompile(`v\d+(.\d+){2}`)
+var GhVersionRegexp = regexp.MustCompile(`v\d+(.\d+){2}`)
 
 type Bun struct {
 	SDKName  string
@@ -37,7 +37,7 @@ func (b *Bun) GetSDKName() string {
 }
 
 func (b *Bun) tagFilter(ri gh.ReleaseItem) bool {
-	return BunVersionRegexp.FindString(ri.TagName) != ""
+	return GhVersionRegexp.FindString(ri.TagName) != ""
 }
 
 func (b *Bun) fileFilter(a gh.Asset) bool {
@@ -83,14 +83,14 @@ func (b *Bun) archParser(fName string) (archStr string) {
 }
 
 func (b *Bun) vParser(tagName string) (vStr string) {
-	return strings.TrimPrefix(BunVersionRegexp.FindString(tagName), "v")
+	return strings.TrimPrefix(GhVersionRegexp.FindString(tagName), "v")
 }
 
 func (b *Bun) insParser(fName string) (insStr string) {
 	return version.Unarchiver
 }
 
-func (b *Bun) sumGetter(fName string, assets []gh.Asset) (sum, sumType string) {
+func (b *Bun) SumGetter(fName string, assets []gh.Asset) (sum, sumType string) {
 	for _, a := range assets {
 		if strings.HasSuffix(a.Name, "SHASUMS256.txt") {
 			// TODO: acceleration.
@@ -117,9 +117,8 @@ func (b *Bun) Start() {
 		b.archParser,
 		b.osParser,
 		b.insParser,
-		b.sumGetter,
+		nil,
 	)
-	fmt.Println(len(b.Version))
 }
 
 func TestBun() {

@@ -37,5 +37,7 @@ func main() {
 	// conda.TestPerl()
 	// conda.TestTypst()
 	// gh.TestGithub()
-	lans.TestBun()
+
+	// lans.TestBun()
+	lans.TestCodon()
 }
