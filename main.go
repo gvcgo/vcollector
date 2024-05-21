@@ -4,7 +4,7 @@ import (
 	_ "github.com/gvcgo/vcollector/internal/conda"
 	"github.com/gvcgo/vcollector/internal/gh"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/conda"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/lsp"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 )
@@ -51,5 +51,9 @@ func main() {
 	// lsp.TestDlangLsp()
 	// lsp.TestTypstLsp()
 	// lsp.TestVAnalyzer()
-	lsp.TestZls()
+	// lsp.TestZls()
+
+	// tools.TestAsciinema()
+	// tools.TestCMake()
+	tools.TestCoursier()
 }
