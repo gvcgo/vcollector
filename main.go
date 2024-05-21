@@ -2,8 +2,8 @@ package main
 
 import (
 	_ "github.com/gvcgo/vcollector/internal/conda"
-	"github.com/gvcgo/vcollector/internal/gh"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/conda"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/lans"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 )
@@ -36,5 +36,6 @@ func main() {
 	// conda.TestLFortran()
 	// conda.TestPerl()
 	// conda.TestTypst()
-	gh.TestGithub()
+	// gh.TestGithub()
+	lans.TestBun()
 }

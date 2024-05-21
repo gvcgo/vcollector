@@ -28,6 +28,7 @@ func GetResp(dUrl string, timeout ...int) string {
 	if gconv.Bool(proxy) {
 		fetcher.Proxy = proxy
 	}
+	// fetcher.Proxy = "http://127.0.0.1:2023"
 
 	resp, code := fetcher.GetString()
 	if code != 200 || resp == "" {

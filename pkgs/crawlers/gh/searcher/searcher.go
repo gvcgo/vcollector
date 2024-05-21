@@ -63,10 +63,15 @@ func (g *GhSearcher) Search(
 			item.Url = a.Url
 			item.Sum = sumStr
 			item.SumType = sumType
+			item.Size = a.Size
 			if _, ok := g.Version[vStr]; !ok {
 				g.Version[vStr] = version.Version{}
 			}
 			g.Version[vStr] = append(g.Version[vStr], item)
 		}
 	}
+}
+
+func (g *GhSearcher) GetVersions() version.VersionList {
+	return g.Version
 }
