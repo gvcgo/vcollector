@@ -13,6 +13,7 @@ import (
 type Asset struct {
 	Name string `json:"name"`
 	Url  string `json:"browser_download_url"`
+	Size int64  `json:"size"`
 }
 
 type ReleaseItem struct {

@@ -15,7 +15,7 @@ type GithubSearcher struct {
 type (
 	ArchParser      func(fileName string) string
 	OsParser        func(fileName string) string
-	SumGetter       func(gh.Asset) (sum string, sumType string)
+	SumGetter       func(gh.Asset) (sum string, sumType string) // TODO: parse file.
 	InstallerParser func(fileName string) string
 	Filter          func(gh.Asset) bool
 )
