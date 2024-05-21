@@ -10,6 +10,7 @@ import (
 var (
 	GhVersionRegexp = regexp.MustCompile(`v\d+(.\d+){2}`)
 	GVersionRegexp  = regexp.MustCompile(`\d+(.\d+){2}`)
+	VVersionRegexp  = regexp.MustCompile(`v\d+(.\d+){1}`)
 )
 
 type (

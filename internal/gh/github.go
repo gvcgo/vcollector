@@ -103,7 +103,7 @@ func GetReleaseItems(repoName string) ReleaseList {
 }
 
 func TestGithub() {
-	rl := GetReleaseItems("jesseduffield/lazygit")
+	rl := GetReleaseItems("xmake-io/xmake")
 	fmt.Println(len(rl))
 	for _, item := range rl {
 		fmt.Println(item.TagName)

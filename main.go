@@ -4,7 +4,6 @@ import (
 	_ "github.com/gvcgo/vcollector/internal/conda"
 	"github.com/gvcgo/vcollector/internal/gh"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/conda"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 )
@@ -61,5 +60,11 @@ func main() {
 	// tools.TestGitWin()
 	// tools.TestGsudo()
 	// tools.TestLazydocker()
-	tools.TestLazygit()
+	// tools.TestLazygit()
+	// tools.TestProtoc()
+	// tools.TestRipgrep()
+	// tools.TestTreeSitter()
+	// tools.TestTypstPreview()
+	// tools.TestUpx()
+	// tools.TestVhs()
 }
