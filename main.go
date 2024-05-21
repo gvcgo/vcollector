@@ -55,5 +55,11 @@ func main() {
 
 	// tools.TestAsciinema()
 	// tools.TestCMake()
-	tools.TestCoursier()
+	// tools.TestCoursier()
+	// tools.TestFd()
+	// tools.TestFzf()
+	// tools.TestGitWin()
+	// tools.TestGsudo()
+	// tools.TestLazydocker()
+	tools.TestLazygit()
 }
