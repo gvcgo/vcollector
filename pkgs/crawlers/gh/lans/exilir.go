@@ -105,6 +105,10 @@ func (e *Elixir) getResult() {
 	}
 }
 
+func (e *Elixir) GetVersions() version.VersionList {
+	return e.Version
+}
+
 func (e *Elixir) Start() {
 	e.getResult()
 }
