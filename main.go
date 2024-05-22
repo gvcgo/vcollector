@@ -4,6 +4,7 @@ import (
 	_ "github.com/gvcgo/vcollector/internal/conda"
 	"github.com/gvcgo/vcollector/internal/gh"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/conda"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/lans"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 )
@@ -46,6 +47,7 @@ func main() {
 	// lans.TestKotlin()
 	// lans.TestOdin()
 	// lans.TestVlang()
+	lans.TestElixir()
 
 	// lsp.TestDlangLsp()
 	// lsp.TestTypstLsp()
