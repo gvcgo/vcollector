@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewFd())
+}
 
 type Fd struct {
 	SDKName  string
@@ -94,6 +99,11 @@ func (f *Fd) Start() {
 		f.insParser,
 		nil,
 	)
+}
+
+func (f *Fd) GetVersions() []byte {
+	r, _ := f.Version.Marshal()
+	return r
 }
 
 func TestFd() {

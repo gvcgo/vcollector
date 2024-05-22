@@ -8,8 +8,13 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewDotnet())
+}
 
 func filterDotNetSDKByUrl(vUrl string) bool {
 	if vUrl == "" {
@@ -150,8 +155,9 @@ func (d *Dotnet) Start() {
 	d.getResult()
 }
 
-func (d *Dotnet) GetVersions() version.VersionList {
-	return d.Version
+func (d *Dotnet) GetVersions() []byte {
+	r, _ := d.Version.Marshal()
+	return r
 }
 
 func TestDotnet() {

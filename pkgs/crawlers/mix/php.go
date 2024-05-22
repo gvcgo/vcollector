@@ -12,8 +12,13 @@ import (
 	"github.com/gvcgo/vcollector/internal/gh"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewPHP())
+}
 
 var PHPVersionRegexp = regexp.MustCompile(`-\d+(.\d+){2}-`)
 
@@ -168,8 +173,9 @@ func (p *PHP) parseArchForGithubItem(fName string) (arch string) {
 	return
 }
 
-func (p *PHP) GetVersions() version.VersionList {
-	return p.Version
+func (p *PHP) GetVersions() []byte {
+	r, _ := p.Version.Marshal()
+	return r
 }
 
 func (p *PHP) Start() {

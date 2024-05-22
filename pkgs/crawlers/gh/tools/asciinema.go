@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewAsciinema())
+}
 
 type Asciinema struct {
 	SDKName  string
@@ -28,7 +33,7 @@ func NewAsciinema() (a *Asciinema) {
 	return
 }
 
-func (a *Asciinema) GetSDkName() string {
+func (a *Asciinema) GetSDKName() string {
 	return a.SDKName
 }
 
@@ -82,6 +87,11 @@ func (a *Asciinema) Start() {
 		a.insParser,
 		nil,
 	)
+}
+
+func (a *Asciinema) GetVersions() []byte {
+	r, _ := a.Version.Marshal()
+	return r
 }
 
 func TestAsciinema() {

@@ -5,8 +5,13 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewLFortran())
+}
 
 type LFortran struct {
 	SDKName string
@@ -29,6 +34,11 @@ func (l *LFortran) GetSDKName() string {
 
 func (l *LFortran) Start() {
 	l.CondaSearcher.Search(l.SDKName)
+}
+
+func (l *LFortran) GetVersions() []byte {
+	r, _ := l.Version.Marshal()
+	return r
 }
 
 func TestLFortran() {

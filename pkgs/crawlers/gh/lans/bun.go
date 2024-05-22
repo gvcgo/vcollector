@@ -8,9 +8,14 @@ import (
 
 	"github.com/gvcgo/vcollector/internal/gh"
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewBun())
+}
 
 type Bun struct {
 	SDKName  string
@@ -116,6 +121,11 @@ func (b *Bun) Start() {
 		b.insParser,
 		nil,
 	)
+}
+
+func (b *Bun) GetVersions() []byte {
+	r, _ := b.Version.Marshal()
+	return r
 }
 
 func TestBun() {

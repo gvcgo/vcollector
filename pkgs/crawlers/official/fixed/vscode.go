@@ -6,8 +6,13 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewVSCode())
+}
 
 type CodePlatform struct {
 	Os         string `json:"os"`
@@ -148,8 +153,9 @@ func (v *VSCode) Start() {
 	v.getResult()
 }
 
-func (v *VSCode) GetVersions() version.VersionList {
-	return v.Version
+func (v *VSCode) GetVersions() []byte {
+	r, _ := v.Version.Marshal()
+	return r
 }
 
 func TestVSCode() {

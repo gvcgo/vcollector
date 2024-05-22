@@ -1,6 +1,13 @@
 package fixed
 
-import "github.com/gvcgo/vcollector/pkgs/version"
+import (
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
+	"github.com/gvcgo/vcollector/pkgs/version"
+)
+
+func init() {
+	crawler.RegisterCrawler(NewCygwin())
+}
 
 type Cygwin struct {
 	SDKName string
@@ -29,6 +36,7 @@ func (c *Cygwin) Start() {
 	}
 }
 
-func (c *Cygwin) GetVersions() version.VersionList {
-	return c.Version
+func (c *Cygwin) GetVersions() []byte {
+	result, _ := c.Version.Marshal()
+	return result
 }

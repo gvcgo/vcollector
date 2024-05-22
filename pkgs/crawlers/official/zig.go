@@ -7,8 +7,13 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewZig())
+}
 
 /*
 https://ziglang.org/download/
@@ -92,8 +97,9 @@ func (z *Zig) Start() {
 	z.getResult()
 }
 
-func (z *Zig) GetVersions() version.VersionList {
-	return z.Version
+func (z *Zig) GetVersions() []byte {
+	r, _ := z.Version.Marshal()
+	return r
 }
 
 func TestZig() {

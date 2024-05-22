@@ -8,8 +8,13 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewGradle())
+}
 
 var GradleExludeList = map[string]struct{}{
 	"v0.7": {},
@@ -71,8 +76,9 @@ func (g *Gradle) Start() {
 	g.getResult()
 }
 
-func (g *Gradle) GetVersions() version.VersionList {
-	return g.Version
+func (g *Gradle) GetVersions() []byte {
+	r, _ := g.Version.Marshal()
+	return r
 }
 
 func TestGradle() {

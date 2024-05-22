@@ -6,8 +6,13 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewJulia())
+}
 
 var JuliaArchMap = map[string]string{
 	"aarch64": "arm64",
@@ -49,11 +54,11 @@ type Julia struct {
 
 func NewJulia() (j *Julia) {
 	j = &Julia{
-		DownloadUrl: "https://mirrors.tuna.tsinghua.edu.cn/julia-releases/bin/versions.json",
-		// DownloadUrl:"https://julialang-s3.julialang.org/bin/versions.json",
-		SDKName: "julia",
-		Version: make(version.VersionList),
-		result:  make(JuliaItemList),
+		// DownloadUrl: "https://mirrors.tuna.tsinghua.edu.cn/julia-releases/bin/versions.json",
+		DownloadUrl: "https://julialang-s3.julialang.org/bin/versions.json",
+		SDKName:     "julia",
+		Version:     make(version.VersionList),
+		result:      make(JuliaItemList),
 	}
 	return
 }
@@ -100,8 +105,9 @@ func (j *Julia) Start() {
 	j.getResult()
 }
 
-func (j *Julia) GetVersions() version.VersionList {
-	return j.Version
+func (j *Julia) GetVersions() []byte {
+	r, _ := j.Version.Marshal()
+	return r
 }
 
 func TestJulia() {

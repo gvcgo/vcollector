@@ -7,8 +7,13 @@ import (
 	"os"
 
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewFlutter())
+}
 
 const (
 	FlutterDownloadURLPattern   string = "https://storage.googleapis.com/flutter_infra_release/releases/releases_%s.json"
@@ -52,11 +57,11 @@ type Flutter struct {
 
 func NewFlutter() (f *Flutter) {
 	f = &Flutter{
-		DownloadUrl: FlutterDownloadURLPatternCN,
-		// DownloadUrl: FlutterDownloadURLPattern,
-		SDKName: "flutter",
-		Version: make(version.VersionList),
-		result:  FItemList{Releases: []FItem{}},
+		// DownloadUrl: FlutterDownloadURLPatternCN,
+		DownloadUrl: FlutterDownloadURLPattern,
+		SDKName:     "flutter",
+		Version:     make(version.VersionList),
+		result:      FItemList{Releases: []FItem{}},
 	}
 	return
 }
@@ -97,8 +102,9 @@ func (f *Flutter) Start() {
 	f.getResult()
 }
 
-func (f *Flutter) GetVersions() version.VersionList {
-	return f.Version
+func (f *Flutter) GetVersions() []byte {
+	r, _ := f.Version.Marshal()
+	return r
 }
 
 func TestFlutter() {

@@ -1,6 +1,17 @@
 package conda
 
-import "github.com/gvcgo/vcollector/internal/req"
+import (
+	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
+)
+
+func init() {
+	crawler.RegisterCrawler(NewCondaForgePackages())
+}
+
+const (
+	CondaForgeSDKName = "conda-forge-pkgs"
+)
 
 /*
 https://raw.githubusercontent.com/conda-forge/feedstock-outputs/single-file/feedstock-outputs.json
@@ -14,7 +25,7 @@ type CondaForgePackages struct {
 func NewCondaForgePackages() (c *CondaForgePackages) {
 	c = &CondaForgePackages{
 		DownloadUrl: "https://raw.githubusercontent.com/conda-forge/feedstock-outputs/single-file/feedstock-outputs.json",
-		SDKName:     "conda-forge-pkgs",
+		SDKName:     CondaForgeSDKName,
 	}
 	return
 }

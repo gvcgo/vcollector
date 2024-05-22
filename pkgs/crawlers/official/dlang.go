@@ -9,8 +9,13 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewDlang())
+}
 
 /*
 https://downloads.dlang.org/releases/
@@ -98,8 +103,9 @@ func (d *Dlang) Start() {
 	d.getResult()
 }
 
-func (d *Dlang) GetVersions() version.VersionList {
-	return d.Version
+func (d *Dlang) GetVersions() []byte {
+	r, _ := d.Version.Marshal()
+	return r
 }
 
 func TestDlang() {

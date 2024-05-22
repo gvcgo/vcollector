@@ -5,8 +5,13 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewR())
+}
 
 type R struct {
 	SDKName string
@@ -29,6 +34,11 @@ func (r *R) GetSDKName() string {
 
 func (r *R) Start() {
 	r.CondaSearcher.Search(r.SDKName)
+}
+
+func (r *R) GetVersions() []byte {
+	result, _ := r.Version.Marshal()
+	return result
 }
 
 func TestR() {

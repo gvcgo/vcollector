@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewZls())
+}
 
 type Zls struct {
 	SDKName  string
@@ -91,6 +96,11 @@ func (z *Zls) Start() {
 		z.insParser,
 		nil,
 	)
+}
+
+func (z *Zls) GetVersions() []byte {
+	r, _ := z.Version.Marshal()
+	return r
 }
 
 func TestZls() {

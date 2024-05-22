@@ -4,8 +4,13 @@ import (
 	"encoding/json"
 	"os"
 
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewRuby())
+}
 
 type Ruby struct {
 	SDKName string
@@ -28,6 +33,11 @@ func (r *Ruby) GetSDKName() string {
 
 func (r *Ruby) Start() {
 	r.CondaSearcher.Search(r.SDKName)
+}
+
+func (r *Ruby) GetVersions() []byte {
+	result, _ := r.Version.Marshal()
+	return result
 }
 
 func TestRuby() {

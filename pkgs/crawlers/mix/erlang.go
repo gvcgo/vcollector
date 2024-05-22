@@ -8,8 +8,13 @@ import (
 
 	"github.com/gvcgo/vcollector/internal/conda"
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewErlang())
+}
 
 /*
 For windows:
@@ -34,8 +39,9 @@ func (e *Erlang) GetSDKName() string {
 	return e.SDKName
 }
 
-func (e *Erlang) GetVersions() version.VersionList {
-	return e.Version
+func (e *Erlang) GetVersions() []byte {
+	r, _ := e.Version.Marshal()
+	return r
 }
 
 func (e *Erlang) getFromConda() {

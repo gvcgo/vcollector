@@ -1,11 +1,9 @@
 package crawler
 
-import "github.com/gvcgo/vcollector/pkgs/version"
-
 type Crawler interface {
 	Start()
 	GetSDKName() string
-	GetVersions() version.VersionList
+	GetVersions() []byte
 }
 
 var CrawlerList = []Crawler{}

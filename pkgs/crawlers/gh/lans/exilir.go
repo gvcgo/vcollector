@@ -8,9 +8,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewElixir())
+}
 
 var (
 	elixirOTPRegExp             = regexp.MustCompile(`otp-([0-9]+)`)
@@ -105,8 +110,9 @@ func (e *Elixir) getResult() {
 	}
 }
 
-func (e *Elixir) GetVersions() version.VersionList {
-	return e.Version
+func (e *Elixir) GetVersions() []byte {
+	r, _ := e.Version.Marshal()
+	return r
 }
 
 func (e *Elixir) Start() {

@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewDeno())
+}
 
 type Deno struct {
 	SDKName  string
@@ -94,6 +99,11 @@ func (d *Deno) Start() {
 		d.insParser,
 		nil,
 	)
+}
+
+func (d *Deno) GetVersions() []byte {
+	r, _ := d.Version.Marshal()
+	return r
 }
 
 func TestDeno() {

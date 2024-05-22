@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewDlangLsp())
+}
 
 type DlangLsp struct {
 	SDKName  string
@@ -91,6 +96,11 @@ func (d *DlangLsp) Start() {
 		d.insParser,
 		nil,
 	)
+}
+
+func (d *DlangLsp) GetVersions() []byte {
+	r, _ := d.Version.Marshal()
+	return r
 }
 
 func TestDlangLsp() {

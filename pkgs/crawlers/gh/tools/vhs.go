@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewVhs())
+}
 
 type Vhs struct {
 	SDKName  string
@@ -100,6 +105,11 @@ func (v *Vhs) Start() {
 		v.insParser,
 		nil,
 	)
+}
+
+func (v *Vhs) GetVersions() []byte {
+	r, _ := v.Version.Marshal()
+	return r
 }
 
 func TestVhs() {

@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewGleam())
+}
 
 type Gleam struct {
 	SDKName  string
@@ -94,6 +99,11 @@ func (g *Gleam) Start() {
 		g.insParser,
 		nil,
 	)
+}
+
+func (g *Gleam) GetVersions() []byte {
+	r, _ := g.Version.Marshal()
+	return r
 }
 
 func TestGleam() {

@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewCodon())
+}
 
 type Codon struct {
 	SDKName  string
@@ -82,6 +87,11 @@ func (c *Codon) Start() {
 		c.insParser,
 		nil,
 	)
+}
+
+func (c *Codon) GetVersions() []byte {
+	r, _ := c.Version.Marshal()
+	return r
 }
 
 func TestCodon() {

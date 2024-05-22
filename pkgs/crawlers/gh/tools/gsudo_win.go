@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewGsudo())
+}
 
 type Gsudo struct {
 	SDKName  string
@@ -70,6 +75,11 @@ func (g *Gsudo) Start() {
 		g.insParser,
 		nil,
 	)
+}
+
+func (g *Gsudo) GetVersions() []byte {
+	r, _ := g.Version.Marshal()
+	return r
 }
 
 func TestGsudo() {

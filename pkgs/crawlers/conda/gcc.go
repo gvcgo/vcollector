@@ -4,8 +4,13 @@ import (
 	"encoding/json"
 	"os"
 
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewGCC())
+}
 
 type GCC struct {
 	SDKName string
@@ -28,6 +33,11 @@ func (g *GCC) GetSDKName() string {
 
 func (g *GCC) Start() {
 	g.CondaSearcher.Search(g.SDKName)
+}
+
+func (g *GCC) GetVersions() []byte {
+	r, _ := g.Version.Marshal()
+	return r
 }
 
 func TestGCC() {

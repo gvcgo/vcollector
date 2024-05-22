@@ -1,6 +1,13 @@
 package fixed
 
-import "github.com/gvcgo/vcollector/pkgs/version"
+import (
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
+	"github.com/gvcgo/vcollector/pkgs/version"
+)
+
+func init() {
+	crawler.RegisterCrawler(NewRustup())
+}
 
 type Rustup struct {
 	SDKName string
@@ -59,6 +66,7 @@ func (r *Rustup) Start() {
 	}
 }
 
-func (r *Rustup) GetVersions() version.VersionList {
-	return r.Version
+func (r *Rustup) GetVersions() []byte {
+	rr, _ := r.Version.Marshal()
+	return rr
 }

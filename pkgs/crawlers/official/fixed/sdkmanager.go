@@ -9,8 +9,13 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewSDKManager())
+}
 
 var SDKManagerPattern = regexp.MustCompile(`(\d+)`)
 
@@ -82,8 +87,9 @@ func (s *SDKManager) Start() {
 	s.getResult()
 }
 
-func (s *SDKManager) GetVersions() version.VersionList {
-	return s.Version
+func (s *SDKManager) GetVersions() []byte {
+	r, _ := s.Version.Marshal()
+	return r
 }
 
 func TestSDKManager() {

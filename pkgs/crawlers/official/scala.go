@@ -7,8 +7,13 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewScala())
+}
 
 /*
 https://www.scala-lang.org/download/all.html
@@ -56,8 +61,9 @@ func (s *Scala) Start() {
 	s.getResult()
 }
 
-func (s *Scala) GetVersions() version.VersionList {
-	return s.Version
+func (s *Scala) GetVersions() []byte {
+	r, _ := s.Version.Marshal()
+	return r
 }
 
 func TestScala() {

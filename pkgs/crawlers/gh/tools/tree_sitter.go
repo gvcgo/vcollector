@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewTreeSitter())
+}
 
 type TreeSitter struct {
 	SDKName  string
@@ -91,6 +96,11 @@ func (t *TreeSitter) Start() {
 		t.insParser,
 		nil,
 	)
+}
+
+func (t *TreeSitter) GetVersions() []byte {
+	r, _ := t.Version.Marshal()
+	return r
 }
 
 func TestTreeSitter() {

@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewTypstLsp())
+}
 
 type TypstLsp struct {
 	SDKName  string
@@ -103,6 +108,11 @@ func (t *TypstLsp) Start() {
 		t.insParser,
 		nil,
 	)
+}
+
+func (t *TypstLsp) GetVersions() []byte {
+	r, _ := t.Version.Marshal()
+	return r
 }
 
 func TestTypstLsp() {

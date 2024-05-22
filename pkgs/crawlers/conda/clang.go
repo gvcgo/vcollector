@@ -4,8 +4,13 @@ import (
 	"encoding/json"
 	"os"
 
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewClang())
+}
 
 type Clang struct {
 	SDKName string
@@ -28,6 +33,11 @@ func (c *Clang) GetSDKName() string {
 
 func (c *Clang) Start() {
 	c.CondaSearcher.Search(c.SDKName)
+}
+
+func (c *Clang) GetVersions() []byte {
+	r, _ := c.Version.Marshal()
+	return r
 }
 
 func TestClang() {

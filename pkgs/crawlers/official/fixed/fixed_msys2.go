@@ -1,13 +1,20 @@
 package fixed
 
-import "github.com/gvcgo/vcollector/pkgs/version"
+import (
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
+	"github.com/gvcgo/vcollector/pkgs/version"
+)
+
+func init() {
+	crawler.RegisterCrawler(NewMsys2())
+}
 
 type Msys2 struct {
 	SDKName string
 	Version version.VersionList
 }
 
-func NewMsys2(sdkName string) *Msys2 {
+func NewMsys2() *Msys2 {
 	return &Msys2{
 		SDKName: "msys2",
 		Version: make(version.VersionList),
@@ -29,6 +36,7 @@ func (m *Msys2) Start() {
 	}
 }
 
-func (m *Msys2) GetVersions() version.VersionList {
-	return m.Version
+func (m *Msys2) GetVersions() []byte {
+	r, _ := m.Version.Marshal()
+	return r
 }

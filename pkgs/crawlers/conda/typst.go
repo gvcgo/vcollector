@@ -5,8 +5,13 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewTypst())
+}
 
 type Typst struct {
 	SDKName string
@@ -29,6 +34,11 @@ func (t *Typst) GetSDKName() string {
 
 func (t *Typst) Start() {
 	t.CondaSearcher.Search(t.SDKName)
+}
+
+func (t *Typst) GetVersions() []byte {
+	r, _ := t.Version.Marshal()
+	return r
 }
 
 func TestTypst() {

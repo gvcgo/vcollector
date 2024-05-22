@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewUpx())
+}
 
 type Upx struct {
 	SDKName  string
@@ -94,6 +99,11 @@ func (g *Upx) Start() {
 		g.insParser,
 		nil,
 	)
+}
+
+func (u *Upx) GetVersions() []byte {
+	r, _ := u.Version.Marshal()
+	return r
 }
 
 func TestUpx() {

@@ -9,8 +9,13 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewKubectl())
+}
 
 const (
 	KubectlDownloadUrlPattern  string = `https://dl.k8s.io/release/v%s/bin/%s/%s/kubectl`
@@ -112,8 +117,9 @@ func (k *Kubectl) Start() {
 	k.getResult()
 }
 
-func (k *Kubectl) GetVersions() version.VersionList {
-	return k.Version
+func (k *Kubectl) GetVersions() []byte {
+	r, _ := k.Version.Marshal()
+	return r
 }
 
 func TestKubectl() {

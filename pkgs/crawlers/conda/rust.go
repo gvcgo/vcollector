@@ -5,8 +5,13 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewRust())
+}
 
 type Rust struct {
 	SDKName string
@@ -29,6 +34,11 @@ func (r *Rust) GetSDKName() string {
 
 func (r *Rust) Start() {
 	r.CondaSearcher.Search(r.SDKName)
+}
+
+func (r *Rust) GetVersions() []byte {
+	result, _ := r.Version.Marshal()
+	return result
 }
 
 func TestRust() {

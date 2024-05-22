@@ -5,8 +5,13 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewPerl())
+}
 
 type Perl struct {
 	SDKName string
@@ -29,6 +34,11 @@ func (p *Perl) GetSDKName() string {
 
 func (p *Perl) Start() {
 	p.CondaSearcher.Search(p.SDKName)
+}
+
+func (p *Perl) GetVersions() []byte {
+	r, _ := p.Version.Marshal()
+	return r
 }
 
 func TestPerl() {

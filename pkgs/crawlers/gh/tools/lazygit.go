@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewLazygit())
+}
 
 type Lazygit struct {
 	SDKName  string
@@ -89,6 +94,11 @@ func (l *Lazygit) Start() {
 		l.insParser,
 		nil,
 	)
+}
+
+func (l *Lazygit) GetVersions() []byte {
+	r, _ := l.Version.Marshal()
+	return r
 }
 
 func TestLazygit() {

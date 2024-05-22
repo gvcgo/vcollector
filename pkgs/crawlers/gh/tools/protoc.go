@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewProtoc())
+}
 
 type Protoc struct {
 	SDKName  string
@@ -91,6 +96,11 @@ func (p *Protoc) Start() {
 		p.insParser,
 		nil,
 	)
+}
+
+func (p *Protoc) GetVersions() []byte {
+	r, _ := p.Version.Marshal()
+	return r
 }
 
 func TestProtoc() {

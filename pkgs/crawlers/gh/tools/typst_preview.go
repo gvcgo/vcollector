@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewTypstPreview())
+}
 
 type TypstPreview struct {
 	SDKName  string
@@ -97,6 +102,11 @@ func (t *TypstPreview) Start() {
 		t.insParser,
 		nil,
 	)
+}
+
+func (t *TypstPreview) GetVersions() []byte {
+	r, _ := t.Version.Marshal()
+	return r
 }
 
 func TestTypstPreview() {

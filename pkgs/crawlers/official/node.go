@@ -9,8 +9,13 @@ import (
 
 	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewNode())
+}
 
 const (
 	NodeDownloadUrl   string = "https://nodejs.org/download/release"
@@ -136,8 +141,9 @@ func (n *Node) Start() {
 	n.getResult()
 }
 
-func (n *Node) GetVersions() version.VersionList {
-	return n.Version
+func (n *Node) GetVersions() []byte {
+	r, _ := n.Version.Marshal()
+	return r
 }
 
 func TestNode() {

@@ -9,8 +9,13 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewMaven())
+}
 
 /*
 https://dlcdn.apache.org/maven/
@@ -101,8 +106,9 @@ func (m *Maven) Start() {
 	m.getResult()
 }
 
-func (m *Maven) GetVersions() version.VersionList {
-	return m.Version
+func (m *Maven) GetVersions() []byte {
+	r, _ := m.Version.Marshal()
+	return r
 }
 
 func TestMaven() {

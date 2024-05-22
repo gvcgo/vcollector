@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewOdin())
+}
 
 type Odin struct {
 	SDKName  string
@@ -88,6 +93,11 @@ func (o *Odin) Start() {
 		o.insParser,
 		nil,
 	)
+}
+
+func (o *Odin) GetVersions() []byte {
+	r, _ := o.Version.Marshal()
+	return r
 }
 
 func TestOdin() {

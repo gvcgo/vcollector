@@ -6,8 +6,13 @@ import (
 	"os"
 
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewJDK())
+}
 
 /*
 https://bell-sw.com/pages/downloads/
@@ -119,8 +124,9 @@ func (j *JDK) Start() {
 	j.filter()
 }
 
-func (j *JDK) GetVersions() version.VersionList {
-	return j.Verisons
+func (j *JDK) GetVersions() []byte {
+	r, _ := j.Verisons.Marshal()
+	return r
 }
 
 func TestJDK() {

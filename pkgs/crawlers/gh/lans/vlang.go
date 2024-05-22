@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewVlang())
+}
 
 type Vlang struct {
 	SDKName  string
@@ -88,6 +93,11 @@ func (v *Vlang) Start() {
 		v.insParser,
 		nil,
 	)
+}
+
+func (v *Vlang) GetVersions() []byte {
+	r, _ := v.Version.Marshal()
+	return r
 }
 
 func TestVlang() {

@@ -8,8 +8,13 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewGolang())
+}
 
 var GolangOsMap = map[string]string{
 	"macOS":   "darwin",
@@ -118,8 +123,9 @@ func (g *Golang) Start() {
 	g.getResult()
 }
 
-func (g *Golang) GetVersions() version.VersionList {
-	return g.Version
+func (g *Golang) GetVersions() []byte {
+	r, _ := g.Version.Marshal()
+	return r
 }
 
 func TestGolang() {

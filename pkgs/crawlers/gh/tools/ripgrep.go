@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewRipgrep())
+}
 
 type Ripgrep struct {
 	SDKName  string
@@ -94,6 +99,11 @@ func (r *Ripgrep) Start() {
 		r.insParser,
 		nil,
 	)
+}
+
+func (r *Ripgrep) GetVersions() []byte {
+	rr, _ := r.Version.Marshal()
+	return rr
 }
 
 func TestRipgrep() {

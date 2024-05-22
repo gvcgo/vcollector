@@ -8,8 +8,13 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gvcgo/vcollector/internal/req"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewMiniconda())
+}
 
 /*
 https://repo.anaconda.com/miniconda/
@@ -122,8 +127,9 @@ func (m *Miniconda) Start() {
 	m.getResult()
 }
 
-func (m *Miniconda) GetVersions() version.VersionList {
-	return m.Version
+func (m *Miniconda) GetVersions() []byte {
+	r, _ := m.Version.Marshal()
+	return r
 }
 
 func TestMiniconda() {

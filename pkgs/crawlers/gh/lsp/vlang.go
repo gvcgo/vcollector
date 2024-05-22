@@ -7,9 +7,14 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewVAnalyzer())
+}
 
 type VAnalyzer struct {
 	SDKName  string
@@ -82,6 +87,11 @@ func (v *VAnalyzer) Start() {
 		v.insParser,
 		nil,
 	)
+}
+
+func (v *VAnalyzer) GetVersions() []byte {
+	r, _ := v.Version.Marshal()
+	return r
 }
 
 func TestVAnalyzer() {
