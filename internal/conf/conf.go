@@ -3,10 +3,14 @@ package conf
 import (
 	"os"
 	"path/filepath"
+	"strings"
+
+	"github.com/gvcgo/goutils/pkgs/gutils"
+	toml "github.com/pelletier/go-toml/v2"
 )
 
 const (
-	ConfFileName string = "vconf.json"
+	ConfFileName string = "vconf.toml"
 )
 
 func GetWorkDir() string {
@@ -20,7 +24,56 @@ func GetVersionDir() string {
 }
 
 type Config struct {
-	Proxy       string `json:"proxy"`
-	GithubToken string `josn:"gh_token"`
-	GithubRepo  string `json:"gh_repo"`
+	Proxy       string `json,toml:"proxy"`       // proxy: http or socks5
+	GithubToken string `josn,toml:"githubToken"` // github access token
+	GithubRepo  string `json,toml:"githubRepo"`  // github repository name, format: "user/repo"
+}
+
+func NewConfig() (c *Config) {
+	c = &Config{
+		Proxy:      "http://localhost:2023",
+		GithubRepo: "gvcgo/vsources",
+	}
+	c.Load()
+	return
+}
+
+func (c *Config) GetConfPath() string {
+	return filepath.Join(GetWorkDir(), ConfFileName)
+}
+
+func (c *Config) Load() {
+	p := c.GetConfPath()
+	if ok, _ := gutils.PathIsExist(p); ok {
+		content, _ := os.ReadFile(p)
+		toml.Unmarshal(content, c)
+	}
+}
+
+func (c *Config) save() {
+	content, err := toml.Marshal(c)
+	if len(content) > 0 && err == nil {
+		os.WriteFile(c.GetConfPath(), content, os.ModePerm)
+	}
+}
+
+func (c *Config) SetProxy(proxy string) {
+	if strings.HasPrefix(proxy, "http://") || strings.HasPrefix(proxy, "socks5://") {
+		c.Proxy = proxy
+		c.save()
+	}
+}
+
+func (c *Config) SetGithubToken(token string) {
+	if token != "" {
+		c.GithubToken = token
+		c.save()
+	}
+}
+
+func (c *Config) SetGithubRepo(repo string) {
+	if repo != "" {
+		c.GithubRepo = repo
+		c.save()
+	}
 }

@@ -1,12 +1,36 @@
 package main
 
 import (
+	"fmt"
+
 	_ "github.com/gvcgo/vcollector/internal/conda"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/conda"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/mix"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
+	toml "github.com/pelletier/go-toml/v2"
 )
+
+type MyConfig struct {
+	Version int               `toml:"version"`
+	Name    string            `toml:"name"`
+	Tags    []string          `toml:"tags"`
+	Data    map[string]string `toml:"data"`
+}
+
+func testToml() {
+	mc := &MyConfig{
+		Version: 10,
+		Name:    "vmr",
+		Tags:    []string{"v1", "v2"},
+		Data: map[string]string{
+			"darwin":  "macOS",
+			"linux":   "Linux",
+			"windows": "Windows",
+		},
+	}
+	b, _ := toml.Marshal(mc)
+	fmt.Println(string(b))
+}
 
 func main() {
 	// official.TestJDK()
@@ -70,5 +94,7 @@ func main() {
 	// tools.TestVhs()
 
 	// mix.TestErlang()
-	mix.TestPHP()
+	// mix.TestPHP()
+
+	testToml()
 }
