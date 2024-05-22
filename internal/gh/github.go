@@ -103,7 +103,7 @@ func GetReleaseItems(repoName string) ReleaseList {
 }
 
 func TestGithub() {
-	rl := GetReleaseItems("elixir-lang/elixir")
+	rl := GetReleaseItems("pmmp/PHP-Binaries")
 	fmt.Println(len(rl))
 	for _, item := range rl {
 		fmt.Println(item.TagName)
