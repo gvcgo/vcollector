@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"crypto/sha256"
@@ -13,7 +13,8 @@ import (
 )
 
 const (
-	ShaFileName string = "sha256.json"
+	ShaFileName            string = "sha256.json"
+	VersionFileNamePattern string = "%s.version.json"
 )
 
 type Sha256List map[string]string // fileName -> sha256
@@ -53,11 +54,16 @@ func (u *Uploader) saveSha256Info() {
 	os.WriteFile(u.ShaFile, content, os.ModePerm)
 }
 
-func (u *Uploader) checkSha256(sdkName, localFilePath string) (ok bool) {
-	if ok, _ := gutils.PathIsExist(localFilePath); !ok {
-		return false
-	}
-	content, _ := os.ReadFile(localFilePath)
+func (u *Uploader) getVersionFilePath(sdkName string) string {
+	fName := fmt.Sprintf(VersionFileNamePattern, sdkName)
+	return filepath.Join(u.VersionDir, fName)
+}
+
+func (u *Uploader) saveVersionFile(sdkName string, content []byte) {
+	os.WriteFile(u.getVersionFilePath(sdkName), content, os.ModePerm)
+}
+
+func (u *Uploader) checkSha256(sdkName string, content []byte) (ok bool) {
 	h := sha256.New()
 	h.Write(content)
 	shaStr := fmt.Sprintf("%x", h.Sum(nil))
@@ -69,6 +75,7 @@ func (u *Uploader) checkSha256(sdkName, localFilePath string) (ok bool) {
 	if ss, ok1 := u.Sha256List[sdkName]; !ok1 {
 		u.Sha256List[sdkName] = shaStr
 		u.saveSha256Info()
+		u.saveVersionFile(sdkName, content)
 		return true
 	} else {
 		if ss == shaStr {
@@ -76,14 +83,16 @@ func (u *Uploader) checkSha256(sdkName, localFilePath string) (ok bool) {
 		} else {
 			u.Sha256List[sdkName] = shaStr
 			u.saveSha256Info()
+			u.saveVersionFile(sdkName, content)
 			return true
 		}
 	}
 }
 
-func (u *Uploader) Upload(sdkName, localFilePath string) {
-	fName := filepath.Base(localFilePath)
-	if u.checkSha256(sdkName, localFilePath) {
-		u.Github.UploadFile(fName, localFilePath)
+func (u *Uploader) Upload(sdkName string, content []byte) {
+	if u.checkSha256(sdkName, content) {
+		localFilePath := u.getVersionFilePath(sdkName)
+		remoteFilePath := filepath.Base(localFilePath)
+		u.Github.UploadFile(remoteFilePath, localFilePath)
 	}
 }
