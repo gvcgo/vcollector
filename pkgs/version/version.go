@@ -1,5 +1,7 @@
 package version
 
+import "encoding/json"
+
 const (
 	Darwin  string = "darwin"
 	Linux   string = "linux"
@@ -31,3 +33,11 @@ type Item struct {
 type Version []Item
 
 type VersionList map[string]Version
+
+func (v *VersionList) Unmarshal(data []byte) error {
+	return json.Unmarshal(data, v)
+}
+
+func (v VersionList) Marshal() ([]byte, error) {
+	return json.Marshal(v)
+}
