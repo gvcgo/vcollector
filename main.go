@@ -2,8 +2,8 @@ package main
 
 import (
 	_ "github.com/gvcgo/vcollector/internal/conda"
-	"github.com/gvcgo/vcollector/internal/gh"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/conda"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/mix"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 )
@@ -37,7 +37,7 @@ func main() {
 	// conda.TestPerl()
 	// conda.TestTypst()
 
-	gh.TestGithub()
+	// gh.TestGithub()
 
 	// lans.TestBun()
 	// lans.TestCodon()
@@ -70,5 +70,5 @@ func main() {
 	// tools.TestVhs()
 
 	// mix.TestErlang()
-	// mix.TestPHP()
+	mix.TestPHP()
 }
