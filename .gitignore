@@ -23,3 +23,4 @@ go.work
 .DS_Store
 *.json
 internal/gh/token.go
+cmd/vco/vco

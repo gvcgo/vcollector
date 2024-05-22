@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	ShaFileName            string = "sha256.json"
+	ShaFileName            string = "sdklist_sha256.json"
 	VersionFileNamePattern string = "%s.version.json"
 )
 

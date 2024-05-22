@@ -6,8 +6,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"path/filepath"
-	"strings"
 	"time"
 
 	"github.com/gogf/gf/v2/encoding/gjson"
@@ -97,15 +95,13 @@ func (g *Github) UploadFile(remotePath, localPath string) (r []byte) {
 		return
 	}
 
-	fName := filepath.Base(localPath)
-	remotePath = strings.TrimLeft(filepath.Join(remotePath, fName), "/")
 	g.fetcher.SetUrl(fmt.Sprintf("%s/repos/%s/contents/%s", GithubAPI, g.Repo, remotePath))
 	g.fetcher.Timeout = 5 * time.Minute
 
 	content, _ := os.ReadFile(localPath)
 	shaStr := g.GetShaStr(remotePath)
 	g.fetcher.PostBody = map[string]interface{}{
-		"message": fmt.Sprintf("update file: %s.", fName),
+		"message": fmt.Sprintf("update file: %s.", remotePath),
 		"content": base64.StdEncoding.EncodeToString(content),
 		"sha":     shaStr,
 	}

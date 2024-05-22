@@ -15,12 +15,16 @@ const (
 
 func GetWorkDir() string {
 	homeDir, _ := os.UserHomeDir()
-	return filepath.Join(homeDir, ".vcollector")
+	p := filepath.Join(homeDir, ".vcollector")
+	os.MkdirAll(p, os.ModePerm)
+	return p
 }
 
 func GetVersionDir() string {
 	workdir := GetWorkDir()
-	return filepath.Join(workdir, "versions")
+	p := filepath.Join(workdir, "versions")
+	os.MkdirAll(p, os.ModePerm)
+	return p
 }
 
 type Config struct {
