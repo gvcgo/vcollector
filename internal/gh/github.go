@@ -80,9 +80,9 @@ func (g *Github) initiate() {
 	}
 }
 
-func (g *Github) GetShaStr(repoName, remotePath string) (shaStr string) {
+func (g *Github) GetShaStr(remotePath string) (shaStr string) {
 	// https://api.github.com/repos/{user}/{repo}/contents/{remotePath}
-	dUrl := fmt.Sprintf("%s/repos/%s/contents/%s", GithubAPI, repoName, remotePath)
+	dUrl := fmt.Sprintf("%s/repos/%s/contents/%s", GithubAPI, g.Repo, remotePath)
 	g.fetcher.Timeout = 30 * time.Second
 	g.fetcher.SetUrl(dUrl)
 	resp, _ := g.fetcher.GetString()
@@ -90,7 +90,7 @@ func (g *Github) GetShaStr(repoName, remotePath string) (shaStr string) {
 	return
 }
 
-func (g *Github) UploadFile(repoName, remotePath, localPath string) (r []byte) {
+func (g *Github) UploadFile(remotePath, localPath string) (r []byte) {
 	// https://api.github.com/repos/{user}/{repo}/contents/{path}/{filename}
 	if ok, _ := gutils.PathIsExist(localPath); !ok {
 		gprint.PrintError("file: %s does not exist.", localPath)
@@ -99,11 +99,11 @@ func (g *Github) UploadFile(repoName, remotePath, localPath string) (r []byte) {
 
 	fName := filepath.Base(localPath)
 	remotePath = strings.TrimLeft(filepath.Join(remotePath, fName), "/")
-	g.fetcher.SetUrl(fmt.Sprintf("%s/repos/%s/contents/%s", GithubAPI, repoName, remotePath))
+	g.fetcher.SetUrl(fmt.Sprintf("%s/repos/%s/contents/%s", GithubAPI, g.Repo, remotePath))
 	g.fetcher.Timeout = 5 * time.Minute
 
 	content, _ := os.ReadFile(localPath)
-	shaStr := g.GetShaStr(repoName, remotePath)
+	shaStr := g.GetShaStr(remotePath)
 	g.fetcher.PostBody = map[string]interface{}{
 		"message": fmt.Sprintf("update file: %s.", fName),
 		"content": base64.StdEncoding.EncodeToString(content),
