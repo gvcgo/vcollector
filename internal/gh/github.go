@@ -9,10 +9,12 @@ import (
 	"time"
 
 	"github.com/gogf/gf/v2/encoding/gjson"
+	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/gvcgo/goutils/pkgs/gtea/gprint"
 	"github.com/gvcgo/goutils/pkgs/gutils"
 	"github.com/gvcgo/goutils/pkgs/request"
 	"github.com/gvcgo/vcollector/internal/conf"
+	"github.com/gvcgo/vcollector/internal/req"
 )
 
 // ReleaseItem
@@ -69,7 +71,7 @@ func NewGithub() (g *Github) {
 }
 
 func (g *Github) initiate() {
-	if g.Proxy != "" {
+	if g.Proxy != "" && gconv.Bool(os.Getenv(req.ProxyEnvName)) {
 		g.fetcher.Proxy = g.Proxy
 	}
 	g.fetcher.Headers = map[string]string{

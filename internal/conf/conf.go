@@ -35,7 +35,7 @@ type Config struct {
 
 func NewConfig() (c *Config) {
 	c = &Config{
-		Proxy:      "http://localhost:2023",
+		Proxy:      "",
 		GithubRepo: "gvcgo/vsources",
 	}
 	c.Load()
