@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -18,6 +19,8 @@ import (
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 )
+
+const SDKListFileName = "sdk-homepage.json"
 
 var (
 	sender chan crawler.Crawler
@@ -75,10 +78,13 @@ func RunMultiGoroutine() {
 	wg.Wait()
 }
 
-func RunSingleGoroutine() {
+func RunSingleGoroutine() (hList map[string]string) {
+	homepageList := map[string]string{}
 	for _, cc := range crawler.CrawlerList {
 		runCrawler(cc)
+		homepageList[cc.GetSDKName()] = cc.HomePage()
 	}
+	return homepageList
 }
 
 /*
@@ -86,7 +92,7 @@ func RunSingleGoroutine() {
 2. upload files.
 */
 func start() {
-	RunSingleGoroutine()
+	hList := RunSingleGoroutine()
 	// upload sdklist file.
 	fPath := filepath.Join(conf.GetWorkDir(), utils.ShaFileName)
 	content, _ := os.ReadFile(fPath)
@@ -94,5 +100,10 @@ func start() {
 	if len(content) > 0 {
 		upl.DisableSaveSha256()
 		upl.Upload("sdk-list", content)
+	}
+	if len(hList) > 0 {
+		upl.DisableSaveSha256()
+		content, _ := json.MarshalIndent(hList, "", "  ")
+		upl.Upload(SDKListFileName, content)
 	}
 }
