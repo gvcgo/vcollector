@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"sync"
@@ -34,6 +35,7 @@ func runCrawler(cc crawler.Crawler) {
 	if cc == nil {
 		return
 	}
+	fmt.Println("start crawler:", cc.GetSDKName())
 	cc.Start()
 	uploader := utils.NewUploader()
 	if cc.GetSDKName() == conda.CondaForgeSDKName {
