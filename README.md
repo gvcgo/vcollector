@@ -1,88 +1,91 @@
 # vcollector
 vcollector collects version list of SDKs for vmr.
 
+## Dependencies
+
+- miniconda
 
 # Programming languages
 
 - from conda-forge
-  - [ ] Python
-  - [ ] PyPy
-  - [ ] GCC
-  - [ ] Clang
-  - [ ] Ruby
-  - [ ] Rust
-  - [ ] Lua
-  - [ ] R
-  - [ ] LFortran
-  - [ ] Perl
-  - [ ] Typst
+  - [ x ] Python
+  - [ x ] PyPy
+  - [ x ] GCC
+  - [ x ] Clang
+  - [ x ] Ruby
+  - [ x ] Rust
+  - [ x ] Lua
+  - [ x ] R
+  - [ x ] LFortran
+  - [ x ] Perl
+  - [ x ] Typst
 
 - from coursier
-  - [ ] Scala
+  - [ x ] Scala
 
 - from official sites
-  - [ ] JDK
-  - [ ] Go
-  - [ ] Node.js
-  - [ ] Flutter
-  - [ ] Dlang
-  - [ ] Zig
-  - [ ] .Net
-  - [ ] Groovy
-  - [ ] Android SDK Manager
-  - [ ] Julia
+  - [ x ] JDK
+  - [ x ] Go
+  - [ x ] Node.js
+  - [ x ] Flutter
+  - [ x ] Dlang
+  - [ x ] Zig
+  - [ x ] .Net
+  - [ x ] Groovy
+  - [ x ] Android SDK Manager
+  - [ x ] Julia
 
 - from conda & github
-  - [ ] Erlang
-  - [ ] Elixir
+  - [ x ] Erlang
+  - [ x ] Elixir
 
 - from github
-  - [ ] Bun
-  - [ ] Deno
-  - [ ] Kotlin
-  - [ ] V
-  - [ ] Odin
-  - [ ] Gleam
-  - [ ] PHP
+  - [ x ] Bun
+  - [ x ] Deno
+  - [ x ] Kotlin
+  - [ x ] V
+  - [ x ] Odin
+  - [ x ] Gleam
+  - [ x ] PHP
 
 # Lsp
 
 - LSP Server
-  - [ ] Zls
-  - [ ] V-analyzer
-  - [ ] Typst-lsp
-  - [ ] Serve-d
+  - [ x ] Zls
+  - [ x ] V-analyzer
+  - [ x ] Typst-lsp
+  - [ x ] Serve-d
 
 # Dev tools
 
 - pakage manager/installer
-  - [ ] Maven
-  - [ ] Gradle
-  - [ ] Rustup
-  - [ ] Miniconda
-  - [ ] Coursier
-  - [ ] Cygwin-installer
-  - [ ] Msys2-installer
+  - [ x ] Maven
+  - [ x ] Gradle
+  - [ x ] Rustup
+  - [ x ] Miniconda
+  - [ x ] Coursier
+  - [ x ] Cygwin-installer
+  - [ x ] Msys2-installer
 
 - others
-  - [ ] Git-for-Windows
-  - [ ] Lazygit
-  - [ ] Lazydocker
-  - [ ] Typst-preview
-  - [ ] Protobuf(protoc)
-  - [ ] Kubectl
-  - [ ] Gsudo
-  - [ ] UPX
-  - [ ] Vhs
-  - [ ] Asciinema
+  - [ x ] Git-for-Windows
+  - [ x ] Lazygit
+  - [ x ] Lazydocker
+  - [ x ] Typst-preview
+  - [ x ] Protobuf(protoc)
+  - [ x ] Kubectl
+  - [ x ] Gsudo
+  - [ x ] UPX
+  - [ x ] Vhs
+  - [ x ] Asciinema
 
 # Editors
 
 - edtiotrs
-  - [ ] VSCode
-  - [ ] NeoVim
+  - [ x ] VSCode
+  - [ x ] NeoVim
 - plugins for neovim
-  - [ ] tree-sitter
-  - [ ] fd
-  - [ ] fzf
-  - [ ] ripgrep
+  - [ x ] tree-sitter
+  - [ x ] fd
+  - [ x ] fzf
+  - [ x ] ripgrep
