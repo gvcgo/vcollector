@@ -7,85 +7,30 @@ vcollector collects version list of SDKs for vmr.
 
 # Programming languages
 
-- from conda-forge
-  - [ x ] Python
-  - [ x ] PyPy
-  - [ x ] GCC
-  - [ x ] Clang
-  - [ x ] Ruby
-  - [ x ] Rust
-  - [ x ] Lua
-  - [ x ] R
-  - [ x ] LFortran
-  - [ x ] Perl
-  - [ x ] Typst
-
-- from coursier
-  - [ x ] Scala
-
-- from official sites
-  - [ x ] JDK
-  - [ x ] Go
-  - [ x ] Node.js
-  - [ x ] Flutter
-  - [ x ] Dlang
-  - [ x ] Zig
-  - [ x ] .Net
-  - [ x ] Groovy
-  - [ x ] Android SDK Manager
-  - [ x ] Julia
-
-- from conda & github
-  - [ x ] Erlang
-  - [ x ] Elixir
-
-- from github
-  - [ x ] Bun
-  - [ x ] Deno
-  - [ x ] Kotlin
-  - [ x ] V
-  - [ x ] Odin
-  - [ x ] Gleam
-  - [ x ] PHP
+Python, PyPy, GCC, Clang, Rust, Ruby, Lua, R, LFortran, Perl, Typst, Scala,
+JDK, Go, Node.js, Flutter, Dlang, Zig, .Net, Groovy, Julia, Erlang, Elixir,
+Bun, Deno, Kotlin, V, Odin, Gleam, PHP, Android-SDK-Manager
 
 # Lsp
 
-- LSP Server
-  - [ x ] Zls
-  - [ x ] V-analyzer
-  - [ x ] Typst-lsp
-  - [ x ] Serve-d
+zls, v-analyzer, typst-lsp, serve-d
 
 # Dev tools
 
-- pakage manager/installer
-  - [ x ] Maven
-  - [ x ] Gradle
-  - [ x ] Rustup
-  - [ x ] Miniconda
-  - [ x ] Coursier
-  - [ x ] Cygwin-installer
-  - [ x ] Msys2-installer
+Maven, Gradle, Rustup, Miniconda, Coursier, Cygwin-installer, Msys2-installer
 
-- others
-  - [ x ] Git-for-Windows
-  - [ x ] Lazygit
-  - [ x ] Lazydocker
-  - [ x ] Typst-preview
-  - [ x ] Protobuf(protoc)
-  - [ x ] Kubectl
-  - [ x ] Gsudo
-  - [ x ] UPX
-  - [ x ] Vhs
-  - [ x ] Asciinema
+Git-for-Windows, Lazygit, Lazydocker, Typst-preview, Protobuf(protoc), Kubectl, Gsudo, UPX, Vhs, Asciinema
 
 # Editors
 
-- edtiotrs
-  - [ x ] VSCode
-  - [ x ] NeoVim
-- plugins for neovim
-  - [ x ] tree-sitter
-  - [ x ] fd
-  - [ x ] fzf
-  - [ x ] ripgrep
+VSCode, NeoVim
+
+tree-sitter, fd, fzf, ripgrep
+
+# Thanks to
+
+<a href="https://www.anaconda.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/anaconda/anaconda-original-wordmark.svg" width="20%"/></a>
+
+<a href="https://www.cloudflare.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cloudflare/cloudflare-original-wordmark.svg" width="21%"/></a>
+
+<a href="https://linuxone.cloud.marist.edu/"><img src="https://linuxone.cloud.marist.edu/resources/images/linuxonelogo03.png" width="60%"/><a>
