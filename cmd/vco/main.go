@@ -75,7 +75,7 @@ func (c *Cli) initiate() {
 		Long:    "vco crawl.",
 		Aliases: []string{"c"},
 		Run: func(cmd *cobra.Command, args []string) {
-			Crawl()
+			start()
 		},
 	})
 }
