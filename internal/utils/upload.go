@@ -25,10 +25,11 @@ type Sha256List map[string]string // fileName -> sha256
 3. Delete file from remote repo
 */
 type Uploader struct {
-	ShaFile    string
-	VersionDir string
-	Github     *gh.Github
-	Sha256List Sha256List
+	ShaFile      string
+	VersionDir   string
+	Github       *gh.Github
+	Sha256List   Sha256List
+	doNotSaveSha bool
 }
 
 func NewUploader() (u *Uploader) {
@@ -50,7 +51,7 @@ func (u *Uploader) loadSha256Info() {
 }
 
 func (u *Uploader) saveSha256Info() {
-	content, _ := json.Marshal(u.Sha256List)
+	content, _ := json.MarshalIndent(u.Sha256List, "", "  ")
 	os.WriteFile(u.ShaFile, content, os.ModePerm)
 }
 
@@ -73,7 +74,9 @@ func (u *Uploader) checkSha256(sdkName string, content []byte) (ok bool) {
 	}
 
 	if ss, ok1 := u.Sha256List[sdkName]; !ok1 {
-		u.Sha256List[sdkName] = shaStr
+		if !u.doNotSaveSha {
+			u.Sha256List[sdkName] = shaStr
+		}
 		u.saveSha256Info()
 		u.saveVersionFile(sdkName, content)
 		return true
@@ -81,7 +84,9 @@ func (u *Uploader) checkSha256(sdkName string, content []byte) (ok bool) {
 		if ss == shaStr {
 			return false
 		} else {
-			u.Sha256List[sdkName] = shaStr
+			if !u.doNotSaveSha {
+				u.Sha256List[sdkName] = shaStr
+			}
 			u.saveSha256Info()
 			u.saveVersionFile(sdkName, content)
 			return true
@@ -95,4 +100,8 @@ func (u *Uploader) Upload(sdkName string, content []byte) {
 		remoteFilePath := filepath.Base(localFilePath)
 		u.Github.UploadFile(remoteFilePath, localFilePath)
 	}
+}
+
+func (u *Uploader) DisableSaveSha256() {
+	u.doNotSaveSha = true
 }
