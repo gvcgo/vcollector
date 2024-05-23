@@ -74,10 +74,10 @@ func (d *Dotnet) parseOS(dUrl string) (platform string) {
 	if strings.Contains(dUrl, "linux") {
 		return "linux"
 	}
-	if strings.Contains(dUrl, "windows") {
+	if strings.Contains(dUrl, "-win-") {
 		return "windows"
 	}
-	if strings.Contains(dUrl, "macos") {
+	if strings.Contains(dUrl, "osx") {
 		return "darwin"
 	}
 	return

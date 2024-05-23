@@ -5,7 +5,7 @@ import (
 
 	_ "github.com/gvcgo/vcollector/internal/conda"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/conda"
-	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 	toml "github.com/pelletier/go-toml/v2"
 )
@@ -17,7 +17,7 @@ type MyConfig struct {
 	Data    map[string]string `toml:"data"`
 }
 
-func testToml() {
+func TestToml() {
 	mc := &MyConfig{
 		Version: 10,
 		Name:    "vmr",
@@ -37,7 +37,7 @@ func main() {
 	// official.TestGolang()
 	// official.TestMaven()
 	// official.TestGradle()
-	// official.TestDotnet()
+	official.TestDotnet()
 	// official.TestZig()
 	// official.TestNode()
 	// official.TestFlutter()
@@ -96,5 +96,5 @@ func main() {
 	// mix.TestErlang()
 	// mix.TestPHP()
 
-	testToml()
+	// TestToml()
 }
