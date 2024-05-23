@@ -62,22 +62,31 @@ OUTTER:
 	}
 }
 
-/*
-1. start crawlers.
-2. upload files.
-*/
-func start() {
+func RunMultiGoroutine() {
 	sender = make(chan crawler.Crawler, 10)
 	go send()
 	time.Sleep(time.Millisecond * 500)
 	// multi goroutines.
-	num := 2
+	num := 1
 	for i := 0; i < num; i++ {
 		wg.Add(1)
 		go crawl()
 	}
 	wg.Wait()
+}
 
+func RunSingleGoroutine() {
+	for _, cc := range crawler.CrawlerList {
+		runCrawler(cc)
+	}
+}
+
+/*
+1. start crawlers.
+2. upload files.
+*/
+func start() {
+	RunSingleGoroutine()
 	// upload sdklist file.
 	fPath := filepath.Join(conf.GetWorkDir(), utils.ShaFileName)
 	content, _ := os.ReadFile(fPath)
