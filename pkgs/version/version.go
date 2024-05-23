@@ -39,5 +39,5 @@ func (v *VersionList) Unmarshal(data []byte) error {
 }
 
 func (v VersionList) Marshal() ([]byte, error) {
-	return json.Marshal(v)
+	return json.MarshalIndent(v, "", "  ")
 }

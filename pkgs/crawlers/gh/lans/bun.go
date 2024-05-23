@@ -95,7 +95,6 @@ func (b *Bun) insParser(fName string) (insStr string) {
 func (b *Bun) SumGetter(fName string, assets []gh.Asset) (sum, sumType string) {
 	for _, a := range assets {
 		if strings.HasSuffix(a.Name, "SHASUMS256.txt") {
-			// TODO: acceleration.
 			content := req.GetResp("https://gvc.1710717.xyz/proxy/"+a.Url, 1)
 			for _, line := range strings.Split(content, "\n") {
 				if strings.Contains(line, fName) {
