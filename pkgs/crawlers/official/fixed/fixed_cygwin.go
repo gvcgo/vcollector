@@ -40,3 +40,7 @@ func (c *Cygwin) GetVersions() []byte {
 	result, _ := c.Version.Marshal()
 	return result
 }
+
+func (c *Cygwin) HomePage() string {
+	return "https://cygwin.com/"
+}

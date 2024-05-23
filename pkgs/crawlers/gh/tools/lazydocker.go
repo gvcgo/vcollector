@@ -101,6 +101,10 @@ func (l *Lazydocker) GetVersions() []byte {
 	return r
 }
 
+func (l *Lazydocker) HomePage() string {
+	return "https://github.com/jesseduffield/lazydocker"
+}
+
 func TestLazydocker() {
 	nn := NewLazydocker()
 	nn.Start()

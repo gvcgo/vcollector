@@ -111,6 +111,10 @@ func (m *Maven) GetVersions() []byte {
 	return r
 }
 
+func (m *Maven) HomePage() string {
+	return "https://maven.apache.org/"
+}
+
 func TestMaven() {
 	mm := NewMaven()
 	mm.Start()

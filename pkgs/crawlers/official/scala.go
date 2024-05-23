@@ -66,6 +66,10 @@ func (s *Scala) GetVersions() []byte {
 	return r
 }
 
+func (s *Scala) HomePage() string {
+	return "https://www.scala-lang.org/"
+}
+
 func TestScala() {
 	ss := NewScala()
 	ss.Start()

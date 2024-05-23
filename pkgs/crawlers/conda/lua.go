@@ -41,6 +41,10 @@ func (l *Lua) GetVersions() []byte {
 	return r
 }
 
+func (l *Lua) HomePage() string {
+	return "https://www.lua.org/"
+}
+
 func TestLua() {
 	ll := NewLua()
 	ll.Start()

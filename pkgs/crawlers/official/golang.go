@@ -128,6 +128,10 @@ func (g *Golang) GetVersions() []byte {
 	return r
 }
 
+func (g *Golang) HomePage() string {
+	return "https://go.dev/"
+}
+
 func TestGolang() {
 	gg := NewGolang()
 	gg.Start()

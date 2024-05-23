@@ -103,6 +103,10 @@ func (p *Protoc) GetVersions() []byte {
 	return r
 }
 
+func (p *Protoc) HomePage() string {
+	return "https://protobuf.dev/"
+}
+
 func TestProtoc() {
 	nn := NewProtoc()
 	nn.Start()

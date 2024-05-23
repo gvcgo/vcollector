@@ -40,6 +40,10 @@ func (c *Clang) GetVersions() []byte {
 	return r
 }
 
+func (c *Clang) HomePage() string {
+	return "https://clang.llvm.org/"
+}
+
 func TestClang() {
 	cc := NewClang()
 	cc.Start()

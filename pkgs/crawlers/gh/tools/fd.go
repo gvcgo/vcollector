@@ -106,6 +106,10 @@ func (f *Fd) GetVersions() []byte {
 	return r
 }
 
+func (f *Fd) HomePage() string {
+	return "https://github.com/sharkdp/fd"
+}
+
 func TestFd() {
 	nn := NewFd()
 	nn.Start()

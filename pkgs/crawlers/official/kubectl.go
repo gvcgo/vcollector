@@ -122,6 +122,10 @@ func (k *Kubectl) GetVersions() []byte {
 	return r
 }
 
+func (k *Kubectl) HomePage() string {
+	return "https://kubernetes.io/docs/tasks/tools/"
+}
+
 func TestKubectl() {
 	os.Setenv(req.ProxyEnvName, "http://127.0.0.1:2023")
 	kk := NewKubectl()

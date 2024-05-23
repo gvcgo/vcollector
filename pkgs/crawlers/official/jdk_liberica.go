@@ -129,6 +129,10 @@ func (j *JDK) GetVersions() []byte {
 	return r
 }
 
+func (j *JDK) HomePage() string {
+	return "https://bell-sw.com/pages/downloads/"
+}
+
 func TestJDK() {
 	jj := NewJDK()
 	jj.Start()

@@ -81,6 +81,10 @@ func (g *Gradle) GetVersions() []byte {
 	return r
 }
 
+func (g *Gradle) HomePage() string {
+	return "https://gradle.org/"
+}
+
 func TestGradle() {
 	gg := NewGradle()
 	gg.Start()

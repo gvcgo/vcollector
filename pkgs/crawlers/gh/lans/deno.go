@@ -106,6 +106,10 @@ func (d *Deno) GetVersions() []byte {
 	return r
 }
 
+func (d *Deno) HomePage() string {
+	return "https://deno.com/"
+}
+
 func TestDeno() {
 	bb := NewDeno()
 	bb.Start()

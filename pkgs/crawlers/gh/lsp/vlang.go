@@ -94,6 +94,10 @@ func (v *VAnalyzer) GetVersions() []byte {
 	return r
 }
 
+func (v *VAnalyzer) HomePage() string {
+	return "https://github.com/v-analyzer/v-analyzer"
+}
+
 func TestVAnalyzer() {
 	nn := NewVAnalyzer()
 	nn.Start()

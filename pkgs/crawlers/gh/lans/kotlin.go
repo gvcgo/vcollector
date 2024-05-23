@@ -109,6 +109,10 @@ func (k *Kotlin) GetVersions() []byte {
 	return r
 }
 
+func (k *Kotlin) HomePage() string {
+	return "https://kotlinlang.org/"
+}
+
 func TestKotlin() {
 	nn := NewKotlin()
 	nn.Start()

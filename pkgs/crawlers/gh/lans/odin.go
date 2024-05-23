@@ -100,6 +100,10 @@ func (o *Odin) GetVersions() []byte {
 	return r
 }
 
+func (o *Odin) HomePage() string {
+	return "http://odin-lang.org/"
+}
+
 func TestOdin() {
 	nn := NewOdin()
 	nn.Start()

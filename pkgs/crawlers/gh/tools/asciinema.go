@@ -94,6 +94,10 @@ func (a *Asciinema) GetVersions() []byte {
 	return r
 }
 
+func (a *Asciinema) HomePage() string {
+	return "https://asciinema.org/"
+}
+
 func TestAsciinema() {
 	nn := NewAsciinema()
 	nn.Start()

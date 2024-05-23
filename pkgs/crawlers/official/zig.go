@@ -102,6 +102,10 @@ func (z *Zig) GetVersions() []byte {
 	return r
 }
 
+func (z *Zig) HomePage() string {
+	return "https://ziglang.org/"
+}
+
 func TestZig() {
 	zz := NewZig()
 	zz.Start()

@@ -158,6 +158,10 @@ func (v *VSCode) GetVersions() []byte {
 	return r
 }
 
+func (v *VSCode) HomePage() string {
+	return "https://code.visualstudio.com/"
+}
+
 func TestVSCode() {
 	vv := NewVSCode()
 	vv.Start()

@@ -132,6 +132,10 @@ func (m *Miniconda) GetVersions() []byte {
 	return r
 }
 
+func (m *Miniconda) HomePage() string {
+	return "https://docs.anaconda.com/free/miniconda/index.html"
+}
+
 func TestMiniconda() {
 	mm := NewMiniconda()
 	mm.Start()

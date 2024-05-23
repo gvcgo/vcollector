@@ -106,6 +106,10 @@ func (r *Ripgrep) GetVersions() []byte {
 	return rr
 }
 
+func (r *Ripgrep) HomePage() string {
+	return "https://github.com/BurntSushi/ripgrep"
+}
+
 func TestRipgrep() {
 	nn := NewRipgrep()
 	nn.Start()

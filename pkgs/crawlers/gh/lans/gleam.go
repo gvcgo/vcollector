@@ -106,6 +106,10 @@ func (g *Gleam) GetVersions() []byte {
 	return r
 }
 
+func (g *Gleam) HomePage() string {
+	return "https://gleam.run/"
+}
+
 func TestGleam() {
 	nn := NewGleam()
 	nn.Start()

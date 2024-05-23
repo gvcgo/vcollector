@@ -40,6 +40,10 @@ func (r *Ruby) GetVersions() []byte {
 	return result
 }
 
+func (r *Ruby) HomePage() string {
+	return "https://www.ruby-lang.org/en/"
+}
+
 func TestRuby() {
 	rr := NewRuby()
 	rr.Start()

@@ -103,6 +103,10 @@ func (d *DlangLsp) GetVersions() []byte {
 	return r
 }
 
+func (d *DlangLsp) HomePage() string {
+	return "https://github.com/Pure-D/serve-d"
+}
+
 func TestDlangLsp() {
 	nn := NewDlangLsp()
 	nn.Start()

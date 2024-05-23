@@ -41,6 +41,10 @@ func (t *Typst) GetVersions() []byte {
 	return r
 }
 
+func (t *Typst) HomePage() string {
+	return "https://typst.app/"
+}
+
 func TestTypst() {
 	tt := NewTypst()
 	tt.Start()

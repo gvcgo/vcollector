@@ -41,6 +41,10 @@ func (r *Rust) GetVersions() []byte {
 	return result
 }
 
+func (r *Rust) HomePage() string {
+	return "https://www.rust-lang.org/"
+}
+
 func TestRust() {
 	rr := NewRust()
 	rr.Start()

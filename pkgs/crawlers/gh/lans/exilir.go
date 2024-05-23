@@ -119,6 +119,10 @@ func (e *Elixir) Start() {
 	e.getResult()
 }
 
+func (e *Elixir) HomePage() string {
+	return "https://elixir-lang.org/"
+}
+
 func TestElixir() {
 	nn := NewElixir()
 	nn.Start()

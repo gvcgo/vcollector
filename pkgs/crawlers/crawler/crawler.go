@@ -3,6 +3,7 @@ package crawler
 type Crawler interface {
 	Start()
 	GetSDKName() string
+	HomePage() string
 	GetVersions() []byte
 }
 

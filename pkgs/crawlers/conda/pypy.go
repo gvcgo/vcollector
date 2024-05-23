@@ -40,6 +40,10 @@ func (p *PyPy) GetVersions() []byte {
 	return r
 }
 
+func (p *PyPy) HomePage() string {
+	return "https://www.pypy.org/"
+}
+
 func TestPyPy() {
 	pp := NewPyPy()
 	pp.Start()

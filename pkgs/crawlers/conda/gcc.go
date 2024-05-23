@@ -40,6 +40,10 @@ func (g *GCC) GetVersions() []byte {
 	return r
 }
 
+func (g *GCC) HomePage() string {
+	return "https://gcc.gnu.org/"
+}
+
 func TestGCC() {
 	gg := NewGCC()
 	gg.Start()

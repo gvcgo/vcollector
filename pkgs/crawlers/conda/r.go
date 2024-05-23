@@ -41,6 +41,10 @@ func (r *R) GetVersions() []byte {
 	return result
 }
 
+func (r *R) HomePage() string {
+	return "https://www.r-project.org/"
+}
+
 func TestR() {
 	rr := NewR()
 	rr.Start()

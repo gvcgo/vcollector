@@ -107,6 +107,10 @@ func (f *Flutter) GetVersions() []byte {
 	return r
 }
 
+func (f *Flutter) HomePage() string {
+	return "https://flutter.dev/"
+}
+
 func TestFlutter() {
 	f := NewFlutter()
 	f.Start()

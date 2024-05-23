@@ -98,6 +98,10 @@ func (e *Erlang) Start() {
 	e.getFromGithub()
 }
 
+func (e *Erlang) HomePage() string {
+	return "https://www.erlang.org/"
+}
+
 func TestErlang() {
 	nn := NewErlang()
 	nn.Start()

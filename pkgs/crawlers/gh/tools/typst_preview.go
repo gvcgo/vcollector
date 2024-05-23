@@ -109,6 +109,10 @@ func (t *TypstPreview) GetVersions() []byte {
 	return r
 }
 
+func (t *TypstPreview) HomePage() string {
+	return "https://enter-tainer.github.io/typst-preview/"
+}
+
 func TestTypstPreview() {
 	nn := NewTypstPreview()
 	nn.Start()

@@ -184,6 +184,10 @@ func (p *PHP) Start() {
 	p.getFromGithub()
 }
 
+func (p *PHP) HomePage() string {
+	return "https://www.php.net/"
+}
+
 func TestPHP() {
 	nn := NewPHP()
 	nn.Start()

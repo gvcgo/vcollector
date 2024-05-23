@@ -38,6 +38,10 @@ func (c *CondaForgePackages) GetVersions() []byte {
 	return c.result
 }
 
+func (c *CondaForgePackages) HomePage() string {
+	return "https://conda-forge.org/"
+}
+
 func (c *CondaForgePackages) Start() {
 	resp := req.GetResp(c.DownloadUrl, 180)
 	c.result = []byte(resp)

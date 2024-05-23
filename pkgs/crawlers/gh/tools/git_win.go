@@ -82,6 +82,10 @@ func (g *GitWin) GetVersions() []byte {
 	return r
 }
 
+func (g *GitWin) HomePage() string {
+	return "https://git-scm.com/"
+}
+
 func TestGitWin() {
 	nn := NewGitWin()
 	nn.Start()

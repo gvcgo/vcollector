@@ -106,6 +106,10 @@ func (c *Coursier) GetVersions() []byte {
 	return r
 }
 
+func (c *Coursier) HomePage() string {
+	return "https://get-coursier.io/docs/cli-overview"
+}
+
 func TestCoursier() {
 	nn := NewCoursier()
 	nn.Start()

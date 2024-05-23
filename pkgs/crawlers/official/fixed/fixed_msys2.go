@@ -40,3 +40,7 @@ func (m *Msys2) GetVersions() []byte {
 	r, _ := m.Version.Marshal()
 	return r
 }
+
+func (m *Msys2) HomePage() string {
+	return "https://www.msys2.org/"
+}

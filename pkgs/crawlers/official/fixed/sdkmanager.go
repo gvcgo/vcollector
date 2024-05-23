@@ -92,6 +92,10 @@ func (s *SDKManager) GetVersions() []byte {
 	return r
 }
 
+func (s *SDKManager) HomePage() string {
+	return "https://developer.android.com/studio"
+}
+
 func TestSDKManager() {
 	os.Setenv(req.ProxyEnvName, "http://127.0.0.1:2023")
 	ss := NewSDKManager()

@@ -101,6 +101,10 @@ func (l *Lazygit) GetVersions() []byte {
 	return r
 }
 
+func (l *Lazygit) HomePage() string {
+	return "https://github.com/jesseduffield/lazygit"
+}
+
 func TestLazygit() {
 	nn := NewLazygit()
 	nn.Start()

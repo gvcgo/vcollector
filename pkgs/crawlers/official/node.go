@@ -146,6 +146,10 @@ func (n *Node) GetVersions() []byte {
 	return r
 }
 
+func (n *Node) HomePage() string {
+	return "https://nodejs.org/en"
+}
+
 func TestNode() {
 	nn := NewNode()
 	nn.Start()

@@ -115,6 +115,10 @@ func (t *TypstLsp) GetVersions() []byte {
 	return r
 }
 
+func (t *TypstLsp) HomePage() string {
+	return "https://github.com/nvarner/typst-lsp"
+}
+
 func TestTypstLsp() {
 	nn := NewTypstLsp()
 	nn.Start()

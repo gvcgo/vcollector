@@ -112,6 +112,10 @@ func (v *Vhs) GetVersions() []byte {
 	return r
 }
 
+func (v *Vhs) HomePage() string {
+	return "https://github.com/charmbracelet/vhs"
+}
+
 func TestVhs() {
 	nn := NewVhs()
 	nn.Start()

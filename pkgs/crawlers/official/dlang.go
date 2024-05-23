@@ -108,6 +108,10 @@ func (d *Dlang) GetVersions() []byte {
 	return r
 }
 
+func (d *Dlang) HomePage() string {
+	return "https://dlang.org/"
+}
+
 func TestDlang() {
 	dd := NewDlang()
 	dd.Start()

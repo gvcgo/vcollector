@@ -106,6 +106,10 @@ func (u *Upx) GetVersions() []byte {
 	return r
 }
 
+func (u *Upx) HomePage() string {
+	return "https://upx.github.io/"
+}
+
 func TestUpx() {
 	nn := NewUpx()
 	nn.Start()

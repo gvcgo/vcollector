@@ -100,6 +100,10 @@ func (v *Vlang) GetVersions() []byte {
 	return r
 }
 
+func (v *Vlang) HomePage() string {
+	return "https://vlang.io/"
+}
+
 func TestVlang() {
 	nn := NewVlang()
 	nn.Start()

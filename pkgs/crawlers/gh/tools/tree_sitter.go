@@ -103,6 +103,10 @@ func (t *TreeSitter) GetVersions() []byte {
 	return r
 }
 
+func (t *TreeSitter) HomePage() string {
+	return "https://tree-sitter.github.io/tree-sitter/"
+}
+
 func TestTreeSitter() {
 	nn := NewTreeSitter()
 	nn.Start()

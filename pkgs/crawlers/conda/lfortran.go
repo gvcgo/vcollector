@@ -41,6 +41,10 @@ func (l *LFortran) GetVersions() []byte {
 	return r
 }
 
+func (l *LFortran) HomePage() string {
+	return "https://lfortran.org/"
+}
+
 func TestLFortran() {
 	ll := NewLFortran()
 	ll.Start()

@@ -127,6 +127,10 @@ func (b *Bun) GetVersions() []byte {
 	return r
 }
 
+func (b *Bun) HomePage() string {
+	return "https://bun.sh/"
+}
+
 func TestBun() {
 	bb := NewBun()
 	bb.Start()

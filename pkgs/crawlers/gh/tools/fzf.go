@@ -100,6 +100,10 @@ func (f *Fzf) GetVersions() []byte {
 	return r
 }
 
+func (f *Fzf) HomePage() string {
+	return "https://github.com/junegunn/fzf"
+}
+
 func TestFzf() {
 	nn := NewFzf()
 	nn.Start()

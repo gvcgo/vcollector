@@ -94,6 +94,10 @@ func (c *Codon) GetVersions() []byte {
 	return r
 }
 
+func (c *Codon) HomePage() string {
+	return "https://github.com/exaloop/codon"
+}
+
 func TestCodon() {
 	cc := NewCodon()
 	cc.Start()

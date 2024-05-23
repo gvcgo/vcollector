@@ -124,6 +124,10 @@ func (c *CMake) GetVersions() []byte {
 	return r
 }
 
+func (c *CMake) HomePage() string {
+	return "https://cmake.org/"
+}
+
 func TestCMake() {
 	nn := NewCMake()
 	nn.Start()

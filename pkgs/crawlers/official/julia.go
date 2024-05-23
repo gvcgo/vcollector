@@ -110,6 +110,10 @@ func (j *Julia) GetVersions() []byte {
 	return r
 }
 
+func (j *Julia) HomePage() string {
+	return "https://julialang.org/"
+}
+
 func TestJulia() {
 	jj := NewJulia()
 	jj.Start()

@@ -115,6 +115,10 @@ func (g *Groovy) GetVersions() []byte {
 	return r
 }
 
+func (g *Groovy) HomePage() string {
+	return "http://www.groovy-lang.org/"
+}
+
 func TestGroovy() {
 	gg := NewGroovy()
 	gg.Start()

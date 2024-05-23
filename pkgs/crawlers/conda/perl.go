@@ -41,6 +41,10 @@ func (p *Perl) GetVersions() []byte {
 	return r
 }
 
+func (p *Perl) HomePage() string {
+	return "https://www.perl.org/"
+}
+
 func TestPerl() {
 	pp := NewPerl()
 	pp.Start()

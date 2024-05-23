@@ -70,3 +70,7 @@ func (r *Rustup) GetVersions() []byte {
 	rr, _ := r.Version.Marshal()
 	return rr
 }
+
+func (r *Rustup) HomePage() string {
+	return "https://rustup.rs/"
+}

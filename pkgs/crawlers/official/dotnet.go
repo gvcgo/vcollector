@@ -160,6 +160,10 @@ func (d *Dotnet) GetVersions() []byte {
 	return r
 }
 
+func (d *Dotnet) HomePage() string {
+	return "https://dotnet.microsoft.com/"
+}
+
 func TestDotnet() {
 	dd := NewDotnet()
 	dd.Start()

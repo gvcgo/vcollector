@@ -103,6 +103,10 @@ func (z *Zls) GetVersions() []byte {
 	return r
 }
 
+func (z *Zls) HomePage() string {
+	return "https://github.com/zigtools/zls"
+}
+
 func TestZls() {
 	nn := NewZls()
 	nn.Start()

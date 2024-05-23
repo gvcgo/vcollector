@@ -39,6 +39,10 @@ func (p *Python) GetVersions() []byte {
 	return r
 }
 
+func (p *Python) HomePage() string {
+	return "https://www.python.org/"
+}
+
 func TestPython() {
 	pp := NewPython()
 	pp.Start()

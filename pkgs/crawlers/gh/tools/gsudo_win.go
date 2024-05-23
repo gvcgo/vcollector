@@ -82,6 +82,10 @@ func (g *Gsudo) GetVersions() []byte {
 	return r
 }
 
+func (g *Gsudo) HomePage() string {
+	return "https://gerardog.github.io/gsudo/"
+}
+
 func TestGsudo() {
 	nn := NewGsudo()
 	nn.Start()
