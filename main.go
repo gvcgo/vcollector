@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	_ "github.com/gvcgo/vcollector/internal/conda"
+	"github.com/gvcgo/vcollector/internal/utils"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/conda"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 	toml "github.com/pelletier/go-toml/v2"
 )
@@ -32,12 +32,18 @@ func TestToml() {
 	fmt.Println(string(b))
 }
 
+func UploadVSourceReadme() {
+	uu := utils.NewUploader()
+	localPath := "/Volumes/data/projects/go/src/gvcgo_org/vcollector/docs/README.md"
+	uu.Github.UploadFile("README.md", localPath)
+}
+
 func main() {
 	// official.TestJDK()
 	// official.TestGolang()
 	// official.TestMaven()
 	// official.TestGradle()
-	official.TestDotnet()
+	// official.TestDotnet()
 	// official.TestZig()
 	// official.TestNode()
 	// official.TestFlutter()
@@ -97,4 +103,6 @@ func main() {
 	// mix.TestPHP()
 
 	// TestToml()
+
+	UploadVSourceReadme()
 }
