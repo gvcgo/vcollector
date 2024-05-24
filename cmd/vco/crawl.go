@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -44,7 +43,7 @@ func runCrawler(cc crawler.Crawler) {
 	if cc.GetSDKName() == conda.CondaForgeSDKName {
 		uploader.DisableSaveSha256()
 	}
-	uploader.Upload(cc.GetSDKName(), cc.GetVersions())
+	uploader.Upload(cc.GetSDKName(), cc.HomePage(), cc.GetVersions())
 }
 
 func crawl() {
@@ -78,13 +77,10 @@ func RunMultiGoroutine() {
 	wg.Wait()
 }
 
-func RunSingleGoroutine() (hList map[string]string) {
-	homepageList := map[string]string{}
+func RunSingleGoroutine() {
 	for _, cc := range crawler.CrawlerList {
 		runCrawler(cc)
-		homepageList[cc.GetSDKName()] = cc.HomePage()
 	}
-	return homepageList
 }
 
 /*
@@ -92,18 +88,13 @@ func RunSingleGoroutine() (hList map[string]string) {
 2. upload files.
 */
 func start() {
-	hList := RunSingleGoroutine()
+	RunSingleGoroutine()
 	// upload sdklist file.
 	fPath := filepath.Join(conf.GetWorkDir(), utils.ShaFileName)
 	content, _ := os.ReadFile(fPath)
 	upl := utils.NewUploader()
 	if len(content) > 0 {
 		upl.DisableSaveSha256()
-		upl.Upload("sdk-list", content)
-	}
-	if len(hList) > 0 {
-		upl.DisableSaveSha256()
-		content, _ := json.MarshalIndent(hList, "", "  ")
-		upl.Upload(SDKListFileName, content)
+		upl.Upload("sdk-list", "", content)
 	}
 }

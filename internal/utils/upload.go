@@ -17,7 +17,12 @@ const (
 	VersionFileNamePattern string = "%s.version.json"
 )
 
-type Sha256List map[string]string // fileName -> sha256
+type Sha256 struct {
+	Sha      string `json:"sha256"`
+	HomePage string `json:"homepage"`
+}
+
+type Sha256List map[string]Sha256
 
 /*
 1. Check sha256
@@ -64,7 +69,7 @@ func (u *Uploader) saveVersionFile(sdkName string, content []byte) {
 	os.WriteFile(u.getVersionFilePath(sdkName), content, os.ModePerm)
 }
 
-func (u *Uploader) checkSha256(sdkName string, content []byte) (ok bool) {
+func (u *Uploader) checkSha256(sdkName, homepage string, content []byte) (ok bool) {
 	h := sha256.New()
 	h.Write(content)
 	shaStr := fmt.Sprintf("%x", h.Sum(nil))
@@ -74,18 +79,24 @@ func (u *Uploader) checkSha256(sdkName string, content []byte) (ok bool) {
 	}
 
 	if ss, ok1 := u.Sha256List[sdkName]; !ok1 {
-		if !u.doNotSaveSha {
-			u.Sha256List[sdkName] = shaStr
+		if !u.doNotSaveSha && homepage != "" {
+			u.Sha256List[sdkName] = Sha256{
+				Sha:      shaStr,
+				HomePage: homepage,
+			}
 		}
 		u.saveSha256Info()
 		u.saveVersionFile(sdkName, content)
 		return true
 	} else {
-		if ss == shaStr {
+		if ss.Sha == shaStr {
 			return false
 		} else {
-			if !u.doNotSaveSha {
-				u.Sha256List[sdkName] = shaStr
+			if !u.doNotSaveSha && homepage != "" {
+				u.Sha256List[sdkName] = Sha256{
+					Sha:      shaStr,
+					HomePage: homepage,
+				}
 			}
 			u.saveSha256Info()
 			u.saveVersionFile(sdkName, content)
@@ -94,8 +105,8 @@ func (u *Uploader) checkSha256(sdkName string, content []byte) (ok bool) {
 	}
 }
 
-func (u *Uploader) Upload(sdkName string, content []byte) {
-	if u.checkSha256(sdkName, content) {
+func (u *Uploader) Upload(sdkName, homepage string, content []byte) {
+	if u.checkSha256(sdkName, homepage, content) {
 		localFilePath := u.getVersionFilePath(sdkName)
 		remoteFilePath := filepath.Base(localFilePath)
 		u.Github.UploadFile(remoteFilePath, localFilePath)

@@ -1,11 +1,18 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 
 	_ "github.com/gvcgo/vcollector/internal/conda"
 	"github.com/gvcgo/vcollector/internal/utils"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/conda"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
+	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/lans"
+	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/lsp"
+	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
+	_ "github.com/gvcgo/vcollector/pkgs/crawlers/mix"
+	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 	toml "github.com/pelletier/go-toml/v2"
 )
@@ -36,6 +43,18 @@ func UploadVSourceReadme() {
 	uu := utils.NewUploader()
 	localPath := "/Volumes/data/projects/go/src/gvcgo_org/vcollector/docs/README.md"
 	uu.Github.UploadFile("README.md", localPath)
+}
+
+func UploadHomepageFile() {
+	fName := "sdk-homepage.json"
+	list := map[string]string{}
+	for _, cc := range crawler.CrawlerList {
+		list[cc.GetSDKName()] = cc.HomePage()
+	}
+	upl := utils.NewUploader()
+	upl.DisableSaveSha256()
+	content, _ := json.MarshalIndent(list, "", "  ")
+	upl.Upload(fName, "", content)
 }
 
 func main() {
@@ -104,5 +123,6 @@ func main() {
 
 	// TestToml()
 
-	UploadVSourceReadme()
+	// UploadVSourceReadme()
+	UploadHomepageFile()
 }
