@@ -106,6 +106,13 @@ func (u *Uploader) checkSha256(sdkName, homepage string, content []byte) (ok boo
 }
 
 func (u *Uploader) Upload(sdkName, homepage string, content []byte) {
+	if len(content) == 0 {
+		return
+	}
+	// "{}"
+	if len(string(content)) < 10 {
+		return
+	}
 	if u.checkSha256(sdkName, homepage, content) {
 		localFilePath := u.getVersionFilePath(sdkName)
 		remoteFilePath := filepath.Base(localFilePath)
