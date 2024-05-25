@@ -6,13 +6,12 @@ import (
 
 	_ "github.com/gvcgo/vcollector/internal/conda"
 	"github.com/gvcgo/vcollector/internal/utils"
-	_ "github.com/gvcgo/vcollector/pkgs/crawlers/conda"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/lans"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/lsp"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
-	_ "github.com/gvcgo/vcollector/pkgs/crawlers/mix"
-	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 	toml "github.com/pelletier/go-toml/v2"
 )
@@ -55,6 +54,19 @@ func UploadHomepageFile() {
 	upl.DisableSaveSha256()
 	content, _ := json.MarshalIndent(list, "", "  ")
 	upl.Upload(fName, "", content)
+}
+
+func RunCrawler(cc crawler.Crawler) {
+	if cc == nil {
+		return
+	}
+	fmt.Println("start crawler:", cc.GetSDKName())
+	cc.Start()
+	uploader := utils.NewUploader()
+	if cc.GetSDKName() == conda.CondaForgeSDKName {
+		uploader.DisableSaveSha256()
+	}
+	uploader.Upload(cc.GetSDKName(), cc.HomePage(), cc.GetVersions())
 }
 
 func main() {
@@ -124,5 +136,8 @@ func main() {
 	// TestToml()
 
 	// UploadVSourceReadme()
-	UploadHomepageFile()
+	// UploadHomepageFile()
+
+	// RunCrawler(mix.NewPHP())
+	RunCrawler(official.NewJDK())
 }

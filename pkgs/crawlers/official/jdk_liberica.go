@@ -101,7 +101,7 @@ func (j *JDK) filter() {
 		item.Sum = jItem.Sha1
 		item.Url = jItem.DownloadUrl
 		// featureVersion.extraVersion.updateVersion.patchVersion+buildVersion
-		item.Extra = fmt.Sprintf(
+		vStr := fmt.Sprintf(
 			"%d.%d.%d.%d_%d",
 			jItem.FeatureVersion,
 			jItem.ExtraVersion,
@@ -109,13 +109,11 @@ func (j *JDK) filter() {
 			jItem.PatchVersion,
 			jItem.BuildVersion,
 		)
-		if _, ok := j.Verisons[jItem.Version]; !ok {
-			j.Verisons[jItem.Version] = version.Version{}
+		item.Extra = jItem.Version
+		if _, ok := j.Verisons[vStr]; !ok {
+			j.Verisons[vStr] = version.Version{}
 		}
-		// if jItem.Version == "11.0.10+9" {
-		// 	fmt.Printf("%+v\n", jItem)
-		// }
-		j.Verisons[jItem.Version] = append(j.Verisons[jItem.Version], item)
+		j.Verisons[vStr] = append(j.Verisons[vStr], item)
 	}
 }
 
