@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -130,6 +131,27 @@ func (g *Golang) GetVersions() []byte {
 
 func (g *Golang) HomePage() string {
 	return "https://go.dev/"
+}
+
+func (g *Golang) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"VERSION", "LICENSE"},
+			MacOS:   []string{"VERSION", "LICENSE"},
+			Linux:   []string{"VERSION", "LICENSE"},
+		},
+		BinaryDirs: &iconf.FileItems{
+			Windows: []string{"bin"},
+			MacOS:   []string{"bin"},
+			Linux:   []string{"bin"},
+		},
+		AdditionalEnvs: iconf.AdditionalEnvList{
+			{
+				Name:  "GOROOT",
+				Value: "",
+			},
+		},
+	}
 }
 
 func TestGolang() {

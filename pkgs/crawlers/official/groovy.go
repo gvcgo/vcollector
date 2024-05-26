@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -117,6 +118,21 @@ func (g *Groovy) GetVersions() []byte {
 
 func (g *Groovy) HomePage() string {
 	return "http://www.groovy-lang.org/"
+}
+
+func (g *Groovy) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"bin"},
+			MacOS:   []string{"bin"},
+			Linux:   []string{"bin"},
+		},
+		BinaryDirs: &iconf.FileItems{
+			Windows: []string{"bin"},
+			MacOS:   []string{"bin"},
+			Linux:   []string{"bin"},
+		},
+	}
 }
 
 func TestGroovy() {

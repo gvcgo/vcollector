@@ -6,6 +6,7 @@ import (
 	"net/url"
 	"os"
 
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -109,6 +110,21 @@ func (f *Flutter) GetVersions() []byte {
 
 func (f *Flutter) HomePage() string {
 	return "https://flutter.dev/"
+}
+
+func (f *Flutter) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"README.md", "LICENSE", "CODEOWNERS"},
+			MacOS:   []string{"README.md", "LICENSE", "CODEOWNERS"},
+			Linux:   []string{"README.md", "LICENSE", "CODEOWNERS"},
+		},
+		BinaryDirs: &iconf.FileItems{
+			Windows: []string{"bin"},
+			MacOS:   []string{"bin"},
+			Linux:   []string{"bin"},
+		},
+	}
 }
 
 func TestFlutter() {

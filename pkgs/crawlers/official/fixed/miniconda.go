@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -134,6 +135,16 @@ func (m *Miniconda) GetVersions() []byte {
 
 func (m *Miniconda) HomePage() string {
 	return "https://docs.anaconda.com/free/miniconda/index.html"
+}
+
+func (m *Miniconda) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		BinaryDirs: &iconf.FileItems{
+			Windows: []string{"bin", "condabin"},
+			MacOS:   []string{"bin", "condabin"},
+			Linux:   []string{"bin", "condabin"},
+		},
+	}
 }
 
 func TestMiniconda() {

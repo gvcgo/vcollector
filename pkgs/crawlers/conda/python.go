@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
@@ -41,6 +42,16 @@ func (p *Python) GetVersions() []byte {
 
 func (p *Python) HomePage() string {
 	return "https://www.python.org/"
+}
+
+func (p *Python) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		BinaryDirs: &iconf.FileItems{
+			Windows: []string{"bin"},
+			MacOS:   []string{"bin"},
+			Linux:   []string{"bin"},
+		},
+	}
 }
 
 func TestPython() {

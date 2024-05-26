@@ -24,3 +24,4 @@ go.work
 *.json
 internal/gh/token.go
 cmd/vco/vco
+*.toml

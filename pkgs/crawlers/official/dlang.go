@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -110,6 +111,21 @@ func (d *Dlang) GetVersions() []byte {
 
 func (d *Dlang) HomePage() string {
 	return "https://dlang.org/"
+}
+
+func (m *Dlang) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"windows"},
+			MacOS:   []string{"osx"},
+			Linux:   []string{"linux"},
+		},
+		BinaryDirs: &iconf.FileItems{
+			Windows: []string{`windows\bin`},
+			MacOS:   []string{"osx/bin"},
+			Linux:   []string{"linux/bin64"},
+		},
+	}
 }
 
 func TestDlang() {

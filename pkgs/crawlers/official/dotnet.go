@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -162,6 +163,22 @@ func (d *Dotnet) GetVersions() []byte {
 
 func (d *Dotnet) HomePage() string {
 	return "https://dotnet.microsoft.com/"
+}
+
+func (d *Dotnet) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"shared", "sdk", "host"},
+			MacOS:   []string{"shared", "sdk", "host"},
+			Linux:   []string{"shared", "sdk", "host"},
+		},
+		AdditionalEnvs: iconf.AdditionalEnvList{
+			{
+				Name:  "DOTNET_ROOT",
+				Value: "",
+			},
+		},
+	}
 }
 
 func TestDotnet() {
