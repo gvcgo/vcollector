@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -114,6 +115,22 @@ func (v *Vhs) GetVersions() []byte {
 
 func (v *Vhs) HomePage() string {
 	return "https://github.com/charmbracelet/vhs"
+}
+
+func (v *Vhs) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"LICENSE"},
+			MacOS:   []string{"LICENSE"},
+			Linux:   []string{"LICENSE"},
+		},
+		FlagDirExcepted: true,
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{},
+			MacOS:   []iconf.DirPath{},
+			Linux:   []iconf.DirPath{},
+		},
+	}
 }
 
 func TestVhs() {

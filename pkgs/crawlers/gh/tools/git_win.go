@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -84,6 +85,26 @@ func (g *GitWin) GetVersions() []byte {
 
 func (g *GitWin) HomePage() string {
 	return "https://git-scm.com/"
+}
+
+func (g *GitWin) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"bin", "cmd", "usr"},
+			MacOS:   []string{},
+			Linux:   []string{},
+		},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{
+				{"bin"},
+				{"usr", "bin"},
+				{"cmd"},
+				{"mingw64", "bin"},
+			},
+			MacOS: []iconf.DirPath{},
+			Linux: []iconf.DirPath{},
+		},
+	}
 }
 
 func TestGitWin() {

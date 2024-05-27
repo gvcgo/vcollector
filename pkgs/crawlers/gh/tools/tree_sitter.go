@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -105,6 +106,26 @@ func (t *TreeSitter) GetVersions() []byte {
 
 func (t *TreeSitter) HomePage() string {
 	return "https://tree-sitter.github.io/tree-sitter/"
+}
+
+func (t *TreeSitter) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"tree-sitter.exe"},
+			MacOS:   []string{"tree-sitter"},
+			Linux:   []string{"tree-sitter"},
+		},
+		FlagDirExcepted: true,
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{},
+			MacOS:   []iconf.DirPath{},
+			Linux:   []iconf.DirPath{},
+		},
+		BinaryRename: &iconf.BinaryRename{
+			NameFlag: "tree-sitter",
+			RenameTo: "tree-sitter",
+		},
+	}
 }
 
 func TestTreeSitter() {

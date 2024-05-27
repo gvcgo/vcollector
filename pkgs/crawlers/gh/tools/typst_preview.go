@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -111,6 +112,26 @@ func (t *TypstPreview) GetVersions() []byte {
 
 func (t *TypstPreview) HomePage() string {
 	return "https://enter-tainer.github.io/typst-preview/"
+}
+
+func (t *TypstPreview) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"typst-preview.exe"},
+			MacOS:   []string{"typst-preview"},
+			Linux:   []string{"typst-preview"},
+		},
+		FlagDirExcepted: true,
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{},
+			MacOS:   []iconf.DirPath{},
+			Linux:   []iconf.DirPath{},
+		},
+		BinaryRename: &iconf.BinaryRename{
+			NameFlag: "typst-preview",
+			RenameTo: "typst-preview",
+		},
+	}
 }
 
 func TestTypstPreview() {

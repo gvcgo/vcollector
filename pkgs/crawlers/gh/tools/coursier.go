@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -108,6 +109,22 @@ func (c *Coursier) GetVersions() []byte {
 
 func (c *Coursier) HomePage() string {
 	return "https://get-coursier.io/docs/cli-overview"
+}
+
+func (c *Coursier) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"cs.exe"},
+			MacOS:   []string{"cs"},
+			Linux:   []string{"cs"},
+		},
+		FlagDirExcepted: true,
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{},
+			MacOS:   []iconf.DirPath{},
+			Linux:   []iconf.DirPath{},
+		},
+	}
 }
 
 func TestCoursier() {

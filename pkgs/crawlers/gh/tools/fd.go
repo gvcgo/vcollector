@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -108,6 +109,22 @@ func (f *Fd) GetVersions() []byte {
 
 func (f *Fd) HomePage() string {
 	return "https://github.com/sharkdp/fd"
+}
+
+func (f *Fd) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"fd.1", "README.md"},
+			MacOS:   []string{"fd.1", "README.md"},
+			Linux:   []string{"fd.1", "README.md"},
+		},
+		FlagDirExcepted: true,
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{},
+			MacOS:   []iconf.DirPath{},
+			Linux:   []iconf.DirPath{},
+		},
+	}
 }
 
 func TestFd() {

@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -126,6 +127,21 @@ func (c *CMake) GetVersions() []byte {
 
 func (c *CMake) HomePage() string {
 	return "https://cmake.org/"
+}
+
+func (c *CMake) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"bin", "share"},
+			MacOS:   []string{"bin", "share"},
+			Linux:   []string{"bin", "share"},
+		},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"bin"}},
+			MacOS:   []iconf.DirPath{{"bin"}},
+			Linux:   []iconf.DirPath{{"bin"}},
+		},
+	}
 }
 
 func TestCMake() {

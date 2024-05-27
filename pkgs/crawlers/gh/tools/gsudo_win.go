@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -84,6 +85,23 @@ func (g *Gsudo) GetVersions() []byte {
 
 func (g *Gsudo) HomePage() string {
 	return "https://gerardog.github.io/gsudo/"
+}
+
+func (g *Gsudo) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"x86", "x64", "arm64"},
+			MacOS:   []string{},
+			Linux:   []string{},
+		},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{
+				{"net46-AnyCpu"},
+			},
+			MacOS: []iconf.DirPath{},
+			Linux: []iconf.DirPath{},
+		},
+	}
 }
 
 func TestGsudo() {

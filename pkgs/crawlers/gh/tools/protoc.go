@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -105,6 +106,21 @@ func (p *Protoc) GetVersions() []byte {
 
 func (p *Protoc) HomePage() string {
 	return "https://protobuf.dev/"
+}
+
+func (p *Protoc) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"bin"},
+			MacOS:   []string{"bin"},
+			Linux:   []string{"bin"},
+		},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"bin"}},
+			MacOS:   []iconf.DirPath{{"bin"}},
+			Linux:   []iconf.DirPath{{"bin"}},
+		},
+	}
 }
 
 func TestProtoc() {

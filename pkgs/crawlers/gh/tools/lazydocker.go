@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -103,6 +104,22 @@ func (l *Lazydocker) GetVersions() []byte {
 
 func (l *Lazydocker) HomePage() string {
 	return "https://github.com/jesseduffield/lazydocker"
+}
+
+func (l *Lazydocker) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"README.md", "LICENSE"},
+			MacOS:   []string{"README.md", "LICENSE"},
+			Linux:   []string{"README.md", "LICENSE"},
+		},
+		FlagDirExcepted: true,
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{},
+			MacOS:   []iconf.DirPath{},
+			Linux:   []iconf.DirPath{},
+		},
+	}
 }
 
 func TestLazydocker() {
