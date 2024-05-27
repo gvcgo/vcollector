@@ -1,6 +1,7 @@
 package conda
 
 import (
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 )
@@ -45,4 +46,8 @@ func (c *CondaForgePackages) HomePage() string {
 func (c *CondaForgePackages) Start() {
 	resp := req.GetResp(c.DownloadUrl, 180)
 	c.result = []byte(resp)
+}
+
+func (c *CondaForgePackages) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{}
 }
