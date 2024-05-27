@@ -142,6 +142,7 @@ func (u *Uploader) UploadSDKInfo(cc crawler.Crawler) {
 		ss := u.Sha256List[sdkName]
 		ss.InstallConfSha256 = installConfSha
 		u.Sha256List[sdkName] = ss
+		u.saveSha256Info()
 		u.Github.UploadFile(fmt.Sprintf("install/%s.toml", sdkName), installConfFile)
 	}
 }
