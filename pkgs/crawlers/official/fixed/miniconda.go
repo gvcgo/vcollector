@@ -139,10 +139,10 @@ func (m *Miniconda) HomePage() string {
 
 func (m *Miniconda) GetInstallConf() (ic iconf.InstallerConfig) {
 	return iconf.InstallerConfig{
-		BinaryDirs: &iconf.FileItems{
-			Windows: []string{"bin", "condabin"},
-			MacOS:   []string{"bin", "condabin"},
-			Linux:   []string{"bin", "condabin"},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"bin"}, {"condabin"}},
+			MacOS:   []iconf.DirPath{{"bin"}, {"condabin"}},
+			Linux:   []iconf.DirPath{{"bin"}, {"condabin"}},
 		},
 	}
 }

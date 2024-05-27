@@ -6,10 +6,19 @@ type FileItems struct {
 	MacOS   []string `toml:"darwin"`
 }
 
+type (
+	DirPath  []string
+	DirItems struct {
+		Windows []DirPath `toml:"windows"` // <symbolLinkPath>/<filepath.Join(List)>, ...
+		Linux   []DirPath `toml:"linux"`
+		MacOS   []DirPath `toml:"darwin"`
+	}
+)
+
 type AdditionalEnv struct {
 	Name    string
-	Value   string // <symbolLinkPath>/Value
-	Version string // major>8 or major<=8(for JDK)
+	Value   []DirPath // <symbolLinkPath>/<filepath.Join(Value)>
+	Version string    // major>8 or major<=8(for JDK)
 }
 
 type AdditionalEnvList []AdditionalEnv
@@ -25,7 +34,7 @@ Installation configs
 type InstallerConfig struct {
 	FlagFiles       *FileItems        `toml:"flag_files"`
 	FlagDirExcepted bool              `toml:"flag_dir_excepted"`
-	BinaryDirs      *FileItems        `toml:"binary_dirs"`
+	BinaryDirs      *DirItems         `toml:"binary_dirs"`
 	BinaryRename    *BinaryRename     `toml:"binary_rename"`
 	AdditionalEnvs  AdditionalEnvList `toml:"additional_envs"`
 }

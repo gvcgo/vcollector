@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -129,6 +130,32 @@ func (j *JDK) GetVersions() []byte {
 
 func (j *JDK) HomePage() string {
 	return "https://bell-sw.com/pages/downloads/"
+}
+
+func (j *JDK) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"bin", "lib", "include"},
+			MacOS:   []string{"bin", "lib", "include"},
+			Linux:   []string{"bin", "lib", "include"},
+		},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"bin"}, {"jre", "bin"}},
+			MacOS:   []iconf.DirPath{{"bin"}, {"jre", "bin"}},
+			Linux:   []iconf.DirPath{{"bin"}, {"jre", "bin"}},
+		},
+		AdditionalEnvs: iconf.AdditionalEnvList{
+			{
+				Name:  "JAVA_HOME",
+				Value: []iconf.DirPath{},
+			},
+			{
+				Name:    "CLASSPATH",
+				Value:   []iconf.DirPath{{"lib", "dt.jar"}, {"lib", "tools.jar"}, {"jre", "lib", "rt.jar"}},
+				Version: "major<=8",
+			},
+		},
+	}
 }
 
 func TestJDK() {

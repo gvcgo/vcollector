@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -112,6 +113,21 @@ func (j *Julia) GetVersions() []byte {
 
 func (j *Julia) HomePage() string {
 	return "https://julialang.org/"
+}
+
+func (j *Julia) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"LICENSE.md"},
+			MacOS:   []string{"LICENSE.md"},
+			Linux:   []string{"LICENSE.md"},
+		},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"bin"}},
+			MacOS:   []iconf.DirPath{{"bin"}},
+			Linux:   []iconf.DirPath{{"bin"}},
+		},
+	}
 }
 
 func TestJulia() {

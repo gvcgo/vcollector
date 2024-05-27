@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -124,6 +125,20 @@ func (k *Kubectl) GetVersions() []byte {
 
 func (k *Kubectl) HomePage() string {
 	return "https://kubernetes.io/docs/tasks/tools/"
+}
+
+func (k *Kubectl) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"kubectl.exe"},
+			MacOS:   []string{"kubectl"},
+			Linux:   []string{"kubectl"},
+		},
+		BinaryRename: &iconf.BinaryRename{
+			NameFlag: "kubectl",
+			RenameTo: "kubectl",
+		},
+	}
 }
 
 func TestKubectl() {

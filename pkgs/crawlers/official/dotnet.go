@@ -175,7 +175,7 @@ func (d *Dotnet) GetInstallConf() (ic iconf.InstallerConfig) {
 		AdditionalEnvs: iconf.AdditionalEnvList{
 			{
 				Name:  "DOTNET_ROOT",
-				Value: "",
+				Value: []iconf.DirPath{},
 			},
 		},
 	}

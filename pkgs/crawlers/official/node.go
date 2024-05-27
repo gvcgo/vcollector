@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -148,6 +149,21 @@ func (n *Node) GetVersions() []byte {
 
 func (n *Node) HomePage() string {
 	return "https://nodejs.org/en"
+}
+
+func (n *Node) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"LICENSE", "README.md"},
+			MacOS:   []string{"LICENSE", "README.md"},
+			Linux:   []string{"LICENSE", "README.md"},
+		},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{},
+			MacOS:   []iconf.DirPath{{"bin"}},
+			Linux:   []iconf.DirPath{{"bin"}},
+		},
+	}
 }
 
 func TestNode() {

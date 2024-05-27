@@ -119,10 +119,10 @@ func (f *Flutter) GetInstallConf() (ic iconf.InstallerConfig) {
 			MacOS:   []string{"README.md", "LICENSE", "CODEOWNERS"},
 			Linux:   []string{"README.md", "LICENSE", "CODEOWNERS"},
 		},
-		BinaryDirs: &iconf.FileItems{
-			Windows: []string{"bin"},
-			MacOS:   []string{"bin"},
-			Linux:   []string{"bin"},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"bin"}},
+			MacOS:   []iconf.DirPath{{"bin"}},
+			Linux:   []iconf.DirPath{{"bin"}},
 		},
 	}
 }

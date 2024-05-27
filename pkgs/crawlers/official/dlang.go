@@ -120,10 +120,10 @@ func (m *Dlang) GetInstallConf() (ic iconf.InstallerConfig) {
 			MacOS:   []string{"osx"},
 			Linux:   []string{"linux"},
 		},
-		BinaryDirs: &iconf.FileItems{
-			Windows: []string{`windows\bin`},
-			MacOS:   []string{"osx/bin"},
-			Linux:   []string{"linux/bin64"},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"windows", "bin"}},
+			MacOS:   []iconf.DirPath{{"osx", "bin"}},
+			Linux:   []iconf.DirPath{{"linux", "bin64"}},
 		},
 	}
 }

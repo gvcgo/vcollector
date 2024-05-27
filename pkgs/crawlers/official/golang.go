@@ -140,15 +140,15 @@ func (g *Golang) GetInstallConf() (ic iconf.InstallerConfig) {
 			MacOS:   []string{"VERSION", "LICENSE"},
 			Linux:   []string{"VERSION", "LICENSE"},
 		},
-		BinaryDirs: &iconf.FileItems{
-			Windows: []string{"bin"},
-			MacOS:   []string{"bin"},
-			Linux:   []string{"bin"},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"bin"}},
+			MacOS:   []iconf.DirPath{{"bin"}},
+			Linux:   []iconf.DirPath{{"bin"}},
 		},
 		AdditionalEnvs: iconf.AdditionalEnvList{
 			{
 				Name:  "GOROOT",
-				Value: "",
+				Value: []iconf.DirPath{},
 			},
 		},
 	}

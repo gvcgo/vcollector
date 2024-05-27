@@ -1,6 +1,7 @@
 package fixed
 
 import (
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
@@ -43,4 +44,23 @@ func (c *Cygwin) GetVersions() []byte {
 
 func (c *Cygwin) HomePage() string {
 	return "https://cygwin.com/"
+}
+
+func (c *Cygwin) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"setup-x86_64.exe"},
+			MacOS:   []string{"setup-x86_64.exe"},
+			Linux:   []string{"setup-x86_64.exe"},
+		},
+		BinaryRename: &iconf.BinaryRename{
+			NameFlag: "setup-x86_64",
+			RenameTo: "cygwin-installer",
+		},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{},
+			MacOS:   []iconf.DirPath{},
+			Linux:   []iconf.DirPath{},
+		},
+	}
 }
