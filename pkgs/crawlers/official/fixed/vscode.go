@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -160,6 +161,16 @@ func (v *VSCode) GetVersions() []byte {
 
 func (v *VSCode) HomePage() string {
 	return "https://code.visualstudio.com/"
+}
+
+func (v *VSCode) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{},
+			MacOS:   []iconf.DirPath{},
+			Linux:   []iconf.DirPath{},
+		},
+	}
 }
 
 func TestVSCode() {

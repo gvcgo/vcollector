@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -94,6 +95,21 @@ func (s *SDKManager) GetVersions() []byte {
 
 func (s *SDKManager) HomePage() string {
 	return "https://developer.android.com/studio"
+}
+
+func (s *SDKManager) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"bin", "lib"},
+			MacOS:   []string{"bin", "lib"},
+			Linux:   []string{"bin", "lib"},
+		},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"bin"}},
+			MacOS:   []iconf.DirPath{{"bin"}},
+			Linux:   []iconf.DirPath{{"bin"}},
+		},
+	}
 }
 
 func TestSDKManager() {

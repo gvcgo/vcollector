@@ -1,6 +1,7 @@
 package fixed
 
 import (
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
@@ -73,4 +74,19 @@ func (r *Rustup) GetVersions() []byte {
 
 func (r *Rustup) HomePage() string {
 	return "https://rustup.rs/"
+}
+
+func (r *Rustup) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"rustup.exe"},
+			MacOS:   []string{"rustup"},
+			Linux:   []string{"rustup"},
+		},
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{},
+			MacOS:   []iconf.DirPath{},
+			Linux:   []iconf.DirPath{},
+		},
+	}
 }
