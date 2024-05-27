@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
@@ -43,6 +44,16 @@ func (p *Perl) GetVersions() []byte {
 
 func (p *Perl) HomePage() string {
 	return "https://www.perl.org/"
+}
+
+func (p *Perl) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"Library", "bin"}},
+			MacOS:   []iconf.DirPath{{"bin"}},
+			Linux:   []iconf.DirPath{{"bin"}},
+		},
+	}
 }
 
 func TestPerl() {

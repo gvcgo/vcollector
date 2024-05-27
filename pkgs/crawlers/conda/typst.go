@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
@@ -43,6 +44,16 @@ func (t *Typst) GetVersions() []byte {
 
 func (t *Typst) HomePage() string {
 	return "https://typst.app/"
+}
+
+func (t *Typst) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"bin"}},
+			MacOS:   []iconf.DirPath{{"bin"}},
+			Linux:   []iconf.DirPath{{"bin"}},
+		},
+	}
 }
 
 func TestTypst() {

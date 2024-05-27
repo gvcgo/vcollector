@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
@@ -43,6 +44,16 @@ func (l *Lua) GetVersions() []byte {
 
 func (l *Lua) HomePage() string {
 	return "https://www.lua.org/"
+}
+
+func (l *Lua) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"Library", "bin"}},
+			MacOS:   []iconf.DirPath{{"bin"}},
+			Linux:   []iconf.DirPath{{"bin"}},
+		},
+	}
 }
 
 func TestLua() {

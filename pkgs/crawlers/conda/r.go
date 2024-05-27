@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
@@ -43,6 +44,16 @@ func (r *R) GetVersions() []byte {
 
 func (r *R) HomePage() string {
 	return "https://www.r-project.org/"
+}
+
+func (r *R) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{"Scripts"}, {"Library", "bin"}},
+			MacOS:   []iconf.DirPath{{"bin"}, {"sbin"}},
+			Linux:   []iconf.DirPath{{"bin"}, {"sbin"}},
+		},
+	}
 }
 
 func TestR() {
