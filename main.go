@@ -3,8 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"os"
-	"path/filepath"
 
 	_ "github.com/gvcgo/vcollector/internal/conda"
 	"github.com/gvcgo/vcollector/internal/utils"
@@ -13,7 +11,7 @@ import (
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/lans"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/lsp"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/mix"
 	toml "github.com/pelletier/go-toml/v2"
 )
 
@@ -141,12 +139,13 @@ func main() {
 
 	// RunCrawler(mix.NewPHP())
 	// RunCrawler(official.NewJDK())
+	RunCrawler(mix.NewErlang())
 
-	m := fixed.NewMiniconda()
-	ic := m.GetInstallConf()
-	content, _ := toml.Marshal(ic)
-	localPath := filepath.Join("/Volumes/data/projects/go/src/gvcgo_org/vcollector", "miniconda.toml")
-	os.WriteFile(localPath, content, os.ModePerm)
-	uploader := utils.NewUploader()
-	uploader.Github.UploadFile("install/miniconda.toml", localPath)
+	// m := fixed.NewMiniconda()
+	// ic := m.GetInstallConf()
+	// content, _ := toml.Marshal(ic)
+	// localPath := filepath.Join("/Volumes/data/projects/go/src/gvcgo_org/vcollector", "miniconda.toml")
+	// os.WriteFile(localPath, content, os.ModePerm)
+	// uploader := utils.NewUploader()
+	// uploader.Github.UploadFile("install/miniconda.toml", localPath)
 }

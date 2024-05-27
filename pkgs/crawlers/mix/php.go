@@ -192,7 +192,7 @@ func (p *PHP) HomePage() string {
 func (p *PHP) GetInstallConf() (ic iconf.InstallerConfig) {
 	return iconf.InstallerConfig{
 		FlagFiles: &iconf.FileItems{
-			Windows: []string{"php.exe"},
+			Windows: []string{"php.exe", "lib"},
 			MacOS:   []string{"bin", "lib"},
 			Linux:   []string{"bin", "lib"},
 		},
