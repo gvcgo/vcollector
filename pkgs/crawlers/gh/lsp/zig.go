@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -105,6 +106,22 @@ func (z *Zls) GetVersions() []byte {
 
 func (z *Zls) HomePage() string {
 	return "https://github.com/zigtools/zls"
+}
+
+func (z *Zls) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"README.md"},
+			MacOS:   []string{"README.md"},
+			Linux:   []string{"README.md"},
+		},
+		FlagDirExcepted: true,
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{{}, {"bin"}},
+			MacOS:   []iconf.DirPath{{}, {"bin"}},
+			Linux:   []iconf.DirPath{{}, {"bin"}},
+		},
+	}
 }
 
 func TestZls() {

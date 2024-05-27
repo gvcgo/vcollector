@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
@@ -117,6 +118,26 @@ func (t *TypstLsp) GetVersions() []byte {
 
 func (t *TypstLsp) HomePage() string {
 	return "https://github.com/nvarner/typst-lsp"
+}
+
+func (t *TypstLsp) GetInstallConf() (ic iconf.InstallerConfig) {
+	return iconf.InstallerConfig{
+		FlagFiles: &iconf.FileItems{
+			Windows: []string{"typst-lsp.exe"},
+			MacOS:   []string{"typst-lsp"},
+			Linux:   []string{"typst-lsp"},
+		},
+		FlagDirExcepted: true,
+		BinaryDirs: &iconf.DirItems{
+			Windows: []iconf.DirPath{},
+			MacOS:   []iconf.DirPath{},
+			Linux:   []iconf.DirPath{},
+		},
+		BinaryRename: &iconf.BinaryRename{
+			NameFlag: "typst-lsp",
+			RenameTo: "typst-lsp",
+		},
+	}
 }
 
 func TestTypstLsp() {
