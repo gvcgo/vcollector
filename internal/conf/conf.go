@@ -27,6 +27,13 @@ func GetVersionDir() string {
 	return p
 }
 
+func GetInstallConfigFileDir() string {
+	workdir := GetWorkDir()
+	p := filepath.Join(workdir, "install")
+	os.MkdirAll(p, os.ModePerm)
+	return p
+}
+
 type Config struct {
 	Proxy       string `json,toml:"proxy"`       // proxy: http or socks5
 	GithubToken string `josn,toml:"githubToken"` // github access token

@@ -10,6 +10,7 @@ import (
 	"github.com/gvcgo/goutils/pkgs/gutils"
 	"github.com/gvcgo/vcollector/internal/conf"
 	"github.com/gvcgo/vcollector/internal/gh"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 )
 
 const (
@@ -17,9 +18,11 @@ const (
 	VersionFileNamePattern string = "%s.version.json"
 )
 
+// TODO: add installation config file sha256
 type Sha256 struct {
-	Sha      string `json:"sha256"`
-	HomePage string `json:"homepage"`
+	Sha256            string `json:"sha256"`
+	HomePage          string `json:"homepage"`
+	InstallConfSha256 string `json:"install_conf_sha256"`
 }
 
 type Sha256List map[string]Sha256
@@ -81,7 +84,7 @@ func (u *Uploader) checkSha256(sdkName, homepage string, content []byte) (ok boo
 	if ss, ok1 := u.Sha256List[sdkName]; !ok1 {
 		if !u.doNotSaveSha && homepage != "" {
 			u.Sha256List[sdkName] = Sha256{
-				Sha:      shaStr,
+				Sha256:   shaStr,
 				HomePage: homepage,
 			}
 		}
@@ -89,12 +92,12 @@ func (u *Uploader) checkSha256(sdkName, homepage string, content []byte) (ok boo
 		u.saveVersionFile(sdkName, content)
 		return true
 	} else {
-		if ss.Sha == shaStr {
+		if ss.Sha256 == shaStr {
 			return false
 		} else {
 			if !u.doNotSaveSha && homepage != "" {
 				u.Sha256List[sdkName] = Sha256{
-					Sha:      shaStr,
+					Sha256:   shaStr,
 					HomePage: homepage,
 				}
 			}
@@ -118,6 +121,47 @@ func (u *Uploader) Upload(sdkName, homepage string, content []byte) {
 		remoteFilePath := filepath.Base(localFilePath)
 		u.Github.UploadFile(remoteFilePath, localFilePath)
 	}
+}
+
+func (u *Uploader) UploadSDKInfo(cc crawler.Crawler) {
+	content := cc.GetVersions()
+	homepage := cc.HomePage()
+	sdkName := cc.GetSDKName()
+	if len(string(content)) > 10 {
+		if u.checkSha256(sdkName, homepage, content) {
+			localFilePath := u.getVersionFilePath(sdkName)
+			remoteFilePath := filepath.Base(localFilePath)
+			u.Github.UploadFile(remoteFilePath, localFilePath)
+		}
+	}
+
+	installConfContent, _ := json.Marshal(cc.GetInstallConf())
+	installConfFile := filepath.Join(conf.GetInstallConfigFileDir(), fmt.Sprintf("%s.toml", sdkName))
+	if ok, installConfSha := u.checkInstallConfFileSha256(installConfFile, installConfContent); ok && !u.doNotSaveSha {
+		ss := u.Sha256List[sdkName]
+		ss.InstallConfSha256 = installConfSha
+		u.Sha256List[sdkName] = ss
+		u.Github.UploadFile(fmt.Sprintf("install/%s.toml", sdkName), installConfFile)
+	}
+}
+
+func (u *Uploader) checkInstallConfFileSha256(fPath string, content []byte) (ok bool, shaStr string) {
+	h := sha256.New()
+	h.Write(content)
+	shaStr = fmt.Sprintf("%x", h.Sum(nil))
+
+	content1, _ := os.ReadFile(fPath)
+	h1 := sha256.New()
+	h1.Write(content1)
+	shaStr1 := fmt.Sprintf("%x", h1.Sum(nil))
+
+	if shaStr == shaStr1 {
+		ok = false
+		return
+	}
+	ok = true
+	os.WriteFile(fPath, content, os.ModePerm)
+	return
 }
 
 func (u *Uploader) DisableSaveSha256() {

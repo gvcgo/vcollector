@@ -43,7 +43,8 @@ func runCrawler(cc crawler.Crawler) {
 	if cc.GetSDKName() == conda.CondaForgeSDKName {
 		uploader.DisableSaveSha256()
 	}
-	uploader.Upload(cc.GetSDKName(), cc.HomePage(), cc.GetVersions())
+	// uploader.Upload(cc.GetSDKName(), cc.HomePage(), cc.GetVersions())
+	uploader.UploadSDKInfo(cc)
 }
 
 func crawl() {
