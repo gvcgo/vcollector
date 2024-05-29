@@ -73,7 +73,7 @@ func (k *Kubectl) parseVersion(vStr, archStr, osStr string) {
 	item.Url = dUrl
 	item.Sum = sha256
 	item.SumType = "sha256"
-	item.Installer = version.Unarchiver
+	item.Installer = version.Executable
 	if _, ok := k.Version[vStr]; !ok {
 		k.Version[vStr] = version.Version{}
 	}
