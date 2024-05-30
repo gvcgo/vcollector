@@ -137,9 +137,9 @@ func main() {
 	// UploadVSourceReadme()
 	// UploadHomepageFile()
 
-	// RunCrawler(mix.NewPHP())
+	RunCrawler(mix.NewPHP())
 	// RunCrawler(official.NewJDK())
-	RunCrawler(mix.NewErlang())
+	// RunCrawler(mix.NewErlang())
 
 	// m := fixed.NewMiniconda()
 	// ic := m.GetInstallConf()

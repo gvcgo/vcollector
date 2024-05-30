@@ -115,7 +115,7 @@ func (p *PHP) parseVersionForGithubItems(tagName string) (vStr string) {
 	return
 }
 
-func (p *PHP) getFromGithub() {
+func (p *PHP) GetFromGithub() {
 	pItemList := gh.GetReleaseItems(p.RepoName)
 	for _, pItem := range pItemList {
 		vStr := p.parseVersionForGithubItems(pItem.TagName)
@@ -182,7 +182,7 @@ func (p *PHP) GetVersions() []byte {
 func (p *PHP) Start() {
 	p.getFromConda()
 	p.getFromOfficialReleases()
-	p.getFromGithub()
+	// p.getFromGithub()
 }
 
 func (p *PHP) HomePage() string {
