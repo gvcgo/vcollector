@@ -25,3 +25,4 @@ go.work
 internal/gh/token.go
 cmd/vco/vco
 *.toml
+docs_*.md

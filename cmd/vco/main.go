@@ -93,4 +93,6 @@ func main() {
 	cs.ListenSignal()
 	cli := NewCli()
 	cli.Run()
+
+	// GenerateSDKHompePageListForDocs()
 }
