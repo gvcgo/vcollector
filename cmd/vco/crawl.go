@@ -81,6 +81,7 @@ func RunMultiGoroutine() {
 func RunSingleGoroutine() {
 	for _, cc := range crawler.CrawlerList {
 		runCrawler(cc)
+		time.Sleep(time.Second * 6)
 	}
 }
 
