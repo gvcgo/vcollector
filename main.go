@@ -10,8 +10,8 @@ import (
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/lans"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/lsp"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/mix"
 	toml "github.com/pelletier/go-toml/v2"
 )
 
@@ -128,6 +128,7 @@ func main() {
 	// tools.TestTypstPreview()
 	// tools.TestUpx()
 	// tools.TestVhs()
+	RunCrawler(tools.NewNeovim())
 
 	// mix.TestErlang()
 	// mix.TestPHP()
@@ -137,7 +138,7 @@ func main() {
 	// UploadVSourceReadme()
 	// UploadHomepageFile()
 
-	RunCrawler(mix.NewPHP())
+	// RunCrawler(mix.NewPHP())
 	// RunCrawler(official.NewJDK())
 	// RunCrawler(mix.NewErlang())
 
