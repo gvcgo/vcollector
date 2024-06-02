@@ -2,8 +2,13 @@ package conda
 
 import (
 	"github.com/gvcgo/vcollector/internal/iconf"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewNim())
+}
 
 type Nim struct {
 	SDKName string
