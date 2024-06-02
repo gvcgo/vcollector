@@ -10,7 +10,6 @@ import (
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/lans"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/lsp"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
 	toml "github.com/pelletier/go-toml/v2"
 )
@@ -96,6 +95,7 @@ func main() {
 	// conda.TestLFortran()
 	// conda.TestPerl()
 	// conda.TestTypst()
+	RunCrawler(conda.NewNim())
 
 	// gh.TestGithub()
 
@@ -128,7 +128,8 @@ func main() {
 	// tools.TestTypstPreview()
 	// tools.TestUpx()
 	// tools.TestVhs()
-	RunCrawler(tools.NewNeovim())
+	// RunCrawler(tools.NewNeovim())
+	// RunCrawler(tools.NewAgg())
 
 	// mix.TestErlang()
 	// mix.TestPHP()
