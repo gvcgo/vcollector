@@ -49,11 +49,17 @@ func (c *Clojure) tagFilter(ri gh.ReleaseItem) bool {
 }
 
 func (c *Clojure) fileFilter(a gh.Asset) bool {
+	if strings.HasSuffix(a.Name, ".zip") {
+		return true
+	}
 	return strings.HasPrefix(a.Name, "clojure") && strings.HasSuffix(a.Name, ".tar.gz")
 }
 
 func (c *Clojure) osParser(fName string) (osStr string) {
-	return "any"
+	if strings.HasSuffix(fName, ".zip") {
+		return "windows"
+	}
+	return "unix"
 }
 
 func (c *Clojure) archParser(fName string) (archStr string) {
@@ -84,9 +90,9 @@ func (c *Clojure) Start() {
 func (c *Clojure) GetInstallConf() (ic iconf.InstallerConfig) {
 	return iconf.InstallerConfig{
 		FlagFiles: &iconf.FileItems{
-			Windows: []string{"clojure", "clj"},
-			MacOS:   []string{"clojure", "clj"},
-			Linux:   []string{"clojure", "clj"},
+			Windows: []string{"deps.edn", "example-deps.edn"},
+			MacOS:   []string{"deps.edn", "example-deps.edn"},
+			Linux:   []string{"deps.edn", "example-deps.edn"},
 		},
 		FlagDirExcepted: true,
 		BinaryDirs: &iconf.DirItems{
