@@ -8,8 +8,7 @@ import (
 	"github.com/gvcgo/vcollector/internal/utils"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/lans"
-	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/lsp"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/lsp"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
 	toml "github.com/pelletier/go-toml/v2"
 )
@@ -107,12 +106,13 @@ func main() {
 	// lans.TestOdin()
 	// lans.TestVlang()
 	// lans.TestElixir()
-	RunCrawler(lans.NewClojure())
+	// RunCrawler(lans.NewClojure())
 
 	// lsp.TestDlangLsp()
 	// lsp.TestTypstLsp()
 	// lsp.TestVAnalyzer()
 	// lsp.TestZls()
+	RunCrawler(lsp.NewTypstLsp())
 
 	// tools.TestAsciinema()
 	// tools.TestCMake()

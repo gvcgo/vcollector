@@ -46,7 +46,7 @@ func (t *TypstLsp) fileFilter(a gh.Asset) bool {
 	if strings.Contains(a.Url, "archive/refs/") {
 		return false
 	}
-	if strings.HasSuffix(a.Name, "linux-musl") {
+	if strings.HasSuffix(a.Name, "linux-gnu") {
 		return false
 	}
 	if strings.HasSuffix(a.Name, "-linux-gnueabihf") {
