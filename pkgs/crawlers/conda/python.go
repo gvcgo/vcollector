@@ -47,7 +47,7 @@ func (p *Python) HomePage() string {
 func (p *Python) GetInstallConf() (ic iconf.InstallerConfig) {
 	return iconf.InstallerConfig{
 		BinaryDirs: &iconf.DirItems{
-			Windows: []iconf.DirPath{{}},
+			Windows: []iconf.DirPath{{}, {"Scripts"}},
 			MacOS:   []iconf.DirPath{{"bin"}},
 			Linux:   []iconf.DirPath{{"bin"}},
 		},
