@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/gvcgo/goutils/pkgs/gutils"
 	"github.com/gvcgo/vcollector/internal/iconf"
 	"github.com/gvcgo/vcollector/internal/req"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
@@ -85,6 +86,16 @@ func (n *Node) parseOS(fName string) (platform string) {
 	return
 }
 
+func (n *Node) setArchToAny(vStr, osInfo string) bool {
+	sList := strings.Split(vStr, ".")
+	mainVersion, _ := strconv.Atoi(sList[0])
+	if mainVersion < 16 && osInfo == gutils.Darwin {
+		// nodejs lower than 16.x for apple M chip. Use Rosetta.
+		return true
+	}
+	return false
+}
+
 func (n *Node) getVersion(vName string, isLTS bool) {
 	sumUrl := fmt.Sprintf(NodeSumUrlPattern, vName)
 	data := req.GetResp(sumUrl)
@@ -117,6 +128,10 @@ func (n *Node) getVersion(vName string, isLTS bool) {
 				}
 				item.Installer = version.Unarchiver
 				vStr := strings.TrimPrefix(vName, "v")
+
+				if n.setArchToAny(vStr, item.Os) {
+					item.Arch = "any"
+				}
 				if _, ok := n.Version[vStr]; !ok {
 					n.Version[vStr] = version.Version{}
 				}
