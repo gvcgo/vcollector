@@ -6,9 +6,9 @@ import (
 
 	_ "github.com/gvcgo/vcollector/internal/conda"
 	"github.com/gvcgo/vcollector/internal/utils"
+	"github.com/gvcgo/vcollector/pkgs/additional"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/lsp"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
 	toml "github.com/pelletier/go-toml/v2"
 )
@@ -112,7 +112,7 @@ func main() {
 	// lsp.TestTypstLsp()
 	// lsp.TestVAnalyzer()
 	// lsp.TestZls()
-	RunCrawler(lsp.NewTypstLsp())
+	// RunCrawler(lsp.NewTypstLsp())
 
 	// tools.TestAsciinema()
 	// tools.TestCMake()
@@ -151,4 +151,6 @@ func main() {
 	// os.WriteFile(localPath, content, os.ModePerm)
 	// uploader := utils.NewUploader()
 	// uploader.Github.UploadFile("install/miniconda.toml", localPath)
+
+	additional.TestURLs()
 }
