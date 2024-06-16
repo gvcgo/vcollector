@@ -33,7 +33,7 @@ async function handleRequest(request) {
   const actualUrlStr = url.pathname.replace("/proxy/","") + url.search + url.hash
 
   let allowed_sites = await getAllowedSites()
-  if (allowed_sites.includes("github.com/gvcgo")) {
+  if (!allowed_sites.includes("github.com/gvcgo")) {
     allowed_sites = [
       "github.com/gvcgo",
       "github.com/moqsien",
