@@ -31,6 +31,7 @@ addEventListener('fetch', event => {
     
 async function handleRequest(request) {
     let actualUrl = "https://raw.githubusercontent.com/gvcgo/version-manager/main/scripts/install.preview.sh"
+    const url = new URL(request.url);
     if (url.pathname.match("/windows/")) {
         actualUrl = "https://raw.githubusercontent.com/gvcgo/version-manager/main/scripts/install.preview.ps1"
     }
