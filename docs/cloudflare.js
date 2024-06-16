@@ -8,118 +8,109 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+async function getAllowedSites() {
+  let durl = new URL("https://raw.githubusercontent.com/gvcgo/vcollector/main/docs/allowed_sites.conf")
+  try {
+      let response = await fetch(durl);
+      return await response.json();
+  } catch (error) {
+      console.log('get allowed_sites failed', error);
+      return [];
+  }
+}
+
 function makeRes(body, status = 200, headers = {}) {
-    headers['access-control-allow-origin'] = '*'
-    return new Response(body, {status, headers})
-  }
+  headers['access-control-allow-origin'] = '*'
+  return new Response(body, {status, headers})
+}
   
-  addEventListener('fetch', event => {
-    event.respondWith(handleRequest(event.request))
-  })
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
   
-  async function handleRequest(request) {
-    const url = new URL(request.url);
-    const actualUrlStr = url.pathname.replace("/proxy/","") + url.search + url.hash
-  
-    const allowed_sites = [
-      "vo.msecnd.net",
-      "www.cygwin.com",
-      "github.com/microsoft/vcpkg",
-      "github.com/git-for-windows/git",
-      "go.dev",
-      "gradle.org",
-      "github.com/gerardog/gsudo",
-      "github.com/moqsien",
-      "github.com/JohyC/Hosts",
-      "github.com/ineo6/hosts",
-      "github.com/sengshinlee/hosts",
-      "githubusercontent.com/JohyC/Hosts",
-      "githubusercontent.com/ineo6/hosts",
-      "githubusercontent.com/sengshinlee/hosts",
-      "oracle.com/java",
-      "julialang-s3.julialang.org/bin",
-      "dlcdn.apache.org/maven",
-      "github.com/lyc8503/sing-box-rules",
-      "github.com/Loyalsoldier/v2ray-rules-dat",
-      "github.com/neovim/neovim",
-      "github.com/protocolbuffers/protobuf",
-      "github.com/pyenv/pyenv",
-      "github.com/pyenv-win/pyenv-win",
-      "rust-lang.org",
-      "github.com/typst/typst",
-      "github.com/vlang/v",
-      "github.com/v-analyzer/v-analyzer",
-      "github.com/JetBrains/kotlin",
-      "github.com/lampepfl/dotty",
-      "github.com/msys2/msys2-installer",
-      "github.com/zigtools/zls",
-      "github.com/neovide/neovide",
-      "github.com/AstroNvim/AstroNvim",
-      "github.com/tree-sitter/tree-sitter",
-      "rustup-init",
-      "rustup.rs",
-      "rust-lang.org",
-      "github.com/tree-sitter/tree-sitter",
-      "github.com/junegunn/fzf",
-      "github.com/charmbracelet/glow",
-      "github.com/sharkdp/fd",
-      "github.com/BurntSushi/ripgrep",
+async function handleRequest(request) {
+  const url = new URL(request.url);
+  const actualUrlStr = url.pathname.replace("/proxy/","") + url.search + url.hash
+
+  let allowed_sites = await getAllowedSites()
+  if (allowed_sites.includes("github.com/gvcgo")) {
+    allowed_sites = [
       "github.com/gvcgo",
-      "github.com/adoptium",
-      ".com/gvcgo/",
-      "github.com/oven-sh/bun",
-      "github.com/denoland/deno",
-      "github.com/gradle",
-      "julialang-s3.julialang.org",
-      "dlcdn.apache.org/maven",
-      "github.com/protocolbuffers",
-      "github.com/BurntSushi",
-      "typst-lsp",
-      "github.com/typst",
-      "github.com/charmbracelet",
-      "github.com/jesseduffield",
+      "github.com/moqsien",
+      "raw.githubusercontent.com",
       "github.com/coursier",
-      "download.visualstudio.microsoft.com",
-      "github.com/gleam-lang",
-      "github.com/pmmp",
-      "github.com/Enter-tainer",
-      "github.com/asciinema",
-      "dl.k8s.io/release",
-      "archive.apache.org/dist/groovy",
-      "github.com/upx",
-      "github.com/odin-lang/Odin",
-      "github.com/Pure-D/serve-d",
-      "downloads.dlang.org",
+      "github.com/zigtools",
+      "github.com/nvarner",
+      "github.com/elixir-lang",
+      "dlcdn.apache.org/maven",
+      "github.com/msys2",
+      "ziglang.org/builds",
+      "archive.apache.org/dist",
+      "github.com/BurntSushi",
       "repo.anaconda.com/miniconda",
-      "github.com/bell-sw/Liberica",
-      "windows.php.net",
-      "github.com/erlang",
-      "github.com/clojure/brew-install",
-      "nodejs.org/download",
-      "storage.googleapis.com/flutter_infra_release",
       "ziglang.org/download",
-      "ziglang.org/"
+      "github.com/junegunn",
+      "dl.k8s.io/release",
+      "github.com/Pure-D",
+      "cygwin.com/setup-x86_64.exe",
+      "github.com/erlang",
+      "github.com/sharkdp",
+      "github.com/gvcgo",
+      "github.com/v-analyzer",
+      "github.com/charmbracelet",
+      "github.com/exaloop",
+      "github.com/VirtusLab",
+      "github.com/vlang",
+      "github.com/gerardog",
+      "storage.googleapis.com/flutter_infra_release",
+      "julialang-s3.julialang.org/bin",
+      "dl.google.com/android",
+      "github.com/protocolbuffers",
+      "github.com/odin-lang",
+      "go.dev/dl",
+      "nodejs.org/download",
+      "github.com/gleam-lang",
+      "github.com/neovim",
+      "vscode.download.prss.microsoft.com/dbazure",
+      "github.com/git-for-windows",
+      "github.com/asciinema",
+      "github.com/JetBrains",
+      "download.visualstudio.microsoft.com/download",
+      "downloads.dlang.org/releases",
+      "github.com/Enter-tainer",
+      "github.com/denoland",
+      "github.com/jesseduffield",
+      "github.com/Kitware",
+      "gradle.org/releases",
+      "static.rust-lang.org/rustup",
+      "github.com/clojure",
+      "github.com/upx",
+      "github.com/tree-sitter",
+      "github.com/oven-sh",
+      "windows.php.net/downloads",
+      "github.com/bell-sw"
     ]
-  
-    for (var key in allowed_sites) {
-      if (actualUrlStr.includes(allowed_sites[key])) {
-        const actualUrl = new URL(actualUrlStr)
-  
-        const modifiedRequest = new Request(actualUrl, {
-          headers: request.headers,
-          method: request.method,
-          body: request.body,
-          redirect: 'follow'
-        });
-        const response = await fetch(modifiedRequest);
-        const modifiedResponse = new Response(response.body, response);
-        // 添加允许跨域访问的响应头
-        modifiedResponse.headers.set('Access-Control-Allow-Origin', '*');
-        return modifiedResponse;
-      }
-    }
-  
-    var infoStr = allowed_sites.join("\n")
-    var resp = makeRes("unsupported url: "+ actualUrlStr + "\n \nallowed urls: \n\n" + infoStr, 502)
-    return resp
   }
+  
+  for (var key in allowed_sites) {
+    if (actualUrlStr.includes(allowed_sites[key])) {
+      const actualUrl = new URL(actualUrlStr)
+
+      const modifiedRequest = new Request(actualUrl, {
+        headers: request.headers,
+        method: request.method,
+        body: request.body,
+        redirect: 'follow'
+      });
+      const response = await fetch(modifiedRequest);
+      const modifiedResponse = new Response(response.body, response);
+      // 添加允许跨域访问的响应头
+      modifiedResponse.headers.set('Access-Control-Allow-Origin', '*');
+      return modifiedResponse;
+    }
+  }
+
+  var infoStr = allowed_sites.join("\n")
+  var resp = makeRes("unsupported url: "+ actualUrlStr + "\n \nallowed urls: \n\n" + infoStr, 502)
+  return resp
+}
