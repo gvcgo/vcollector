@@ -31,6 +31,6 @@ tree-sitter, fd, fzf, ripgrep
 
 <a href="https://www.anaconda.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/anaconda/anaconda-original-wordmark.svg" width="20%"/></a>
 
-<a href="https://www.cloudflare.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cloudflare/cloudflare-original-wordmark.svg" width="21%"/></a>
+<!-- <a href="https://www.cloudflare.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cloudflare/cloudflare-original-wordmark.svg" width="21%"/></a>
 
-<a href="https://linuxone.cloud.marist.edu/"><img src="https://linuxone.cloud.marist.edu/resources/images/linuxonelogo03.png" width="60%"/><a>
+<a href="https://linuxone.cloud.marist.edu/"><img src="https://linuxone.cloud.marist.edu/resources/images/linuxonelogo03.png" width="60%"/><a> -->
