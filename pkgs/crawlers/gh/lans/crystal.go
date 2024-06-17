@@ -1,6 +1,9 @@
 package lans
 
 import (
+	"encoding/json"
+	"fmt"
+	"os"
 	"strings"
 
 	"github.com/gvcgo/vcollector/internal/gh"
@@ -36,7 +39,7 @@ func (c *Crystal) GetSDKName() string {
 }
 
 func (c *Crystal) tagFilter(ri gh.ReleaseItem) bool {
-	return searcher.GhVersionRegexp.FindString(ri.TagName) != ""
+	return searcher.GVersionRegexp.FindString(ri.TagName) != ""
 }
 
 func (c *Crystal) fileFilter(a gh.Asset) bool {
@@ -75,7 +78,7 @@ func (c *Crystal) archParser(fName string) (archStr string) {
 	if strings.Contains(fName, "x86_64") {
 		return "amd64"
 	}
-	if strings.Contains(fName, "darwin") {
+	if strings.Contains(fName, "universal") {
 		return "any"
 	}
 	if strings.Contains(fName, "aarch64") {
@@ -131,4 +134,16 @@ func (b *Crystal) GetInstallConf() (ic iconf.InstallerConfig) {
 			Linux:   []iconf.DirPath{{"bin"}},
 		},
 	}
+}
+
+func TestCrystal() {
+	bb := NewCrystal()
+	bb.Start()
+
+	ff := fmt.Sprintf(
+		"/home/moqsien/projects/go/src/gvcgo/vcollector/test/%s.json",
+		bb.SDKName,
+	)
+	content, _ := json.MarshalIndent(bb.Version, "", "    ")
+	os.WriteFile(ff, content, os.ModePerm)
 }
