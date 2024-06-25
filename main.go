@@ -3,13 +3,14 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"os"
+	"path/filepath"
 
 	_ "github.com/gvcgo/vcollector/internal/conda"
+	"github.com/gvcgo/vcollector/internal/conf"
 	"github.com/gvcgo/vcollector/internal/utils"
-	"github.com/gvcgo/vcollector/pkgs/additional"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/lans"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
 	toml "github.com/pelletier/go-toml/v2"
 )
@@ -67,6 +68,26 @@ func RunCrawler(cc crawler.Crawler) {
 	uploader.Upload(cc.GetSDKName(), cc.HomePage(), cc.GetVersions())
 }
 
+func UploadMirrorsInChina() {
+	var MirrorsInChina = map[string]string{
+		"https://go.dev/dl/":                   "https://golang.google.cn/dl/",
+		"https://nodejs.org/download/release/": "https://mirrors.huaweicloud.com/nodejs/",
+		"https://storage.googleapis.com/flutter_infra_release/releases/stable/": "https://mirrors.tuna.tsinghua.edu.cn/flutter/flutter_infra/releases/stable/",
+		"https://gradle.org/releases/next-steps/?version=":                      "https://mirrors.cloud.tencent.com/gradle/gradle-%s-all.zip",
+		"https://dlcdn.apache.org/maven/":                                       "https://mirrors.aliyun.com/apache/maven/",
+		"https://repo.anaconda.com/miniconda/":                                  "https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/",
+		"https://mirrors.tuna.tsinghua.edu.cn/julia-releases/bin/":              "https://julialang-s3.julialang.org/bin/",
+	}
+
+	storageDir := conf.GetInstallConfigFileDir()
+	mirrorFilePath := filepath.Join(storageDir, "customed_mirrors.toml")
+
+	content, _ := toml.Marshal(MirrorsInChina)
+	os.WriteFile(mirrorFilePath, content, os.ModePerm)
+	uu := utils.NewUploader()
+	uu.Github.UploadFile("mirrors/customed_mirrors.toml", mirrorFilePath)
+}
+
 func main() {
 	// official.TestJDK()
 	// official.TestGolang()
@@ -108,7 +129,14 @@ func main() {
 	// lans.TestVlang()
 	// lans.TestElixir()
 	// RunCrawler(lans.NewClojure())
-	RunCrawler(lans.NewCrystal())
+	// RunCrawler(lans.NewCrystal())
+
+	// ttt := map[string]string{
+	// 	"aaa": "bbb",
+	// }
+	// content, _ := toml.Marshal(ttt)
+	// fmt.Println(string(content))
+	UploadMirrorsInChina()
 
 	// lsp.TestDlangLsp()
 	// lsp.TestTypstLsp()
@@ -154,5 +182,5 @@ func main() {
 	// uploader := utils.NewUploader()
 	// uploader.Github.UploadFile("install/miniconda.toml", localPath)
 
-	additional.TestURLs()
+	// additional.TestURLs()
 }
