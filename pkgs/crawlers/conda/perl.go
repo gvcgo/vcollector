@@ -12,6 +12,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewPerl())
+	crawler.RegisterCondaCrawler(NewPerl())
 }
 
 type Perl struct {

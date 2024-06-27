@@ -8,6 +8,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewNim())
+	crawler.RegisterCondaCrawler(NewNim())
 }
 
 type Nim struct {

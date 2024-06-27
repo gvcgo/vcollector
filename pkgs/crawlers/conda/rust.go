@@ -12,6 +12,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewRust())
+	crawler.RegisterCondaCrawler(NewRust())
 }
 
 type Rust struct {

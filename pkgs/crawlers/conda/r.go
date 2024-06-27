@@ -12,6 +12,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewR())
+	crawler.RegisterCondaCrawler(NewR())
 }
 
 type R struct {

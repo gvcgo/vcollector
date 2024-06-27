@@ -11,6 +11,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewPyPy())
+	crawler.RegisterCondaCrawler(NewPyPy())
 }
 
 type PyPy struct {

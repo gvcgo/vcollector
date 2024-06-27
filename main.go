@@ -12,6 +12,7 @@ import (
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/mix"
 	toml "github.com/pelletier/go-toml/v2"
 )
 
@@ -136,7 +137,7 @@ func main() {
 	// }
 	// content, _ := toml.Marshal(ttt)
 	// fmt.Println(string(content))
-	UploadMirrorsInChina()
+	// UploadMirrorsInChina()
 
 	// lsp.TestDlangLsp()
 	// lsp.TestTypstLsp()
@@ -163,7 +164,7 @@ func main() {
 	// RunCrawler(tools.NewAgg())
 
 	// mix.TestErlang()
-	// mix.TestPHP()
+	mix.TestPHP()
 
 	// TestToml()
 

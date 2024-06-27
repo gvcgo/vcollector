@@ -15,6 +15,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewErlang())
+	crawler.RegisterCondaCrawler(NewErlang())
 }
 
 /*
@@ -123,7 +124,7 @@ func TestErlang() {
 	nn.Start()
 
 	ff := fmt.Sprintf(
-		"/Volumes/data/projects/go/src/gvcgo_org/vcollector/test/%s.json",
+		"/home/moqsien/projects/go/src/gvcgo/vcollector/test/%s.json",
 		nn.SDKName,
 	)
 	content, _ := json.MarshalIndent(nn.Version, "", "    ")

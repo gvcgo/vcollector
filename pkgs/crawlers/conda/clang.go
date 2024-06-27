@@ -11,6 +11,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewClang())
+	crawler.RegisterCondaCrawler(NewClang())
 }
 
 type Clang struct {

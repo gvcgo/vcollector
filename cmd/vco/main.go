@@ -78,6 +78,16 @@ func (c *Cli) initiate() {
 			start()
 		},
 	})
+
+	c.rootCmd.AddCommand(&cobra.Command{
+		Use:     "crawl-conda",
+		Short:   "crawl version list for conda SDKs.",
+		Long:    "vco crawl-conda.",
+		Aliases: []string{"cc"},
+		Run: func(cmd *cobra.Command, args []string) {
+			startCondaOnly()
+		},
+	})
 }
 
 func (c *Cli) Run() {

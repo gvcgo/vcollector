@@ -8,6 +8,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewFFMPeg())
+	crawler.RegisterCondaCrawler(NewFFMPeg())
 }
 
 type FFMPeg struct {

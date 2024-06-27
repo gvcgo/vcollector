@@ -85,12 +85,31 @@ func RunSingleGoroutine() {
 	}
 }
 
+func RunSingleGoroutineForConda() {
+	for _, cc := range crawler.CondaCrawlerList {
+		runCrawler(cc)
+		time.Sleep(time.Second * 6)
+	}
+}
+
 /*
 1. start crawlers.
 2. upload files.
 */
 func start() {
 	RunSingleGoroutine()
+	// upload sdklist file.
+	fPath := filepath.Join(conf.GetWorkDir(), utils.ShaFileName)
+	content, _ := os.ReadFile(fPath)
+	upl := utils.NewUploader()
+	if len(content) > 0 {
+		upl.DisableSaveSha256()
+		upl.Upload("sdk-list", "", content)
+	}
+}
+
+func startCondaOnly() {
+	RunSingleGoroutineForConda()
 	// upload sdklist file.
 	fPath := filepath.Join(conf.GetWorkDir(), utils.ShaFileName)
 	content, _ := os.ReadFile(fPath)

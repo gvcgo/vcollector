@@ -15,3 +15,9 @@ var CrawlerList = []Crawler{}
 func RegisterCrawler(c Crawler) {
 	CrawlerList = append(CrawlerList, c)
 }
+
+var CondaCrawlerList = []Crawler{}
+
+func RegisterCondaCrawler(c Crawler) {
+	CondaCrawlerList = append(CondaCrawlerList, c)
+}

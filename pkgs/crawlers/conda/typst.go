@@ -12,6 +12,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewTypst())
+	crawler.RegisterCondaCrawler(NewTypst())
 }
 
 type Typst struct {

@@ -12,6 +12,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewLua())
+	crawler.RegisterCondaCrawler(NewLua())
 }
 
 type Lua struct {

@@ -12,6 +12,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewLFortran())
+	crawler.RegisterCondaCrawler(NewLFortran())
 }
 
 type LFortran struct {

@@ -11,6 +11,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewGCC())
+	crawler.RegisterCondaCrawler(NewGCC())
 }
 
 type GCC struct {

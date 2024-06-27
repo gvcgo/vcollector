@@ -19,6 +19,7 @@ import (
 
 func init() {
 	crawler.RegisterCrawler(NewPHP())
+	crawler.RegisterCondaCrawler(NewPHP())
 }
 
 var PHPVersionRegexp = regexp.MustCompile(`-\d+(.\d+){2}-`)
@@ -209,7 +210,7 @@ func TestPHP() {
 	nn.Start()
 
 	ff := fmt.Sprintf(
-		"/Volumes/data/projects/go/src/gvcgo_org/vcollector/test/%s.json",
+		"/home/moqsien/projects/go/src/gvcgo/vcollector/test/%s.json",
 		nn.SDKName,
 	)
 	content, _ := json.MarshalIndent(nn.Version, "", "    ")
