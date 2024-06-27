@@ -128,9 +128,11 @@ func (u *Uploader) UploadSDKInfo(cc crawler.Crawler) {
 	content := cc.GetVersions()
 	homepage := cc.HomePage()
 	sdkName := cc.GetSDKName()
-	if len(string(content)) > 10 {
+	localFilePath := u.getVersionFilePath(sdkName)
+	oldContent, _ := os.ReadFile(localFilePath)
+	// filter invalid update
+	if len(string(content)) > 10 && len(content) > len(oldContent) {
 		if u.checkSha256(sdkName, homepage, content) {
-			localFilePath := u.getVersionFilePath(sdkName)
 			remoteFilePath := filepath.Base(localFilePath)
 			u.Github.UploadFile(remoteFilePath, localFilePath)
 		}
