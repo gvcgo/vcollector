@@ -12,7 +12,6 @@ import (
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/mix"
 	toml "github.com/pelletier/go-toml/v2"
 )
 
@@ -117,6 +116,8 @@ func main() {
 	// conda.TestLFortran()
 	// conda.TestPerl()
 	// conda.TestTypst()
+	conda.TestMySQL()
+	conda.TestPostgreSQL()
 	// RunCrawler(conda.NewNim())
 
 	// gh.TestGithub()
@@ -164,7 +165,7 @@ func main() {
 	// RunCrawler(tools.NewAgg())
 
 	// mix.TestErlang()
-	mix.TestPHP()
+	// mix.TestPHP()
 
 	// TestToml()
 
