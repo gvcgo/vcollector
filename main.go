@@ -12,7 +12,6 @@ import (
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
-	_ "github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
 	toml "github.com/pelletier/go-toml/v2"
 )
 
@@ -163,7 +162,8 @@ func main() {
 	// tools.TestTypstPreview()
 	// tools.TestUpx()
 	// tools.TestVhs()
-	tools.TestRedka()
+	// tools.TestRedka()
+	tools.TestGarnet()
 	// RunCrawler(tools.NewNeovim())
 	// RunCrawler(tools.NewAgg())
 
