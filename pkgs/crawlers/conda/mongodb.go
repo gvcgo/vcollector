@@ -5,8 +5,14 @@ import (
 	"os"
 
 	"github.com/gvcgo/vcollector/internal/iconf"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewMongoDB())
+	crawler.RegisterCondaCrawler(NewMongoDB())
+}
 
 type MongoDB struct {
 	SDKName string
