@@ -26,7 +26,7 @@ type VAnalyzer struct {
 func NewVAnalyzer() (v *VAnalyzer) {
 	v = &VAnalyzer{
 		SDKName:  "v-analyzer",
-		RepoName: "v-analyzer/v-analyzer",
+		RepoName: "vlang/v-analyzer",
 		GhSearcher: searcher.GhSearcher{
 			Version: make(version.VersionList),
 		},
@@ -39,10 +39,25 @@ func (v *VAnalyzer) GetSDKName() string {
 }
 
 func (v *VAnalyzer) tagFilter(ri gh.ReleaseItem) bool {
-	return searcher.GVersionRegexp.FindString(ri.TagName) != ""
+	if searcher.GVersionRegexp.FindString(ri.TagName) != "" {
+		return true
+	}
+	if searcher.PreviewRegexp.FindString(ri.TagName) != "" {
+		return true
+	}
+	return false
 }
 
 func (v *VAnalyzer) fileFilter(a gh.Asset) bool {
+	if strings.HasSuffix(a.Name, "debug.zip") {
+		return false
+	}
+	if strings.HasSuffix(a.Name, "dev.zip") {
+		return false
+	}
+	if strings.HasSuffix(a.Name, ".vsix") {
+		return false
+	}
 	return !strings.Contains(a.Url, "archive/refs/")
 }
 
@@ -96,7 +111,7 @@ func (v *VAnalyzer) GetVersions() []byte {
 }
 
 func (v *VAnalyzer) HomePage() string {
-	return "https://github.com/v-analyzer/v-analyzer"
+	return "https://github.com/vlang/v-analyzer"
 }
 
 func (v *VAnalyzer) GetInstallConf() (ic iconf.InstallerConfig) {
@@ -120,7 +135,7 @@ func TestVAnalyzer() {
 	nn.Start()
 
 	ff := fmt.Sprintf(
-		"/Volumes/data/projects/go/src/gvcgo_org/vcollector/test/%s.json",
+		"/home/moqsien/projects/go/src/gvcgo/vcollector/test/%s.json",
 		nn.SDKName,
 	)
 	content, _ := json.MarshalIndent(nn.Version, "", "    ")

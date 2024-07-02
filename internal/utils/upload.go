@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/gvcgo/goutils/pkgs/gutils"
 	"github.com/gvcgo/vcollector/internal/conf"
@@ -131,10 +132,12 @@ func (u *Uploader) UploadSDKInfo(cc crawler.Crawler) {
 	localFilePath := u.getVersionFilePath(sdkName)
 	oldContent, _ := os.ReadFile(localFilePath)
 	// filter invalid update
-	if len(string(content)) > 10 && len(content) > len(oldContent) {
-		if u.checkSha256(sdkName, homepage, content) {
-			remoteFilePath := filepath.Base(localFilePath)
-			u.Github.UploadFile(remoteFilePath, localFilePath)
+	if len(string(content)) > 10 {
+		if len(content) > len(oldContent) || !strings.Contains(string(oldContent), `"installer": "conda",`) {
+			if u.checkSha256(sdkName, homepage, content) {
+				remoteFilePath := filepath.Base(localFilePath)
+				u.Github.UploadFile(remoteFilePath, localFilePath)
+			}
 		}
 	}
 

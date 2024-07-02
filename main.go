@@ -11,7 +11,7 @@ import (
 	"github.com/gvcgo/vcollector/internal/utils"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/lsp"
 	toml "github.com/pelletier/go-toml/v2"
 )
 
@@ -143,7 +143,7 @@ func main() {
 
 	// lsp.TestDlangLsp()
 	// lsp.TestTypstLsp()
-	// lsp.TestVAnalyzer()
+	lsp.TestVAnalyzer()
 	// lsp.TestZls()
 	// RunCrawler(lsp.NewTypstLsp())
 
@@ -163,7 +163,7 @@ func main() {
 	// tools.TestUpx()
 	// tools.TestVhs()
 	// tools.TestRedka()
-	tools.TestGarnet()
+	// tools.TestGarnet()
 	// RunCrawler(tools.NewNeovim())
 	// RunCrawler(tools.NewAgg())
 
