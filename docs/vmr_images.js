@@ -25,7 +25,7 @@ function makeRes(body, status = 200, headers = {}) {
     return new Response(body, {status, headers})
 }
 
-// https://github.com/gvcgo/vmrdocs/blob/main/src/assets/vmr.gif
+// https://raw.githubusercontent.com/gvcgo/vmrdocs/main/src/assets/vmr.gif
 
 addEventListener('fetch', event => {
     event.respondWith(handleRequest(event.request))
@@ -37,7 +37,7 @@ async function handleRequest(request) {
     let fileName = rUrl.pathname.split("/").pop()
  
     let response = makeRes("download failed", 502)
-    const downloadUrl = "https://github.com/gvcgo/vmrdocs/blob/main/src/assets/"
+    const downloadUrl = "https://raw.githubusercontent.com/gvcgo/vmrdocs/main/src/assets/"
     if (fileName) {
         response = await getResponse(downloadUrl + fileName)
     }
