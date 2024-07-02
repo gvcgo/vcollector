@@ -34,7 +34,7 @@ addEventListener('fetch', event => {
 async function handleRequest(request) {
     let rUrl = new URL(request.url)
 
-    fileName = rUrl.pathname.split("/").pop()
+    let fileName = rUrl.pathname.split("/").pop()
  
     let response = makeRes("download failed", 502)
     const downloadUrl = "https://github.com/gvcgo/vmrdocs/blob/main/src/assets/"
