@@ -5,12 +5,17 @@ import (
 	"os"
 
 	"github.com/gvcgo/vcollector/internal/iconf"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
 
 /*
 conda g++
 */
+func init() {
+	crawler.RegisterCrawler(NewGXX())
+	crawler.RegisterCondaCrawler(NewGXX())
+}
 
 type GXX struct {
 	SDKName string
