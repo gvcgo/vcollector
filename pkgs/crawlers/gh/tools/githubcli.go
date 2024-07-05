@@ -124,7 +124,7 @@ func (g *GithubCli) GetInstallConf() (ic iconf.InstallerConfig) {
 			MacOS:   []string{"bin"},
 			Linux:   []string{"bin"},
 		},
-		FlagDirExcepted: true,
+		FlagDirExcepted: false,
 		BinaryDirs: &iconf.DirItems{
 			Windows: []iconf.DirPath{{"bin"}},
 			MacOS:   []iconf.DirPath{{"bin"}},
