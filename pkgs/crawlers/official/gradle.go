@@ -37,7 +37,7 @@ func NewGradle() (g *Gradle) {
 		DownloadUrl: "https://gradle.org/release-checksums/",
 		SDKName:     "gradle",
 		Version:     make(version.VersionList),
-		urlPattern:  "https://gradle.org/releases/next-steps/?version=%s&format=all",
+		urlPattern:  "https://gradle.org/next-steps/?version=%s&format=all",
 	}
 	return
 }
