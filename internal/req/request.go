@@ -24,7 +24,9 @@ func GetResp(dUrl string, timeout ...int) string {
 	fetcher := request.NewFetcher()
 	fetcher.SetUrl(dUrl)
 	fetcher.Timeout = time.Duration(t) * time.Second
+
 	proxy := os.Getenv(ProxyEnvName)
+	// if gconv.Bool(proxy) && !strings.Contains(dUrl, "maven") && !strings.Contains(dUrl, "android") {
 	if gconv.Bool(proxy) {
 		fetcher.Proxy = proxy
 	}

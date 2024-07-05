@@ -29,7 +29,7 @@ type Maven struct {
 
 func NewMaven() (m *Maven) {
 	m = &Maven{
-		DownloadUrl: "https://dlcdn.apache.org/maven",
+		DownloadUrl: "https://archive.apache.org/dist/maven/",
 		SDKName:     "maven",
 		Version:     make(version.VersionList),
 	}
@@ -40,8 +40,7 @@ func (m *Maven) GetSDKName() string {
 	return m.SDKName
 }
 
-func (m *Maven) getSha(tarUrl string) string {
-	shaUrl := tarUrl + ".sha512"
+func (m *Maven) getSha(shaUrl string) string {
 	resp := req.GetResp(shaUrl)
 	return resp
 }
@@ -74,8 +73,12 @@ func (m *Maven) getVersions(dUrl string) {
 
 					item := version.Item{}
 					item.Url = tarUrl
-					item.SumType = "sha512"
-					item.Sum = m.getSha(tarUrl)
+
+					item.SumType = "sha1"
+					if strings.Contains(dUrl, "/maven-4/") {
+						item.SumType = "sha512"
+					}
+					item.Sum = m.getSha(tarUrl + fmt.Sprintf(".%s", item.SumType))
 					item.Extra = text
 					item.Arch = "any"
 					item.Os = "any"
@@ -135,7 +138,7 @@ func TestMaven() {
 	mm := NewMaven()
 	mm.Start()
 
-	ff := "/Volumes/data/projects/go/src/gvcgo_org/vcollector/test/maven.json"
+	ff := "/home/moqsien/projects/go/src/gvcgo/vcollector/test/maven.json"
 	content, _ := json.MarshalIndent(mm.Version, "", "    ")
 	os.WriteFile(ff, content, os.ModePerm)
 }

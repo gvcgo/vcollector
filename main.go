@@ -11,7 +11,7 @@ import (
 	"github.com/gvcgo/vcollector/internal/utils"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	toml "github.com/pelletier/go-toml/v2"
 )
 
@@ -92,6 +92,7 @@ func main() {
 	// official.TestJDK()
 	// official.TestGolang()
 	// official.TestMaven()
+	RunCrawler(official.NewMaven())
 	// official.TestGradle()
 	// official.TestDotnet()
 	// official.TestZig()
@@ -102,6 +103,7 @@ func main() {
 	// official.TestGroovy()
 	// official.TestKubectl()
 	// official.TestScala()
+
 	// fixed.TestVSCode()
 	// fixed.TestSDKManager()
 	// fixed.TestMiniconda()
@@ -119,7 +121,7 @@ func main() {
 	// conda.TestMySQL()
 	// conda.TestPostgreSQL()
 	// conda.TestMongoDB()
-	conda.TestGXX()
+	// conda.TestGXX()
 	// RunCrawler(conda.NewNim())
 
 	// gh.TestGithub()
@@ -165,7 +167,7 @@ func main() {
 	// tools.TestVhs()
 	// tools.TestRedka()
 	// tools.TestGarnet()
-	tools.TestGithubCli()
+	// tools.TestGithubCli()
 	// RunCrawler(tools.NewNeovim())
 	// RunCrawler(tools.NewAgg())
 

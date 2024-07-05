@@ -117,7 +117,7 @@ func TestSDKManager() {
 	ss := NewSDKManager()
 	ss.Start()
 
-	ff := "/Volumes/data/projects/go/src/gvcgo_org/vcollector/test/sdkmanager.json"
+	ff := "/home/moqsien/projects/go/src/gvcgo/vcollector/test/sdkmanager.json"
 	content, _ := json.MarshalIndent(ss.Version, "", "    ")
 	os.WriteFile(ff, content, os.ModePerm)
 }
