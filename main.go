@@ -11,7 +11,7 @@ import (
 	"github.com/gvcgo/vcollector/internal/utils"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/official"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 	toml "github.com/pelletier/go-toml/v2"
 )
 
@@ -92,7 +92,7 @@ func main() {
 	// official.TestJDK()
 	// official.TestGolang()
 	// official.TestMaven()
-	RunCrawler(official.NewMaven())
+	// RunCrawler(official.NewMaven())
 	// official.TestGradle()
 	// official.TestDotnet()
 	// official.TestZig()
@@ -105,7 +105,8 @@ func main() {
 	// official.TestScala()
 
 	// fixed.TestVSCode()
-	// fixed.TestSDKManager()
+	fixed.TestSDKManager()
+	RunCrawler(fixed.NewSDKManager())
 	// fixed.TestMiniconda()
 	// conda.TestPython()
 	// conda.TestPyPy()

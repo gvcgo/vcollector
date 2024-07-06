@@ -58,6 +58,9 @@ func (t *TypstPreview) fileFilter(a gh.Asset) bool {
 	if strings.HasSuffix(a.Name, ".html") {
 		return false
 	}
+	if strings.HasSuffix(a.Name, ".pdb") {
+		return false
+	}
 	return true
 }
 
