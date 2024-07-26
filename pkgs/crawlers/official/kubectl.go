@@ -57,7 +57,7 @@ func (k *Kubectl) parseVersion(vStr, archStr, osStr string) {
 		sha256Url = fmt.Sprintf(KubectlExeSha256UrlPattern, vStr, osStr, archStr)
 	}
 
-	sha256 := req.GetResp(sha256Url)
+	sha256 := req.GetResp(sha256Url, 10)
 	if strings.Contains(sha256, "NoSuchKey") {
 		return
 	}
