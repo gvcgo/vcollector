@@ -74,7 +74,7 @@ func (n *Ninja) vParser(tagName string) (vStr string) {
 }
 
 func (n *Ninja) insParser(fName string) (insStr string) {
-	return version.Executable
+	return version.Unarchiver
 }
 
 func (n *Ninja) Start() {
