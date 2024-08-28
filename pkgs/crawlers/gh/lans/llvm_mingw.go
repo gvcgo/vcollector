@@ -9,6 +9,7 @@ import (
 
 	"github.com/gvcgo/vcollector/internal/gh"
 	"github.com/gvcgo/vcollector/internal/iconf"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
@@ -16,6 +17,10 @@ import (
 /*
 https://github.com/mstorsjo/llvm-mingw/releases
 */
+func init() {
+	crawler.RegisterCrawler(NewLlvmMingw())
+}
+
 var (
 	dateVersion = regexp.MustCompile(`\d{8}`)
 )
