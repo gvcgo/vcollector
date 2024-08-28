@@ -11,7 +11,7 @@ import (
 	"github.com/gvcgo/vcollector/internal/utils"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/official"
 	toml "github.com/pelletier/go-toml/v2"
 )
 
@@ -89,7 +89,7 @@ func UploadMirrorsInChina() {
 }
 
 func main() {
-	// official.TestJDK()
+	official.TestJDK()
 	// official.TestGolang()
 	// official.TestMaven()
 	// RunCrawler(official.NewMaven())
@@ -161,7 +161,7 @@ func main() {
 	// tools.TestGsudo()
 	// tools.TestLazydocker()
 	// tools.TestLazygit()
-	tools.TestNinja()
+	// tools.TestNinja()
 	// tools.TestProtoc()
 	// tools.TestRipgrep()
 	// tools.TestTreeSitter()
