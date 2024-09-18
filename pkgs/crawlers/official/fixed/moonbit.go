@@ -78,10 +78,11 @@ func (m *MoonBit) Start() {
 				continue
 			}
 			m.Version[vv] = append(m.Version[vv], version.Item{
-				Url:   dUrl,
-				Os:    osStr,
-				Arch:  archStr,
-				Extra: fmt.Sprintf(MoonBitLibURL, vv),
+				Url:       dUrl,
+				Os:        osStr,
+				Arch:      archStr,
+				Installer: version.Unarchiver,
+				Extra:     fmt.Sprintf(MoonBitLibURL, vv),
 			})
 		}
 	}
