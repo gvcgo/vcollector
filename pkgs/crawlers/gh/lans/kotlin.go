@@ -46,9 +46,6 @@ func (k *Kotlin) fileFilter(a gh.Asset) bool {
 	if strings.Contains(a.Url, "archive/refs/") {
 		return false
 	}
-	if strings.HasPrefix(a.Name, "kotlin-compiler-") {
-		return false
-	}
 	if strings.HasPrefix(a.Name, "maven-") {
 		return false
 	}
@@ -74,6 +71,13 @@ func (k *Kotlin) osParser(fName string) (osStr string) {
 	return
 }
 
+func (k *Kotlin) osParserCompiler(fName string) (osStr string) {
+	if strings.Contains(fName, "kotlin-compiler-") {
+		return "any"
+	}
+	return
+}
+
 func (k *Kotlin) archParser(fName string) (archStr string) {
 	if strings.Contains(fName, "-x86_64") {
 		return "amd64"
@@ -84,7 +88,18 @@ func (k *Kotlin) archParser(fName string) (archStr string) {
 	return
 }
 
+func (k *Kotlin) archParseCompiler(fName string) (archStr string) {
+	if strings.Contains(fName, "kotlin-compiler-") {
+		return "any"
+	}
+	return
+}
+
 func (k *Kotlin) vParser(tagName string) (vStr string) {
+	return strings.TrimPrefix(tagName, "v") + "-native"
+}
+
+func (k *Kotlin) vParserCompiler(tagName string) (vStr string) {
 	return strings.TrimPrefix(tagName, "v")
 }
 
@@ -103,6 +118,16 @@ func (k *Kotlin) Start() {
 		k.insParser,
 		nil,
 	)
+	k.GhSearcher.Search(
+		k.RepoName,
+		k.tagFilter,
+		k.fileFilter,
+		k.vParserCompiler,
+		k.archParseCompiler,
+		k.osParserCompiler,
+		k.insParser,
+		nil,
+	)
 }
 
 func (k *Kotlin) GetVersions() []byte {
@@ -117,10 +142,11 @@ func (k *Kotlin) HomePage() string {
 func (k *Kotlin) GetInstallConf() (ic iconf.InstallerConfig) {
 	return iconf.InstallerConfig{
 		FlagFiles: &iconf.FileItems{
-			Windows: []string{"bin", "tools", "klib"},
-			MacOS:   []string{"bin", "tools", "klib"},
-			Linux:   []string{"bin", "tools", "klib"},
+			Windows: []string{"bin"},
+			MacOS:   []string{"bin"},
+			Linux:   []string{"bin"},
 		},
+		FlagDirExcepted: false,
 		BinaryDirs: &iconf.DirItems{
 			Windows: []iconf.DirPath{{"bin"}},
 			MacOS:   []iconf.DirPath{{"bin"}},
@@ -134,7 +160,7 @@ func TestKotlin() {
 	nn.Start()
 
 	ff := fmt.Sprintf(
-		"/Volumes/data/projects/go/src/gvcgo_org/vcollector/test/%s.json",
+		"/home/moqsien/projects/go/src/gvcgo/vcollector/test/%s.json",
 		nn.SDKName,
 	)
 	content, _ := json.MarshalIndent(nn.Version, "", "    ")
