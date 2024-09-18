@@ -96,7 +96,7 @@ func (k *Kotlin) archParseCompiler(fName string) (archStr string) {
 }
 
 func (k *Kotlin) vParser(tagName string) (vStr string) {
-	return strings.TrimPrefix(tagName, "v") + "-native"
+	return "native-" + strings.TrimPrefix(tagName, "v")
 }
 
 func (k *Kotlin) vParserCompiler(tagName string) (vStr string) {
