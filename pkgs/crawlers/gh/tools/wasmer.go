@@ -8,9 +8,14 @@ import (
 
 	"github.com/gvcgo/vcollector/internal/gh"
 	"github.com/gvcgo/vcollector/internal/iconf"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/searcher"
 	"github.com/gvcgo/vcollector/pkgs/version"
 )
+
+func init() {
+	crawler.RegisterCrawler(NewWasmer())
+}
 
 type Wasmer struct {
 	SDKName  string
