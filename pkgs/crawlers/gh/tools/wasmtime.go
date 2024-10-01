@@ -117,10 +117,11 @@ func (w *Wasmtime) HomePage() string {
 func (w *Wasmtime) GetInstallConf() (ic iconf.InstallerConfig) {
 	return iconf.InstallerConfig{
 		FlagFiles: &iconf.FileItems{
-			Windows: []string{"wasmtime.exe"},
-			MacOS:   []string{"wasmtime"},
-			Linux:   []string{"wasmtime"},
+			Windows: []string{"wasmtime.exe", "LICENSE"},
+			MacOS:   []string{"wasmtime", "LICENSE"},
+			Linux:   []string{"wasmtime", "LICENSE"},
 		},
+		FlagDirExcepted: true,
 		BinaryDirs: &iconf.DirItems{
 			Windows: []iconf.DirPath{{}},
 			MacOS:   []iconf.DirPath{{}},
