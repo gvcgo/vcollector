@@ -11,7 +11,7 @@ import (
 	"github.com/gvcgo/vcollector/internal/utils"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/tools"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
 	toml "github.com/pelletier/go-toml/v2"
 )
 
@@ -66,6 +66,7 @@ func RunCrawler(cc crawler.Crawler) {
 		uploader.DisableSaveSha256()
 	}
 	uploader.Upload(cc.GetSDKName(), cc.HomePage(), cc.GetVersions())
+	// uploader.UploadSDKInfo(cc)
 }
 
 func UploadMirrorsInChina() {
@@ -109,6 +110,7 @@ func main() {
 	// fixed.TestSDKManager()
 	// RunCrawler(fixed.NewSDKManager())
 	// fixed.TestMiniconda()
+	RunCrawler(fixed.NewRustup())
 	// conda.TestPython()
 	// conda.TestPyPy()
 	// conda.TestGCC()
@@ -176,7 +178,7 @@ func main() {
 	// tools.TestRedka()
 	// tools.TestGarnet()
 	// tools.TestGithubCli()
-	tools.TestWasmedge()
+	// tools.TestWasmedge()
 	// tools.TestWasmer()
 	// tools.TestWasmTime()
 	// RunCrawler(tools.NewNeovim())

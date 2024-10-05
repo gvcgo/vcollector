@@ -79,10 +79,11 @@ func (r *Rustup) HomePage() string {
 func (r *Rustup) GetInstallConf() (ic iconf.InstallerConfig) {
 	return iconf.InstallerConfig{
 		FlagFiles: &iconf.FileItems{
-			Windows: []string{"rustup.exe"},
-			MacOS:   []string{"rustup"},
-			Linux:   []string{"rustup"},
+			Windows: []string{"rustup-init.exe"},
+			MacOS:   []string{"rustup-init"},
+			Linux:   []string{"rustup-init"},
 		},
+		FlagDirExcepted: true,
 		BinaryDirs: &iconf.DirItems{
 			Windows: []iconf.DirPath{},
 			MacOS:   []iconf.DirPath{},

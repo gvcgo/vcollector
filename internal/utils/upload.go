@@ -143,6 +143,8 @@ func (u *Uploader) UploadSDKInfo(cc crawler.Crawler) {
 
 	installConfContent, _ := toml.Marshal(cc.GetInstallConf())
 	installConfFile := filepath.Join(conf.GetInstallConfigFileDir(), fmt.Sprintf("%s.toml", sdkName))
+	// fmt.Println("-------", installConfContent)
+	// u.Github.UploadFile(fmt.Sprintf("install/%s.toml", sdkName), installConfFile)
 	ok, installConfSha := u.checkInstallConfFileSha256(installConfFile, installConfContent)
 	if ok && !u.doNotSaveSha {
 		u.Github.UploadFile(fmt.Sprintf("install/%s.toml", sdkName), installConfFile)
