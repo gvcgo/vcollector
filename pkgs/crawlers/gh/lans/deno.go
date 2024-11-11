@@ -55,6 +55,9 @@ func (d *Deno) fileFilter(a gh.Asset) bool {
 	if strings.HasSuffix(a.Name, ".deno.d.ts") {
 		return false
 	}
+	if strings.HasSuffix(a.Name, ".sha256sum") {
+		return false
+	}
 	return true
 }
 
