@@ -1,6 +1,7 @@
 {
     "sdk": "bun",
     "repo": "oven-sh/bun",
+    "homepage": "https://bun.sh/",
     "exclude": {
         "contains":["archive/refs/", "profile", "baseline"],
         "suffix": [".txt", ".txt.asc"],
