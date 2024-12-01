@@ -13,8 +13,8 @@
         "prefix": ["clojure&.tar.gz"]
     },
     "os": {
-        "unix":"!.zip",
-        "windows":".zip"
+        "!.zip":"unix",
+        ".zip":"windows"
     },
     "arch": {
         "":"any"

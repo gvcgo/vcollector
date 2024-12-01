@@ -1,10 +1,10 @@
 {
-    "sdk": "codon",
-    "repo": "exaloop/codon",
-    "homepage": "https://github.com/exaloop/codon",
+    "sdk": "deno",
+    "repo": "denoland/deno",
+    "homepage": "https://deno.com/",
     "exclude": {
-        "contains":["archive/refs/"],
-        "suffix": [],
+        "contains":["archive/refs/", "denort-"],
+        "suffix": ["src.tar.gz", ".deno.d.ts", ".sha256sum"],
         "prefix": []
     },
     "include": {
@@ -19,21 +19,21 @@
     },
     "arch": {
         "-x86_64":"amd64",
-        "arm64":"arm64"
+        "-aarch64":"arm64"
     },
     "type": "unarchiver",
     "versionRegExp": "v\\d+(.\\d+){2}",
     "install": {
         "flagfiles": {
-            "windows": ["bin", "lib"],
-            "macos": ["bin", "lib"],
-            "linux": ["bin", "lib"]
+            "windows": ["deno.exe"],
+            "macos": ["deno"],
+            "linux": ["deno"]
         },
-        "FlagDirExcepted": false,
+        "flagDirExcepted": false,
         "binaryDir": {
-            "windows": [["bin"]],
-            "macos": [["bin"]],
-            "linux": [["bin"]]
+            "windows": [[]],
+            "macos": [[]],
+            "linux": [[]]
         }
     }
 }

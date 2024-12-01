@@ -1,11 +1,11 @@
 {
-    "sdk": "codon",
-    "repo": "exaloop/codon",
-    "homepage": "https://github.com/exaloop/codon",
+    "sdk": "elixir",
+    "repo": "elixir-lang/elixir",
+    "homepage": "https://elixir-lang.org/",
     "exclude": {
         "contains":["archive/refs/"],
-        "suffix": [],
-        "prefix": []
+        "suffix": [".sha1sum", ".sha256sum"],
+        "prefix": ["!elixir-otp-"]
     },
     "include": {
         "contains":[],
@@ -13,23 +13,23 @@
         "prefix": []
     },
     "os": {
-        "darwin":"darwin",
-        "linux":"linux",
-        "windows":"windows"
+        ".zip":"unix",
+        ".exe":"windows"
     },
     "arch": {
-        "-x86_64":"amd64",
-        "arm64":"arm64"
+        ".exe":"amd64",
+        ".zip":"any"
     },
-    "type": "unarchiver",
+    "type": "unarchiver|executable",
     "versionRegExp": "v\\d+(.\\d+){2}",
+    "versionOTP": "otp-([0-9]+)",
     "install": {
         "flagfiles": {
             "windows": ["bin", "lib"],
             "macos": ["bin", "lib"],
             "linux": ["bin", "lib"]
         },
-        "FlagDirExcepted": false,
+        "flagDirExcepted": false,
         "binaryDir": {
             "windows": [["bin"]],
             "macos": [["bin"]],

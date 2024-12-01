@@ -1,10 +1,10 @@
 {
-    "sdk": "codon",
-    "repo": "exaloop/codon",
-    "homepage": "https://github.com/exaloop/codon",
+    "sdk": "crystal",
+    "repo": "crystal-lang/crystal",
+    "homepage": "https://crystal-lang.org/",
     "exclude": {
         "contains":["archive/refs/"],
-        "suffix": [],
+        "suffix": [".pkg", "-linux-x86_64.tar.gz", ".exe", ".docs.tar.gz" ],
         "prefix": []
     },
     "include": {
@@ -18,20 +18,22 @@
         "windows":"windows"
     },
     "arch": {
-        "-x86_64":"amd64",
+        "x86_64":"amd64",
+        "universal":"any",
+        "aarch64":"arm64",
         "arm64":"arm64"
     },
     "type": "unarchiver",
-    "versionRegExp": "v\\d+(.\\d+){2}",
+    "versionRegExp": "\\d+(.\\d+){2}",
     "install": {
         "flagfiles": {
-            "windows": ["bin", "lib"],
-            "macos": ["bin", "lib"],
+            "windows": ["lib", "crystal.exe"],
+            "macos": ["bin", "src"],
             "linux": ["bin", "lib"]
         },
         "FlagDirExcepted": false,
         "binaryDir": {
-            "windows": [["bin"]],
+            "windows": [[]],
             "macos": [["bin"]],
             "linux": [["bin"]]
         }
