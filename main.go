@@ -11,7 +11,7 @@ import (
 	"github.com/gvcgo/vcollector/internal/utils"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/conda"
 	"github.com/gvcgo/vcollector/pkgs/crawlers/crawler"
-	"github.com/gvcgo/vcollector/pkgs/crawlers/official/fixed"
+	"github.com/gvcgo/vcollector/pkgs/crawlers/gh/ghc"
 	toml "github.com/pelletier/go-toml/v2"
 )
 
@@ -110,7 +110,7 @@ func main() {
 	// fixed.TestSDKManager()
 	// RunCrawler(fixed.NewSDKManager())
 	// fixed.TestMiniconda()
-	RunCrawler(fixed.NewRustup())
+	// RunCrawler(fixed.NewRustup())
 	// conda.TestPython()
 	// conda.TestPyPy()
 	// conda.TestGCC()
@@ -205,4 +205,6 @@ func main() {
 	// uploader.Github.UploadFile("install/miniconda.toml", localPath)
 
 	// additional.TestURLs()
+
+	ghc.TestEmbed()
 }
