@@ -1,0 +1,37 @@
+{
+    "sdk": "clojure",
+    "repo": "clojure/brew-install",
+    "homepage": "https://clojure.org/",
+    "exclude": {
+        "contains":["archive/refs/", "profile", "baseline"],
+        "suffix": [".txt", ".txt.asc"],
+        "prefix": []
+    },
+    "include": {
+        "contains":[],
+        "suffix": [".zip"],
+        "prefix": ["clojure&.tar.gz"]
+    },
+    "os": {
+        "unix":"!.zip",
+        "windows":".zip"
+    },
+    "arch": {
+        "":"any"
+    },
+    "type": "unarchiver",
+    "versionRegExp": "\\d+(.\\d+){2}",
+    "install": {
+        "flagfiles": {
+            "windows": ["deps.edn", "example-deps.edn"],
+            "macos": ["deps.edn", "example-deps.edn"],
+            "linux": ["deps.edn", "example-deps.edn"]
+        },
+        "flagDirExcepted": true,
+        "binaryDir": {
+            "windows": [["bin"]],
+            "macos": [["bin"]],
+            "linux": [["bin"]]
+        }
+    }
+}

@@ -1,10 +1,10 @@
 {
-    "sdk": "bun",
-    "repo": "oven-sh/bun",
-    "homepage": "https://bun.sh/",
+    "sdk": "codon",
+    "repo": "exaloop/codon",
+    "homepage": "https://github.com/exaloop/codon",
     "exclude": {
-        "contains":["archive/refs/", "profile", "baseline"],
-        "suffix": [".txt", ".txt.asc"],
+        "contains":["archive/refs/"],
+        "suffix": [],
         "prefix": []
     },
     "include": {
@@ -18,22 +18,22 @@
         "windows":"windows"
     },
     "arch": {
-        "-x64":"amd64",
-        "-aarch64":"arm64"
+        "-x86_64":"amd64",
+        "arm64":"arm64"
     },
     "type": "unarchiver",
     "versionRegExp": "v\\d+(.\\d+){2}",
     "install": {
         "flagfiles": {
-            "windows": ["bun.exe"],
-            "macos": ["bun"],
-            "linux": ["bun"]
+            "windows": ["bin", "lib"],
+            "macos": ["bin", "lib"],
+            "linux": ["bin", "lib"]
         },
         "flagDirExcepted": true,
         "binaryDir": {
-            "windows": [[]],
-            "macos": [[]],
-            "linux": [[]]
+            "windows": [["bin"]],
+            "macos": [["bin"]],
+            "linux": [["bin"]]
         }
     }
 }
