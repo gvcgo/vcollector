@@ -28,3 +28,4 @@ docs_*.md
 *.txt
 vco.exe
 tokens.go
+token*.go
