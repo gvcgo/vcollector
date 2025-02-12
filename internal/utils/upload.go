@@ -137,6 +137,7 @@ func (u *Uploader) UploadSDKInfo(cc crawler.Crawler) {
 			if u.checkSha256(sdkName, homepage, content) {
 				remoteFilePath := filepath.Base(localFilePath)
 				u.Github.UploadFile(remoteFilePath, localFilePath)
+				fmt.Println(">>> upload sdk: ", sdkName)
 			}
 		}
 	}

@@ -74,6 +74,7 @@ func (f *Flutter) GetSDKName() string {
 func (f *Flutter) getResult() {
 	platforms := []string{"linux", "macos", "windows"}
 	for _, platform := range platforms {
+		f.result = FItemList{}
 		dUrl := fmt.Sprintf(f.DownloadUrl, platform)
 		req.GetJson(dUrl, &f.result)
 	INNER:
