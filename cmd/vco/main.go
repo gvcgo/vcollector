@@ -72,10 +72,14 @@ func (c *Cli) initiate() {
 	c.rootCmd.AddCommand(&cobra.Command{
 		Use:     "crawl",
 		Short:   "crawl version list for SDKs.",
-		Long:    "vco crawl.",
+		Long:    "vco crawl or vco crawl <sdk-name>.",
 		Aliases: []string{"c"},
 		Run: func(cmd *cobra.Command, args []string) {
-			start()
+			if len(args) > 0 && len(args[0]) > 0 {
+				startBySDKName(args[0])
+			} else {
+				start()
+			}
 		},
 	})
 

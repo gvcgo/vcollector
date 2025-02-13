@@ -85,6 +85,14 @@ func RunSingleGoroutine() {
 	}
 }
 
+func RunSingleGoroutineBySDKName(sdkName string) {
+	for _, cc := range crawler.CrawlerList {
+		if cc.GetSDKName() == sdkName {
+			runCrawler(cc)
+		}
+	}
+}
+
 func RunSingleGoroutineForConda() {
 	for _, cc := range crawler.CondaCrawlerList {
 		runCrawler(cc)
@@ -110,6 +118,18 @@ func start() {
 
 func startCondaOnly() {
 	RunSingleGoroutineForConda()
+	// upload sdklist file.
+	fPath := filepath.Join(conf.GetWorkDir(), utils.ShaFileName)
+	content, _ := os.ReadFile(fPath)
+	upl := utils.NewUploader()
+	if len(content) > 0 {
+		upl.DisableSaveSha256()
+		upl.Upload("sdk-list", "", content)
+	}
+}
+
+func startBySDKName(sdkName string) {
+	RunSingleGoroutineBySDKName(sdkName)
 	// upload sdklist file.
 	fPath := filepath.Join(conf.GetWorkDir(), utils.ShaFileName)
 	content, _ := os.ReadFile(fPath)
