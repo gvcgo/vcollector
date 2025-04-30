@@ -52,6 +52,9 @@ func (z *Zls) fileFilter(a gh.Asset) bool {
 	if strings.Contains(a.Name, "-x86-") {
 		return false
 	}
+	if strings.HasSuffix(a.Name, ".minisig") {
+		return false
+	}
 	return true
 }
 
