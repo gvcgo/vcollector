@@ -18,7 +18,7 @@ func init() {
 }
 
 var GradleExludeList = map[string]struct{}{
-	"v0.7": {},
+	"0.7": {},
 }
 
 /*
@@ -53,23 +53,26 @@ func (g *Gradle) getResult() {
 	}
 	doc.Find("h3.u-text-with-icon").Each(func(_ int, ss *goquery.Selection) {
 		vStr := strings.TrimSpace(ss.Find("span").Eq(1).Text())
-		if strings.HasPrefix(vStr, "v") {
-			if _, ok := GradleExludeList[vStr]; ok {
-				return
-			}
-			vStr = strings.TrimPrefix(vStr, "v")
-			item := version.Item{}
-			item.Arch = "any"
-			item.Os = "any"
-			item.Url = fmt.Sprintf(g.urlPattern, vStr)
-			item.SumType = "sha256"
-			item.Sum = ss.Next().Find("li").Eq(1).Find("code").Text()
-			item.Installer = version.Unarchiver
-			if _, ok := g.Version[vStr]; !ok {
-				g.Version[vStr] = version.Version{}
-			}
-			g.Version[vStr] = append(g.Version[vStr], item)
+		// Version strings on gradle.org/release-checksums/ used to carry a "v"
+		// prefix (e.g. "v8.14.3") and no longer do (e.g. "9.0.0"), so accept both.
+		vStr = strings.TrimPrefix(vStr, "v")
+		if vStr == "" {
+			return
 		}
+		if _, ok := GradleExludeList[vStr]; ok {
+			return
+		}
+		item := version.Item{}
+		item.Arch = "any"
+		item.Os = "any"
+		item.Url = fmt.Sprintf(g.urlPattern, vStr)
+		item.SumType = "sha256"
+		item.Sum = ss.Next().Find("li").Eq(1).Find("code").Text()
+		item.Installer = version.Unarchiver
+		if _, ok := g.Version[vStr]; !ok {
+			g.Version[vStr] = version.Version{}
+		}
+		g.Version[vStr] = append(g.Version[vStr], item)
 	})
 }
 
